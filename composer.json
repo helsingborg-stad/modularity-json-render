@@ -1,0 +1,22 @@
+{
+    "name": "helsingborg-stad/modularity-json-render",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Thulin",
+            "email": "sebastian.thulin@helsingborg.se"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "helsingborg-stad/acf-export-manager": ">=1.0.0",
+        "google/apiclient": "^2.0"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
+        }
+    ]
+}
