@@ -1,6 +1,6 @@
 <?php
 
-namespace (#plugin_namespace#)\Vendor;
+namespace ModularityJsonRender\Vendor;
 
 /**
  * A PSR-4 compatible class loader.

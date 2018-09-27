@@ -1,7 +1,7 @@
 {
-  "name": "(#plugin_slug#)",
+  "name": "modularity-json-render",
   "version": "1.0.0",
-  "description": "(#plugin_description#)",
+  "description": "Renders JSON api:s as a list etc.",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate.git"
   },
-  "author": "(#plugin_author#)",
+  "author": "Sebastian Thulin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate/issues"

@@ -60,7 +60,7 @@ gulp.task('watch', function() {
 // SASS Task
 // ==========================================================================
 gulp.task('sass', function() {
-    return gulp.src('source/sass/(#plugin_slug#).scss')
+    return gulp.src('source/sass/modularity-json-render.scss')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', function(err) {
@@ -94,7 +94,7 @@ gulp.task('scripts', function() {
               'message': err.message
             });
         }))
-        .pipe(concat('(#plugin_slug#).js'))
+        .pipe(concat('modularity-json-render.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/js'))
         .pipe(uglify().on('error', function(err) {

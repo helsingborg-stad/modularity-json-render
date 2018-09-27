@@ -1,6 +1,6 @@
 <?php
 
-namespace (#plugin_namespace#);
+namespace ModularityJsonRender;
 
 class App
 {
@@ -16,7 +16,7 @@ class App
      */
     public function enqueueStyles()
     {
-        wp_register_style('(#plugin_slug#)-css', (#plugin_cap#)_URL . '/dist/' . \(#plugin_namespace#)\Helper\CacheBust::name('css/(#plugin_slug#).css'));
+        wp_register_style('modularity-json-render-css', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'));
     }
 
     /**
@@ -25,6 +25,6 @@ class App
      */
     public function enqueueScripts()
     {
-        wp_register_script('(#plugin_slug#)-js', (#plugin_cap#)_URL . '/dist/' . \(#plugin_namespace#)\Helper\CacheBust::name('js/(#plugin_slug#).js'));
+        wp_register_script('modularity-json-render-js', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'));
     }
 }
