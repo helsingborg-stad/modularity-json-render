@@ -1,5 +1,5 @@
 //
-//  GULPFILE.JS
+//  GULPFILE.JS - Reactified
 //  Author: Nikolas Ramstedt (nikolas.ramstedt@helsingborg.se)
 //
 //  Commands:
@@ -10,7 +10,6 @@
 
 const gulp          = require('gulp');
 const sass          = require('gulp-sass');
-const concat        = require('gulp-concat');
 const uglify        = require('gulp-uglify');
 const cleanCSS      = require('gulp-clean-css');
 const rename        = require('gulp-rename');
@@ -19,10 +18,19 @@ const plumber       = require('gulp-plumber');
 const rev           = require('gulp-rev');
 const revDel        = require('rev-del');
 const runSequence   = require('run-sequence');
-const jshint        = require('gulp-jshint');
 const sourcemaps    = require('gulp-sourcemaps');
 const notifier      = require('node-notifier');
+const del           = require('del');
+const eslint        = require('gulp-eslint');
+const streamify     = require('gulp-streamify');
 
+//Dependecies required to compile ES6 Scripts
+const browserify    = require('browserify');
+const source        = require('vinyl-source-stream');
+const reactify      = require('reactify');
+const buffer        = require('vinyl-buffer');
+const babelify      = require("babelify");
+const es            = require('event-stream');
 
 // ==========================================================================
 // Default Task
@@ -52,7 +60,7 @@ gulp.task('build:scripts', function(callback) {
 // Watch Task
 // ==========================================================================
 gulp.task('watch', function() {
-    gulp.watch('source/js/**/*.js', ['build:scripts']);
+    gulp.watch(['source/js/**/*.js', 'source/js/**/*.jsx'], ['build:scripts']);
     gulp.watch('source/sass/**/*.scss', ['build:sass']);
 });
 
@@ -60,48 +68,72 @@ gulp.task('watch', function() {
 // SASS Task
 // ==========================================================================
 gulp.task('sass', function() {
-    return gulp.src('source/sass/modularity-json-render.scss')
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', function(err) {
-            console.log(err.message);
-            notifier.notify({
-              'title': 'SASS Compile Error',
-              'message': err.message
-            });
-        }))
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/css'))
-        .pipe(cleanCSS({debug: true}))
-        .pipe(gulp.dest('dist/.tmp/css'));
+    var filePath = 'source/sass/';
+    var files = [
+        'skyfish-integration.scss',
+        'skyfish-integration-admin.scss'
+    ];
+
+    var tasks = files.map(function(entry) {
+        return gulp.src(filePath + entry)
+            .pipe(plumber())
+            .pipe(sourcemaps.init())
+            .pipe(sass().on('error', function(err) {
+                console.log(err.message);
+                notifier.notify({
+                  'title': 'SASS Compile Error',
+                  'message': err.message
+                });
+            }))
+            .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('dist/css'))
+            .pipe(cleanCSS({debug: true}))
+            .pipe(gulp.dest('dist/.tmp/css'));
+    });
+
+    return es.merge.apply(null, tasks);
 });
 
 // ==========================================================================
 // Scripts Task
 // ==========================================================================
 gulp.task('scripts', function() {
-    return gulp.src([
-            'source/js/**/*.js',
-        ])
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(jshint())
-        .pipe(jshint.reporter('fail').on('error', function(err) {
-            this.pipe(jshint.reporter('default'));
-            notifier.notify({
-              'title': 'JS Compile Error',
-              'message': err.message
-            });
-        }))
-        .pipe(concat('modularity-json-render.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/js'))
-        .pipe(uglify().on('error', function(err) {
-            return;
-        }))
-        .pipe(gulp.dest('dist/.tmp/js'));
+    var filePath = 'source/js/';
+    var files = [
+        'SkyfishIntegration.js',
+        'SkyfishIntegrationAdmin.js'
+    ];
+    var tasks = files.map(function(entry) {
+        return browserify({
+                entries: [filePath + entry],
+                debug: true
+            })
+            .transform(reactify, {"es6": true})
+            .bundle()
+            .on('error', function(err){
+                console.log(err.stack);
+
+                notifier.notify({
+                  'title': 'Compile Error',
+                  'message': err.message
+                });
+
+                this.emit("end");
+            })
+            .pipe(source(entry)) // Converts To Vinyl Stream
+            .pipe(buffer()) // Converts Vinyl Stream To Vinyl Buffer
+            // Gulp Plugins Here!
+            .pipe(sourcemaps.init())
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('dist/js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('dist/.tmp/js'));
+    });
+
+    return es.merge.apply(null, tasks);
 });
+
 
 // ==========================================================================
 // Revision Task
