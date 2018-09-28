@@ -26,12 +26,12 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
-        wp_enqueue_script($this->slug . '-js');
+        wp_enqueue_script('modularity-json-render-js');
     }
 
     public function style()
     {
-        wp_enqueue_style($this->slug . '-css');
+        wp_enqueue_style('modularity-json-render-css');
     }
 
     /**
