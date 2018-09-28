@@ -101,8 +101,8 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
     var filePath = 'source/js/';
     var files = [
-        'SkyfishIntegration.js',
-        'SkyfishIntegrationAdmin.js'
+        'modularity-json-render.js',
+        //'modularity-json-render-admin.js'
     ];
     var tasks = files.map(function(entry) {
         return browserify({
