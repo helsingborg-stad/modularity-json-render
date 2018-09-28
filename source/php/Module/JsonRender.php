@@ -11,7 +11,7 @@ class JsonRender extends \Modularity\Module
     {
         $this->nameSingular = __("Json Render", 'modularity-json-render');
         $this->namePlural = __("Json Renders", 'modularity-json-render');
-        $this->description = __("REtrives data from API and renders it as a list.", 'modularity-json-render');
+        $this->description = __("Retrives data from API and renders it as a list.", 'modularity-json-render');
     }
 
     public function data() : array
