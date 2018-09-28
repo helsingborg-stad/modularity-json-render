@@ -27,7 +27,7 @@ class App
      */
     public function init()
     {
-        new \ModularityJsonRender\Module\JsonRender();
+
     }
 
     /**
@@ -39,7 +39,7 @@ class App
         if (function_exists('modularity_register_module')) {
             modularity_register_module(
                 MODULARITYJSONRENDER_PATH . 'Source/php/Module/',
-                __('Json Render', 'modularity-json-render')
+                'JsonRender'
             );
         }
     }
