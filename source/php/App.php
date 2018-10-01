@@ -46,6 +46,7 @@ class App
 
     /**
      * Register module view
+     * @param  $paths In what paths the module template resides
      * @return array
      */
 
@@ -65,7 +66,7 @@ class App
         $acfExportManager->setTextdomain('modularity-json-render');
         $acfExportManager->setExportFolder(MODULARITYJSONRENDER_PATH . 'acf-fields/');
         $acfExportManager->autoExport(array(
-            // 'base' => 'group_599eaa60c0e79',
+            'configuration' => 'group_5bb1ccff7600b',
         ));
         $acfExportManager->import();
     }
