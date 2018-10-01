@@ -1,0 +1,40 @@
+[{
+    "key": "group_5bb1ccff7600b",
+    "title": "Inst\u00e4llningar f\u00f6r json fl\u00f6de",
+    "fields": [
+        {
+            "key": "field_5bb1cd1c313ec",
+            "label": "Data source",
+            "name": "mod_json_data_source",
+            "type": "url",
+            "instructions": "Enter a valid JSON api url. The json data provided from the source should be as flat as possible.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+}]
+
