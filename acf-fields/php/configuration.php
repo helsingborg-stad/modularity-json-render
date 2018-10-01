@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5bb1ccff7600b',
-    'title' => __('Inställningar för json flöde', 'modularity-json-render'),
+    'title' => __('JSON API Settings', 'modularity-json-render'),
     'fields' => array(
         0 => array(
             'key' => 'field_5bb1cd1c313ec',
