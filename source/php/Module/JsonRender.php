@@ -6,12 +6,17 @@ class JsonRender extends \Modularity\Module
 {
     public $slug = 'json-render';
     public $supports = array();
+    public $react = false;
 
     public function init()
     {
+        //Define module
         $this->nameSingular = __("Json Render", 'modularity-json-render');
         $this->namePlural = __("Json Renders", 'modularity-json-render');
         $this->description = __("Retrives data from API and renders it as a list.", 'modularity-json-render');
+
+        //Get helper react
+        $this->react = new \ModularityJsonRender\Helper\React();
     }
 
     public function data() : array
@@ -29,12 +34,13 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
-        wp_enqueue_script('modularity-' . $this->slug);
+        $this->react::enqueue(); // Enqueue react
+        wp_enqueue_script('modularity-' . $this->slug); // Enqueue script
     }
 
     public function style()
     {
-        wp_enqueue_style('modularity-' . $this->slug);
+        wp_enqueue_style('modularity-' . $this->slug); // Enqueue styles
     }
 
     /**
