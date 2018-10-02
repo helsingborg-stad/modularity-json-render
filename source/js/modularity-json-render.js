@@ -11,7 +11,7 @@ ModularityJsonRender.App = class {
     {
         ReactDOM.render(
           <ExampleComponent />,
-          document.getElementById('example-component')
+          document.getElementById('modularity-json-render-695')
         );
     }
 }
