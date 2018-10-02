@@ -27,7 +27,6 @@ class App
      */
     public function init()
     {
-
         new Structure(); //Parse and provide json structure
     }
 
