@@ -17,6 +17,7 @@ class JsonRender extends \Modularity\Module
     public function data() : array
     {
         return array(
+            'moduleId' => $this->ID,
             'jsonUrl' => get_field('mod_json_data_source', $this->ID)
         );
     }

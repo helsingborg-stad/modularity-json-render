@@ -1,4 +1,4 @@
 list.blade.php file
-<div id="example-component"></div>
+<div id="modularity-json-render-{{ $moduleId }}" data-url="{{ $jsonUrl }}"></div>
 
-{{ $jsonUrl }}
+
