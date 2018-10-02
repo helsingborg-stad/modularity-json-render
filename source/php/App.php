@@ -6,9 +6,9 @@ class App
 {
     public function __construct()
     {
-        //Enqueue scripts
-        add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'));
-        add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
+        //Register scripts
+        add_action('wp_enqueue_scripts', array($this, 'enqueueStyles'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueueScripts'));
 
         //Init ACF import
         add_action('plugins_loaded', array($this, 'initAcfImportExport'));
@@ -72,20 +72,20 @@ class App
     }
 
     /**
-     * Enqueue required style
+     * Register required style
      * @return void
      */
     public function enqueueStyles()
     {
-        wp_register_style('modularity-json-render-css', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'));
+        wp_register_style('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'));
     }
 
     /**
-     * Enqueue required scripts
+     * Register required scripts
      * @return void
      */
     public function enqueueScripts()
     {
-        wp_register_script('modularity-json-render-js', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'));
+        wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'));
     }
 }
