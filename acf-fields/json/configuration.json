@@ -17,6 +17,28 @@
             },
             "default_value": "",
             "placeholder": ""
+        },
+        {
+            "key": "field_5bb1cf28c13c5",
+            "label": "List data field",
+            "name": "mod_json_list_data_field",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -24,7 +46,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "mod-json-render"
             }
         ]
     ],

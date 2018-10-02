@@ -21,13 +21,37 @@
             'default_value' => '',
             'placeholder' => '',
         ),
+        1 => array(
+            'key' => 'field_5bb1cf28c13c5',
+            'label' => __('List data field', 'modularity-json-render'),
+            'name' => 'mod_json_list_data_field',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+            ),
+            'default_value' => array(
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'return_format' => 'value',
+            'placeholder' => '',
+        ),
     ),
     'location' => array(
         0 => array(
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'post',
+                'value' => 'mod-json-render',
             ),
         ),
     ),

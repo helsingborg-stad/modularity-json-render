@@ -6,7 +6,7 @@ const ExampleComponent = require('./components/example.jsx');
 
 var ModularityJsonRender = {};
 
-SkyfishIntegration.App = class {
+ModularityJsonRender.App = class {
     constructor()
     {
         ReactDOM.render(
