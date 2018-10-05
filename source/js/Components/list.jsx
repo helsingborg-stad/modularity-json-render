@@ -1,5 +1,3 @@
-var React = require('react');
-
 module.exports = class ModularityJsonRenderList extends React.Component {
   render() {
     return (
