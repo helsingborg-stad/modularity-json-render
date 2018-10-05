@@ -49,6 +49,9 @@ const App = class {
 
         const api = new JsonParser(this.getDomAttributes().dataUrl, this.getDomAttributes().dataFieldmap);
 
+        console.log(api.request());
+
+
         ReactDOM.render(
             <JsonRenderContainer
                 api={api}
