@@ -77,7 +77,9 @@ class App
      */
     public function enqueueStyles()
     {
-        wp_register_style('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'));
+        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'))) {
+            wp_register_style('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'));
+        }
     }
 
     /**
@@ -86,6 +88,8 @@ class App
      */
     public function enqueueScripts()
     {
-        wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'));
+        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'))) {
+            wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'));
+        }
     }
 }
