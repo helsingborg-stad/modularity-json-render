@@ -32,9 +32,9 @@ module.exports = class {
         $.ajax({
             url : this.apiUrl
         }).done(function(data){
-            globalCallback({status: true, data})
+            successCallback({status: true, data})
         }).fail(function(){
-            globalCallback({status: false, errorMessage: "Could not query the entered API:url."});
+            //globalCallback({status: false, errorMessage: "Could not query the entered API:url."});
         });
         return;
     }
