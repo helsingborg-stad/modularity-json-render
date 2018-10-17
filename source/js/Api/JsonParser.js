@@ -27,24 +27,16 @@ module.exports = class {
         ];
     }
 
-    request(data, type, headers)
+    request()
     {
-        var result;
-
         $.ajax({
-            async : false,
-            url : this.apiUrl,
-            type : type,
-            headers: headers,
-            data : data,
-            success : function(response, status) {
-                result = response;
-            }.bind(this),
-            error : function(jqXHR, status, error) {
-                result = jqXHR;
-            }
+            url : this.apiUrl
+        }).done(function(data){
+            globalCallback({status: true, data})
+        }).fail(function(){
+            globalCallback({status: false, errorMessage: "Could not query the entered API:url."});
         });
-
-        return result;
+        return;
     }
+
 };
