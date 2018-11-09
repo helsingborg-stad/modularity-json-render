@@ -1,6 +1,7 @@
 import Accordion from './Accordion';
+import uuidv1 from 'uuid/v1';
 
-export default class JsonParser extends React.Component {
+class JsonParser extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -10,24 +11,22 @@ export default class JsonParser extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.getApiData();
+    }
+
     mapData(jsonData) {
-        // TODO add fieldmap as prop
-        const fieldMap = {
-            container: ['features'],
-            id: ['attributes', 'OBJECTID'],
-            title: ['attributes', 'name'],
-            content: ['attributes', 'address']
-        };
+        const fieldMap = this.props.fieldMap;
         // Get the object containing items from JSON
-        let items = this.getObjectProp(jsonData, fieldMap.container);
+        let items = this.getObjectProp(jsonData, fieldMap.itemContainer ? fieldMap.itemContainer.split('.') : []);
         if (!items || Object.keys(items).length === 0) {
             return;
         }
         // Map the data items
         items = items.map(item => ({
-            id: this.getObjectProp(item, fieldMap.id),
-            title: this.getObjectProp(item, fieldMap.title),
-            content: this.getObjectProp(item, fieldMap.content)
+            id: uuidv1(),
+            title: this.getObjectProp(item, fieldMap.title.split('.')),
+            content: this.getObjectProp(item, fieldMap.content.split('.'))
         }));
         // Remove objects with missing fields
         items = items.filter(function (item) {
@@ -82,10 +81,6 @@ export default class JsonParser extends React.Component {
             );
     }
 
-    componentDidMount() {
-        this.getApiData();
-    }
-
     render() {
         const {error, isLoaded, items} = this.state;
         if (error) {
@@ -99,3 +94,5 @@ export default class JsonParser extends React.Component {
         }
     }
 }
+
+export default JsonParser;

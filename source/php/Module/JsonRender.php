@@ -35,9 +35,12 @@ class JsonRender extends \Modularity\Module
 
     public function data(): array
     {
+        $options = $this->getOptions($this->ID);
+
         return array(
             'moduleId' => $this->ID,
-            'jsonUrl' => get_field('mod_json_data_source', $this->ID)
+            'url' => $options['url'],
+            'fieldMap' => $options['fieldMap']
         );
     }
 
@@ -63,20 +66,25 @@ class JsonRender extends \Modularity\Module
         if (!isset($post->post_type) || $post->post_type !== 'mod-' . $this->slug) {
             return;
         }
-        $url = get_post_meta($post->ID, 'json_url', true);
-        $fieldmap = get_post_meta($post->ID, 'fieldmap', true);
+
+        $this->react::enqueue(); // Enqueue react
+        wp_enqueue_script('modularity-json-render-admin-js'); // Enqueue script
+        $options = $this->getOptions($post->ID);
+        wp_localize_script('modularity-json-render-admin-js', 'modJsonRender', array(
+            'options' => $options
+        ));
+    }
+
+    public function getOptions($postId)
+    {
+        $url = get_post_meta($postId, 'json_url', true);
+        $fieldmap = get_post_meta($postId, 'fieldmap', true);
         $options = array(
             'url' => $url ? $url : null,
             'fieldMap' => $fieldmap ? $fieldmap : null
         );
 
-        $this->react::enqueue(); // Enqueue react
-        wp_enqueue_script('modularity-json-render-admin-js'); // Enqueue script
-        wp_localize_script('modularity-json-render-admin-js', 'modJsonRender', array(
-            'options' => $options,
-            'fieldMap' => array()
-        ));
-
+        return $options;
     }
 
     /**
