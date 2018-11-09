@@ -10,7 +10,7 @@
 
 const gulp          = require('gulp');
 const sass          = require('gulp-sass');
-const uglify        = require('gulp-uglify');
+const terser        = require('gulp-terser');
 const cleanCSS      = require('gulp-clean-css');
 const rename        = require('gulp-rename');
 const autoprefixer  = require('gulp-autoprefixer');
@@ -26,8 +26,8 @@ const streamify     = require('gulp-streamify');
 
 //Dependecies required to compile ES6 Scripts
 const browserify    = require('browserify');
-const source        = require('vinyl-source-stream');
 const reactify      = require('reactify');
+const source        = require('vinyl-source-stream');
 const buffer        = require('vinyl-buffer');
 const babelify      = require("babelify");
 const es            = require('event-stream');
@@ -70,8 +70,8 @@ gulp.task('watch', function() {
 gulp.task('sass', function() {
     var filePath = 'source/sass/';
     var files = [
-        'skyfish-integration.scss',
-        'skyfish-integration-admin.scss'
+        //'skyfish-integration.scss',
+        //'skyfish-integration-admin.scss'
     ];
 
     var tasks = files.map(function(entry) {
@@ -81,8 +81,8 @@ gulp.task('sass', function() {
             .pipe(sass().on('error', function(err) {
                 console.log(err.message);
                 notifier.notify({
-                  'title': 'SASS Compile Error',
-                  'message': err.message
+                    'title': 'SASS Compile Error',
+                    'message': err.message
                 });
             }))
             .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
@@ -101,22 +101,22 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
     var filePath = 'source/js/';
     var files = [
-        'modularity-json-render.js',
-        //'modularity-json-render-admin.js'
+        'Front/IndexFront.js',
+        'Admin/IndexAdmin.js',
     ];
     var tasks = files.map(function(entry) {
         return browserify({
-                entries: [filePath + entry],
-                debug: true
-            })
-            .transform(reactify, {"es6": true})
+            entries: [filePath + entry],
+            debug: true
+        })
+            .transform([babelify])
             .bundle()
             .on('error', function(err){
-                console.log(err.stack);
+                console.log(err.message);
 
                 notifier.notify({
-                  'title': 'Compile Error',
-                  'message': err.message
+                    'title': 'Compile Error',
+                    'message': err.message
                 });
 
                 this.emit("end");
@@ -127,7 +127,7 @@ gulp.task('scripts', function() {
             .pipe(sourcemaps.init())
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('dist/js'))
-            .pipe(uglify())
+            .pipe(terser())
             .pipe(gulp.dest('dist/.tmp/js'));
     });
 
@@ -141,11 +141,11 @@ gulp.task('scripts', function() {
 
 gulp.task("revision", function(){
     return gulp.src(["./dist/.tmp/**/*"])
-      .pipe(rev())
-      .pipe(gulp.dest('./dist'))
-      .pipe(rev.manifest('rev-manifest.json', {merge: true}))
-      .pipe(revDel({ dest: './dist' }))
-      .pipe(gulp.dest('./dist'));
+        .pipe(rev())
+        .pipe(gulp.dest('./dist'))
+        .pipe(rev.manifest('rev-manifest.json', {merge: true}))
+        .pipe(revDel({ dest: './dist' }))
+        .pipe(gulp.dest('./dist'));
 });
 
 // ==========================================================================
