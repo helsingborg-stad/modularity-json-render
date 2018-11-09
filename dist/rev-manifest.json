@@ -1,3 +1,4 @@
 {
-  "js/modularity-json-render.js": "js/modularity-json-render-e51dd2ab4d.js"
+  "js/Admin/IndexAdmin.js": "js/Admin/IndexAdmin-d2be897ea1.js",
+  "js/Front/IndexFront.js": "js/Front/IndexFront-041b63e147.js"
 }
