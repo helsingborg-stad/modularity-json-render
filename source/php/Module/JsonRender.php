@@ -57,7 +57,7 @@ class JsonRender extends \Modularity\Module
 
     public function style()
     {
-        wp_enqueue_style('modularity-' . $this->slug); // Enqueue styles
+
     }
 
     public function adminEnqueue()
@@ -73,6 +73,8 @@ class JsonRender extends \Modularity\Module
         wp_localize_script('modularity-json-render-admin-js', 'modJsonRender', array(
             'options' => $options
         ));
+
+        wp_enqueue_style('modularity-' . $this->slug . '-admin'); // Enqueue styles
     }
 
     public function getOptions($postId)

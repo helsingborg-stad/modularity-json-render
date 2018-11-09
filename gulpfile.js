@@ -70,8 +70,7 @@ gulp.task('watch', function() {
 gulp.task('sass', function() {
     var filePath = 'source/sass/';
     var files = [
-        //'skyfish-integration.scss',
-        //'skyfish-integration-admin.scss'
+        'modularity-json-render-admin.scss'
     ];
 
     var tasks = files.map(function(entry) {

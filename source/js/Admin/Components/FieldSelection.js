@@ -45,13 +45,7 @@ class FieldSelection extends React.Component {
         if (error) {
             return <div><p>Error: {error.message}</p></div>;
         } else if (!isLoaded) {
-            return <div className="spinner is-active" style={{
-                float: 'none',
-                display: 'block',
-                width: 'auto',
-                height: 'auto',
-                padding: '10px 10px 30px 10px'
-            }}></div>;
+            return <div className="spinner is-active"></div>;
         } else {
             return <DataList
                 data={items}

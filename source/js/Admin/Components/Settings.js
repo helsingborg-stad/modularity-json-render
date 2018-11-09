@@ -88,7 +88,7 @@ class Settings extends React.Component {
                             <br/>
                             <i>Enter a valid JSON api url.</i>
                         </p>
-                        <input type="text" style={{width: '100%'}} value={url} onChange={this.urlChange}/>
+                        <input type="text" className="url-input" value={url} onChange={this.urlChange}/>
                         <p><input type="submit" className="button button-primary" value="Submit"/></p>
                     </form>
                     <InputFields {...this.state} />
