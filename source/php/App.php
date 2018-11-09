@@ -7,27 +7,15 @@ class App
     public function __construct()
     {
         //Register scripts
-        add_action('wp_enqueue_scripts', array($this, 'enqueueStyles'));
-        add_action('wp_enqueue_scripts', array($this, 'enqueueScripts'));
-
-        //Init ACF import
-        add_action('plugins_loaded', array($this, 'initAcfImportExport'));
+        add_action('wp_enqueue_scripts', array($this, 'registerFrontendAssets'));
+        add_action('admin_enqueue_scripts', array($this, 'registerAdminAssets'));
 
         //Init module
         add_action('plugins_loaded', array($this, 'registerModule'));
         add_action('Modularity/Module/TemplatePath', array($this, 'registerModuleTemplate'));
 
-        //Run subclasses
-        add_action('init', array($this, 'init'));
-    }
-
-    /**
-     * Init required subclasses
-     * @return void
-     */
-    public function init()
-    {
-        new Structure(); //Parse and provide json structure
+        //Register meta boxes
+        add_action('add_meta_boxes', array($this, 'registerMetaBoxes'));
     }
 
     /**
@@ -57,39 +45,40 @@ class App
     }
 
     /**
-     * Run ACF import & export funcitonality
+     * Register required frontend scripts
      * @return void
      */
-    public function initAcfImportExport()
+    public function registerFrontendAssets()
     {
-        $acfExportManager = new \AcfExportManager\AcfExportManager();
-        $acfExportManager->setTextdomain('modularity-json-render');
-        $acfExportManager->setExportFolder(MODULARITYJSONRENDER_PATH . 'acf-fields/');
-        $acfExportManager->autoExport(array(
-            'configuration' => 'group_5bb1ccff7600b',
-        ));
-        $acfExportManager->import();
-    }
+        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('css/modularity-json-render.css'))) {
+            wp_register_style('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('css/modularity-json-render.css'));
+        }
 
-    /**
-     * Register required style
-     * @return void
-     */
-    public function enqueueStyles()
-    {
-        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'))) {
-            wp_register_style('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render.css'));
+        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.js'))) {
+            wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.js'), array('jquery', 'react', 'react-dom'));
         }
     }
 
     /**
-     * Register required scripts
+     * Register required admin scripts & styles
      * @return void
      */
-    public function enqueueScripts()
+    public function registerAdminAssets()
     {
-        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'))) {
-            wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/modularity-json-render.js'));
+        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('js/Admin/IndexAdmin.js'))) {
+            wp_register_script('modularity-json-render-admin-js', MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Admin/IndexAdmin.js'), array('jquery', 'react', 'react-dom'), false, true);
         }
+    }
+
+    /**
+     * Register meta boxes
+     * @return void
+     */
+    public function registerMetaBoxes()
+    {
+        add_meta_box('json-api-fields', __('JSON API settings', 'modularity-json-render'),
+            function () {
+                echo '<div id="modularity-json-render"></div>';
+            }, 'mod-json-render', 'normal', 'high');
     }
 }
