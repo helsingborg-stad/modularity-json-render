@@ -1,22 +1,22 @@
 #json-api-fields {
-    .spinner {
-        float: none;
-        display: block;
-        width: auto;
-        height: auto;
-        padding: 10px 10px 30px 10px;
-    }
+     .spinner {
+         float: none;
+         display: block;
+         width: auto;
+         height: auto;
+         padding: 10px 10px 30px 10px;
+     }
 
-    .url-input {
-        width: 100%;
-    }
+     .url-input {
+         width: 100%;
+     }
 
-    li {
-        word-break: break-all;
-    }
+     li {
+         word-break: break-all;
+     }
 
-    .sub-object {
-        padding-left: 15px;
-        border-left: 2px solid #ccc;
-    }
-}
+     .sub-object {
+         padding-left: 15px;
+         border-left: 1px dotted #ccc;
+     }
+ }
