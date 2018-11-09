@@ -53,6 +53,7 @@
     "recursive-iterator": "^3.3.0",
     "rev-del": "^1.0.5",
     "run-sequence": "^2.2.1",
+    "uuid": "^3.3.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
