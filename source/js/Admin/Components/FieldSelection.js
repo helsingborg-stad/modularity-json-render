@@ -1,4 +1,5 @@
 import DataList from './DataList';
+import getApiData from '../../Utilities/getApiData';
 
 class FieldSelection extends React.Component {
     constructor(props) {
@@ -16,36 +17,41 @@ class FieldSelection extends React.Component {
         this.props.updateFieldMap(value);
     }
 
-    // TODO move to util method
-    getApiData() {
-        fetch(this.props.url)
-            .then(res => res.json())
+    getData() {
+        const {url} = this.props;
+        getApiData(url)
             .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
+                ({result}) => {
+                    if (!result || Object.keys(result).length === 0) {
+                        this.setState({
+                            error: Error('Could not fetch data from URL.'),
+                            isLoaded: true
+                        });
+                        return;
+                    }
+                    this.setState({isLoaded: true, items: result});
+                }, ({error}) => {
+                    this.setState({isLoaded: true, error});
                 }
             );
     }
 
     componentDidMount() {
-        this.getApiData();
+        this.getData();
     }
 
     render() {
         const {error, isLoaded, items} = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return <div><p>Error: {error.message}</p></div>;
         } else if (!isLoaded) {
-            return <div className="spinner is-active" style={{float: 'none', display: 'block', width: 'auto', height: 'auto', padding: '10px 10px 30px 10px'}}></div>;
+            return <div className="spinner is-active" style={{
+                float: 'none',
+                display: 'block',
+                width: 'auto',
+                height: 'auto',
+                padding: '10px 10px 30px 10px'
+            }}></div>;
         } else {
             return <DataList
                 data={items}

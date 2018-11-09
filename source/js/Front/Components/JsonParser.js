@@ -1,5 +1,6 @@
 import Accordion from './Accordion';
 import uuidv1 from 'uuid/v1';
+import getApiData from '../../Utilities/getApiData';
 
 class JsonParser extends React.Component {
     constructor() {
@@ -12,11 +13,31 @@ class JsonParser extends React.Component {
     }
 
     componentDidMount() {
-        this.getApiData();
+        this.getData();
+    }
+
+    getData() {
+        const {url} = this.props;
+        getApiData(url)
+            .then(
+                ({result}) => {
+                    const data = this.mapData(result);
+                    if (!data || Object.keys(data).length === 0) {
+                        this.setState({
+                            error: Error('Could not fetch data from URL.'),
+                            isLoaded: true
+                        });
+                        return;
+                    }
+                    this.setState({isLoaded: true, items: data});
+                }, ({error}) => {
+                    this.setState({isLoaded: true, error});
+                }
+            );
     }
 
     mapData(jsonData) {
-        const fieldMap = this.props.fieldMap;
+        const {fieldMap} = this.props;
         // Get the object containing items from JSON
         let items = this.getObjectProp(jsonData, fieldMap.itemContainer ? fieldMap.itemContainer.split('.') : []);
         if (!items || Object.keys(items).length === 0) {
@@ -51,34 +72,6 @@ class JsonParser extends React.Component {
         }
 
         return obj;
-    }
-
-    getApiData() {
-        fetch(this.props.url)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    const data = this.mapData(result);
-                    if (!data || Object.keys(data).length === 0) {
-                        this.setState({
-                            error: {message: 'Empty data'},
-                            isLoaded: true
-                        });
-                        return;
-                    }
-
-                    this.setState({
-                        isLoaded: true,
-                        items: data
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            );
     }
 
     render() {
