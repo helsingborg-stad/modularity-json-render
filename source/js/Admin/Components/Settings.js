@@ -2,20 +2,18 @@ import FieldSelection from './FieldSelection';
 import InputFields from './InputFields';
 import Summary from './Summary';
 
-const initialState = {
-    showFieldSelection: false,
-    url: '',
-    fieldMap: {
-        itemContainer: null,
-        title: '',
-        content: ''
-    }
-};
-
 class Settings extends React.Component {
     constructor(props) {
         super(props);
-        this.state = initialState;
+        this.state = {
+            showFieldSelection: false,
+            url: '',
+            fieldMap: {
+                itemContainer: null,
+                title: '',
+                content: ''
+            }
+        };
 
         this.urlChange = this.urlChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +30,11 @@ class Settings extends React.Component {
             const options = modJsonRender.options;
             this.setState({
                 url: options.url ? options.url : '',
-                fieldMap: options.fieldMap ? JSON.parse(options.fieldMap) : {itemContainer: null, title: '', content: ''},
+                fieldMap: options.fieldMap ? JSON.parse(options.fieldMap) : {
+                    itemContainer: null,
+                    title: '',
+                    content: ''
+                },
                 showFieldSelection: !!options.url
             });
         }
@@ -49,7 +51,7 @@ class Settings extends React.Component {
 
     resetOptions(event) {
         event.preventDefault();
-        this.setState(initialState);
+        this.setState({showFieldSelection: false, url: '', fieldMap: {itemContainer: null, title: '', content: ''}});
     }
 
     updateFieldMap(value) {
