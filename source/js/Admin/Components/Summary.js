@@ -1,10 +1,19 @@
 function Summary(props) {
     return (
-        <ul>
-            <li>Data source: {props.url}</li>
-            <li>Title: {props.fieldMap.title}</li>
-            <li>Content: {props.fieldMap.content}</li>
-        </ul>
+        <div>
+            <p>
+                <strong>Data source</strong><br/>
+                <a href={props.url} target="_blank">{props.url}</a>
+            </p>
+            <p>
+                <strong>Title</strong><br/>
+                {props.fieldMap.title.replace('.', ' –> ')}
+            </p>
+            <p>
+                <strong>Content</strong><br/>
+                {props.fieldMap.content.replace('.', ' –> ')}
+            </p>
+        </div>
     );
 }
 
