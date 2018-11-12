@@ -68,7 +68,7 @@ class Settings extends React.Component {
                 <div>
                     <Summary {...this.state} />
                     <InputFields {...this.state} />
-                    <a href="#" onClick={this.resetOptions} className="button">Reset settings</a>
+                    <p><a href="#" onClick={this.resetOptions} className="button">Reset settings</a></p>
                 </div>
             );
         } else if (showFieldSelection) {
@@ -76,7 +76,7 @@ class Settings extends React.Component {
                 <div>
                     <FieldSelection url={url} fieldMap={this.state.fieldMap} updateFieldMap={this.updateFieldMap}/>
                     <InputFields {...this.state} />
-                    <a href="#" onClick={this.resetOptions} className="button">Reset settings</a>
+                    <p><a href="#" onClick={this.resetOptions} className="button">Reset settings</a></p>
                 </div>
             );
         } else {
