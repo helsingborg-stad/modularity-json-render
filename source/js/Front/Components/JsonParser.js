@@ -11,6 +11,7 @@ class JsonParser extends React.Component {
             isLoaded: false,
             items: [],
             filteredItems: [],
+            paginatedItems: [],
             totalPages: 0,
             currentPage: 1
         };
@@ -103,16 +104,18 @@ class JsonParser extends React.Component {
             currentPage: 1,
             totalPages: Math.ceil(filteredItems.length / perPage)
         });
+
+        this.updateItemList();
     }
 
     updateItemList() {
-        const {currentPage, items, filteredItems} = this.state;
+        const {currentPage, filteredItems} = this.state;
         const {perPage} = this.props;
         const begin = ((currentPage - 1) * perPage);
         const end = begin + perPage;
 
         this.setState({
-            filteredItems: items.slice(begin, end)
+            paginatedItems: filteredItems.slice(begin, end)
         });
     }
 
@@ -141,7 +144,7 @@ class JsonParser extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, filteredItems, totalPages, currentPage} = this.state;
+        const {error, isLoaded, paginatedItems, totalPages, currentPage} = this.state;
 
         if (error) {
             return (
@@ -168,7 +171,7 @@ class JsonParser extends React.Component {
                     <Accordion
                         showSearch={this.props.showSearch}
                         doSearch={this.handleSearch.bind(this)}
-                        items={filteredItems}/>
+                        items={paginatedItems}/>
                     {this.props.showPagination ?
                         <div className="grid gutter">
                             <div className="grid-fit-content u-ml-auto">
