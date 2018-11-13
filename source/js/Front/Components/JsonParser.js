@@ -1,6 +1,7 @@
 import Accordion from './Accordion';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
+import {Pagination} from 'hbg-react';
 
 class JsonParser extends React.Component {
     constructor() {
@@ -9,11 +10,10 @@ class JsonParser extends React.Component {
             error: null,
             isLoaded: false,
             items: [],
-            filteredItems: []
+            filteredItems: [],
+            totalPages: 0,
+            currentPage: 1
         };
-
-        this.handleSearch = this.handleSearch.bind(this);
-        this.getObjectProp = this.getObjectProp.bind(this);
     }
 
     componentDidMount() {
@@ -21,7 +21,7 @@ class JsonParser extends React.Component {
     }
 
     getData() {
-        const {url} = this.props;
+        const {url, perPage} = this.props;
         getApiData(url)
             .then(
                 ({result}) => {
@@ -36,8 +36,14 @@ class JsonParser extends React.Component {
                     this.setState({
                         isLoaded: true,
                         items: data,
-                        filteredItems: data
+                        filteredItems: data,
+                        totalPages: Math.ceil(data.length / perPage)
                     });
+
+                    if (this.props.showPagination) {
+                        this.updateItemList();
+                    }
+
                 }, ({error}) => {
                     this.setState({isLoaded: true, error});
                 }
@@ -82,22 +88,60 @@ class JsonParser extends React.Component {
         return obj;
     }
 
-    handleSearch(event) {
-        let searchString = event.target.value;
-
+    handleSearch(e) {
+        let searchString = e.target.value;
         let filteredItems = this.state.items;
+        const {perPage} = this.props;
+
         filteredItems = filteredItems.filter((item) => {
             let title = item.title.toLowerCase();
             let content = item.content.toLowerCase();
             return title.indexOf(searchString.toLowerCase()) !== -1 || content.indexOf(searchString.toLowerCase()) !== -1;
         });
         this.setState({
-            filteredItems
+            filteredItems,
+            currentPage: 1,
+            totalPages: Math.ceil(filteredItems.length / perPage)
         });
     }
 
+    updateItemList() {
+        const {currentPage, items, filteredItems} = this.state;
+        const {perPage} = this.props;
+        const begin = ((currentPage - 1) * perPage);
+        const end = begin + perPage;
+
+        this.setState({
+            filteredItems: items.slice(begin, end)
+        });
+    }
+
+    nextPage() {
+        if (this.state.currentPage === this.state.totalPages) {
+            return;
+        }
+
+        this.setState({currentPage: this.state.currentPage += 1});
+        this.updateItemList();
+    }
+
+    prevPage() {
+        if (this.state.currentPage <= 1) {
+            return;
+        }
+
+        this.setState({currentPage: this.state.currentPage -= 1});
+        this.updateItemList();
+    }
+
+    paginationInput(e) {
+        const value = e.target.value;
+        this.setState({currentPage: value});
+        this.updateItemList();
+    }
+
     render() {
-        const {error, isLoaded, filteredItems} = this.state;
+        const {error, isLoaded, filteredItems, totalPages, currentPage} = this.state;
 
         if (error) {
             return (
@@ -119,8 +163,26 @@ class JsonParser extends React.Component {
                 </div>
             );
         } else {
-            return <Accordion doSearch={this.handleSearch}
-                              items={filteredItems}/>;
+            return (
+                <div>
+                    <Accordion
+                        showSearch={this.props.showSearch}
+                        doSearch={this.handleSearch.bind(this)}
+                        items={filteredItems}/>
+                    {this.props.showPagination ?
+                        <div className="grid gutter">
+                            <div className="grid-fit-content u-ml-auto">
+                                <Pagination
+                                    current={currentPage}
+                                    total={totalPages}
+                                    next={this.nextPage.bind(this)}
+                                    prev={this.prevPage.bind(this)}
+                                    input={this.paginationInput.bind(this)}
+                                />
+                            </div>
+                        </div> : ''}
+                </div>
+            );
         }
     }
 }
