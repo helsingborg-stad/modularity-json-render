@@ -7,6 +7,8 @@ function Accordion(props) {
                 <input type="text" name="json-render-search" onChange={doSearch} placeholder="Filter on..." />
             </div>
 
+            {Object.keys(items).length === 0 ? <div className="gutter"><p>No results found</p></div> : ''}
+
             {items.map(item => (
                 <section className="accordion-section" key={item.id}>
                     <label tabIndex="0" className="accordion-toggle" htmlFor="accordion-section-1">
