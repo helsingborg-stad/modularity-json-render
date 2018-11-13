@@ -9,7 +9,11 @@ class JsonParser extends React.Component {
             error: null,
             isLoaded: false,
             items: [],
+            filteredItems: []
         };
+
+        this.handleSearch = this.handleSearch.bind(this);
+        this.getObjectProp = this.getObjectProp.bind(this);
     }
 
     componentDidMount() {
@@ -29,7 +33,11 @@ class JsonParser extends React.Component {
                         });
                         return;
                     }
-                    this.setState({isLoaded: true, items: data});
+                    this.setState({
+                        isLoaded: true,
+                        items: data,
+                        filteredItems: data
+                    });
                 }, ({error}) => {
                     this.setState({isLoaded: true, error});
                 }
@@ -74,16 +82,30 @@ class JsonParser extends React.Component {
         return obj;
     }
 
+    handleSearch(event) {
+        let searchString = event.target.value;
+
+        let filteredItems = this.state.items;
+        filteredItems = filteredItems.filter((item) => {
+            let title = item.title.toLowerCase();
+            let content = item.content.toLowerCase();
+            return title.indexOf(searchString.toLowerCase()) !== -1 || content.indexOf(searchString.toLowerCase()) !== -1;
+        });
+        this.setState({
+            filteredItems
+        });
+    }
+
     render() {
-        const {error, isLoaded, items} = this.state;
+        const {error, isLoaded, filteredItems} = this.state;
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            return (
-                <Accordion items={items}/>
-            );
+            return <Accordion doSearch={this.handleSearch}
+                              items={filteredItems}/>;
         }
     }
 }

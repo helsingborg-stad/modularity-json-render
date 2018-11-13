@@ -37,11 +37,12 @@ class JsonRender extends \Modularity\Module
     {
         $options = $this->getOptions($this->ID);
 
-        return array(
-            'moduleId' => $this->ID,
-            'url' => $options['url'],
-            'fieldMap' => $options['fieldMap']
-        );
+        $data = get_fields($this->ID);
+        $data['url'] = $options['url'];
+        $data['fieldMap'] = $options['fieldMap'];
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+
+        return $data;
     }
 
     public function template(): string

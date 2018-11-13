@@ -1,7 +1,13 @@
 function Accordion(props) {
+    const {items, doSearch} = props;
     return (
         <div className="accordion accordion-icon accordion-list">
-            {props.items.map(item => (
+
+            <div className="accordion-search">
+                <input type="text" name="json-render-search" onChange={doSearch} placeholder="Filter on..." />
+            </div>
+
+            {items.map(item => (
                 <section className="accordion-section" key={item.id}>
                     <label tabIndex="0" className="accordion-toggle" htmlFor="accordion-section-1">
                         {item.title}
