@@ -14,11 +14,6 @@ class Settings extends React.Component {
                 content: ''
             }
         };
-
-        this.urlChange = this.urlChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.resetOptions = this.resetOptions.bind(this);
-        this.updateFieldMap = this.updateFieldMap.bind(this);
     }
 
     componentDidMount() {
@@ -68,13 +63,13 @@ class Settings extends React.Component {
                 <div>
                     <Summary {...this.state} />
                     <InputFields {...this.state} />
-                    <p><a href="#" onClick={this.resetOptions} className="button">Reset settings</a></p>
+                    <p><a href="#" onClick={this.resetOptions.bind(this)} className="button">Reset settings</a></p>
                 </div>
             );
         } else if (showFieldSelection) {
             return (
                 <div>
-                    <FieldSelection url={url} fieldMap={this.state.fieldMap} updateFieldMap={this.updateFieldMap}/>
+                    <FieldSelection url={url} fieldMap={this.state.fieldMap} updateFieldMap={this.updateFieldMap.bind(this)}/>
                     <InputFields {...this.state} />
                     <p><a href="#" onClick={this.resetOptions} className="button">Reset settings</a></p>
                 </div>
@@ -82,7 +77,7 @@ class Settings extends React.Component {
         } else {
             return (
                 <div className="wrap">
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
                         <p>
                             <label>
                                 <strong>Data source</strong>
@@ -90,7 +85,7 @@ class Settings extends React.Component {
                             <br/>
                             <i>Enter a valid JSON api url.</i>
                         </p>
-                        <input type="text" className="url-input" value={url} onChange={this.urlChange}/>
+                        <input type="text" className="url-input" value={url} onChange={this.urlChange.bind(this)}/>
                         <p><input type="submit" className="button button-primary" value="Submit"/></p>
                     </form>
                     <InputFields {...this.state} />
