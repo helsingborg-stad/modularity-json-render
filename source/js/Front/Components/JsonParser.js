@@ -100,9 +100,24 @@ class JsonParser extends React.Component {
         const {error, isLoaded, filteredItems} = this.state;
 
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return (
+                <div className="gutter">
+                    <div className="notice warning">
+                        <i className="pricon pricon-notice-warning"></i> Something went wrong. Please try again later.
+                    </div>
+                </div>
+            );
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return (
+                <div className="gutter">
+                    <div className="loading">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            );
         } else {
             return <Accordion doSearch={this.handleSearch}
                               items={filteredItems}/>;
