@@ -5,6 +5,9 @@
 # ignore node/grunt dependency directories
 node_modules/
 
+# Include babelrc file
+!.babelrc
+
 # ignore jekyll build directory
 /_site
 
