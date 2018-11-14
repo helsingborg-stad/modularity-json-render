@@ -1,6 +1,4 @@
-function ListItem(props) {
-    const {value, children, fieldMap, object, onClickTitle, onClickContent, onClickContainer} = props;
-
+const ListItem = ({value, children, fieldMap, object, onClickTitle, onClickContent, onClickContainer}) => {
     if (children) {
         return (<li>
             {Array.isArray(object) && fieldMap.itemContainer === null ?
@@ -18,6 +16,6 @@ function ListItem(props) {
                 <a href="#" className="tree-select" data-field="content" onClick={onClickContent}>Content</a> : ''}
         </li>);
     }
-}
+};
 
 export default ListItem;

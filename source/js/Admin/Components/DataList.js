@@ -3,12 +3,6 @@ import recursiveIterator from 'recursive-iterator';
 import objectPath from 'object-path';
 
 class DataList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderNodes = this.renderNodes.bind(this);
-        this.setFieldMap = this.setFieldMap.bind(this);
-    }
-
     setFieldMap(path, event) {
         event.preventDefault();
         this.props.updateFieldMap({[event.target.dataset.field]: path});
