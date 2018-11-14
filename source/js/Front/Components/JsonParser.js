@@ -42,7 +42,7 @@ class JsonParser extends React.Component {
                     });
 
                     if (this.props.showPagination) {
-                        this.updateItemList();
+                        this.updateItemList(1);
                     }
 
                 }, ({error}) => {
@@ -105,11 +105,11 @@ class JsonParser extends React.Component {
             totalPages: Math.ceil(filteredItems.length / perPage)
         });
 
-        this.updateItemList();
+        this.updateItemList(1);
     }
 
-    updateItemList() {
-        const {currentPage, filteredItems} = this.state;
+    updateItemList(currentPage) {
+        const {filteredItems} = this.state;
         const {perPage} = this.props;
         const begin = ((currentPage - 1) * perPage);
         const end = begin + perPage;
@@ -123,24 +123,27 @@ class JsonParser extends React.Component {
         if (this.state.currentPage === this.state.totalPages) {
             return;
         }
-
-        this.setState({currentPage: this.state.currentPage += 1});
-        this.updateItemList();
+        const currentPage = this.state.currentPage += 1;
+        this.setState({currentPage: currentPage});
+        this.updateItemList(currentPage);
     }
 
     prevPage() {
         if (this.state.currentPage <= 1) {
             return;
         }
-
-        this.setState({currentPage: this.state.currentPage -= 1});
-        this.updateItemList();
+        const currentPage = this.state.currentPage -= 1;
+        this.setState({currentPage: currentPage});
+        this.updateItemList(currentPage);
     }
 
     paginationInput(e) {
-        const value = e.target.value;
-        this.setState({currentPage: value});
-        this.updateItemList();
+        let currentPage = e.target.value ? parseInt(e.target.value) : '';
+        currentPage = (currentPage > this.state.totalPages) ? this.state.totalPages : currentPage;
+        this.setState({currentPage: currentPage});
+        if (currentPage) {
+            this.updateItemList(currentPage);
+        }
     }
 
     render() {

@@ -8,6 +8,6 @@ ReactDOM.render(
                 fieldMap={JSON.parse(domElement.dataset.fieldmap)}
                 showSearch={true}
                 showPagination={true}
-                perPage={8}/>,
+                perPage={10}/>,
     domElement
 );
