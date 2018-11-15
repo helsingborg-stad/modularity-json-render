@@ -33,5 +33,16 @@ $loader->addPrefix('ModularityJsonRender', MODULARITYJSONRENDER_PATH);
 $loader->addPrefix('ModularityJsonRender', MODULARITYJSONRENDER_PATH . 'source/php/');
 $loader->register();
 
+// Acf auto import and export
+add_action('plugins_loaded', function () {
+    $acfExportManager = new \AcfExportManager\AcfExportManager();
+    $acfExportManager->setTextdomain('modularity-json-render');
+    $acfExportManager->setExportFolder(MODULARITYJSONRENDER_PATH . 'acf-fields/');
+    $acfExportManager->autoExport(array(
+        'display-settings' => 'group_5bed3c2a60bb7',
+    ));
+    $acfExportManager->import();
+});
+
 // Start application
 new ModularityJsonRender\App();
