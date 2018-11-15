@@ -1,0 +1,135 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Modularity Json Render\n"
+"POT-Creation-Date: 2018-11-15 15:31+0100\n"
+"PO-Revision-Date: 2018-11-15 15:31+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: modularity-json-render.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: acf-fields/php/display-settings.php:6
+msgid "Display settings"
+msgstr "Visningsinställningar"
+
+#: acf-fields/php/display-settings.php:10
+msgid "Show search"
+msgstr "Visa sök"
+
+#: acf-fields/php/display-settings.php:24
+#: acf-fields/php/display-settings.php:43
+msgid "Yes"
+msgstr "Ja"
+
+#: acf-fields/php/display-settings.php:25
+#: acf-fields/php/display-settings.php:44
+msgid "No"
+msgstr "Nej"
+
+#: acf-fields/php/display-settings.php:29
+msgid "Show pagination"
+msgstr "Visa paginering"
+
+#: acf-fields/php/display-settings.php:48
+msgid "Per page"
+msgstr "Per sida"
+
+#: source/php/App.php:79
+msgid "Data settings"
+msgstr "Informationsinställningar"
+
+#: source/php/Module/JsonRender.php:14
+msgid "Json Render"
+msgstr ""
+
+#: source/php/Module/JsonRender.php:15
+msgid "Json Renders"
+msgstr ""
+
+#: source/php/Module/JsonRender.php:16
+msgid "Retrives data from API and renders it as a list."
+msgstr ""
+
+#: source/php/Module/JsonRender.php:59
+msgid "Something went wrong, please try again later."
+msgstr "Något gick fel, vänligen försök igen senare."
+
+#: source/php/Module/JsonRender.php:60
+msgid "No results found."
+msgstr "Inga resultat hittades."
+
+#: source/php/Module/JsonRender.php:61
+msgid "Filter on..."
+msgstr "Filtrera på…"
+
+#: source/php/Module/JsonRender.php:84
+msgid "Reset settings"
+msgstr "Återställ inställningar"
+
+#: source/php/Module/JsonRender.php:85
+msgid "Enter a valid JSON api url."
+msgstr "Ange en giltig JSON API-URL."
+
+#: source/php/Module/JsonRender.php:86
+msgid "Send request"
+msgstr "Skicka begäran"
+
+#: source/php/Module/JsonRender.php:87
+msgid "Select where to retrieve the information"
+msgstr "Välj var informationen ska hämtas från"
+
+#: source/php/Module/JsonRender.php:88
+msgid "Select title and content fields"
+msgstr "Välj titel-och innehållsfält"
+
+#: source/php/Module/JsonRender.php:89
+msgid "Title"
+msgstr "Titel"
+
+#: source/php/Module/JsonRender.php:90
+msgid "Content"
+msgstr "Innehåll"
+
+#: source/php/Module/JsonRender.php:91
+msgid "Select"
+msgstr "Välj"
+
+#: source/php/Module/JsonRender.php:92
+msgid "Could not fetch data from URL."
+msgstr "Det gick inte att hämta data."
+
+#. Plugin Name of the plugin/theme
+msgid "Modularity Json Render"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/helsingborg-stad/modularity-json-render"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Renders JSON api:s as a list etc."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sebastian Thulin"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/sebastianthulin"
+msgstr ""
+
+#~ msgid "Select items container"
+#~ msgstr "Välj objekthållare"
