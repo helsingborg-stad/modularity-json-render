@@ -22,7 +22,7 @@ class JsonParser extends React.Component {
     }
 
     getData() {
-        const {url, perPage} = this.props;
+        const {url, perPage, showPagination} = this.props;
         getApiData(url)
             .then(
                 ({result}) => {
@@ -38,13 +38,13 @@ class JsonParser extends React.Component {
                         isLoaded: true,
                         items: data,
                         filteredItems: data,
+                        paginatedItems: data,
                         totalPages: Math.ceil(data.length / perPage)
                     });
 
-                    if (this.props.showPagination) {
+                    if (showPagination) {
                         this.updateItemList(1);
                     }
-
                 }, ({error}) => {
                     this.setState({isLoaded: true, error});
                 }
@@ -92,20 +92,27 @@ class JsonParser extends React.Component {
     handleSearch(e) {
         let searchString = e.target.value;
         let filteredItems = this.state.items;
-        const {perPage} = this.props;
+        const {perPage, showPagination} = this.props;
 
         filteredItems = filteredItems.filter((item) => {
             let title = item.title.toLowerCase();
             let content = item.content.toLowerCase();
             return title.indexOf(searchString.toLowerCase()) !== -1 || content.indexOf(searchString.toLowerCase()) !== -1;
         });
-        this.setState({
-            filteredItems,
-            currentPage: 1,
-            totalPages: Math.ceil(filteredItems.length / perPage)
-        });
 
-        this.updateItemList(1);
+        if (showPagination) {
+            this.setState({
+                filteredItems,
+                currentPage: 1,
+                totalPages: Math.ceil(filteredItems.length / perPage)
+            });
+            this.updateItemList(1);
+        } else {
+            this.setState({
+                filteredItems,
+                paginatedItems: filteredItems
+            });
+        }
     }
 
     updateItemList(currentPage) {
