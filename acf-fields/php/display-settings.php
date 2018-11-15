@@ -7,8 +7,8 @@
     'fields' => array(
         0 => array(
             'key' => 'field_5bed3c4f10bdc',
-            'label' => __('Show search filter', 'modularity-json-render'),
-            'name' => 'show_search_filter',
+            'label' => __('Show search', 'modularity-json-render'),
+            'name' => 'show_search',
             'type' => 'true_false',
             'instructions' => '',
             'required' => 0,

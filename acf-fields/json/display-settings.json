@@ -4,8 +4,8 @@
     "fields": [
         {
             "key": "field_5bed3c4f10bdc",
-            "label": "Show search filter",
-            "name": "show_search_filter",
+            "label": "Show search",
+            "name": "show_search",
             "type": "true_false",
             "instructions": "",
             "required": 0,
