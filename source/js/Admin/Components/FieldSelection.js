@@ -18,13 +18,13 @@ class FieldSelection extends React.Component {
     }
 
     getData() {
-        const {url} = this.props;
+        const {url, translation} = this.props;
         getApiData(url)
             .then(
                 ({result}) => {
                     if (!result || Object.keys(result).length === 0) {
                         this.setState({
-                            error: Error('Could not fetch data from URL.'),
+                            error: Error(translation.couldNotFetch),
                             isLoaded: true
                         });
                         return;
@@ -41,17 +41,19 @@ class FieldSelection extends React.Component {
     }
 
     render() {
+        const {url, fieldMap, translation} = this.props;
         const {error, isLoaded, items} = this.state;
         if (error) {
-            return <div><p>Error: {error.message}</p></div>;
+            return <div className="notice notice-error inline"><p>{error.message}</p></div>;
         } else if (!isLoaded) {
             return <div className="spinner is-active"></div>;
         } else {
             return <DataList
                 data={items}
-                url={this.props.url}
-                fieldMap={this.props.fieldMap}
-                updateFieldMap={this.updateFieldMap}/>;
+                url={url}
+                fieldMap={fieldMap}
+                updateFieldMap={this.updateFieldMap}
+                translation={translation}/>;
         }
     }
 }

@@ -154,13 +154,14 @@ class JsonParser extends React.Component {
     }
 
     render() {
+        const {translation, showSearch} = this.props;
         const {error, isLoaded, paginatedItems, totalPages, currentPage} = this.state;
 
         if (error) {
             return (
                 <div className="gutter">
                     <div className="notice warning">
-                        <i className="pricon pricon-notice-warning"></i> Something went wrong. Please try again later.
+                        <i className="pricon pricon-notice-warning"></i> {translation.somethingWentWrong}
                     </div>
                 </div>
             );
@@ -179,9 +180,10 @@ class JsonParser extends React.Component {
             return (
                 <div>
                     <Accordion
-                        showSearch={this.props.showSearch}
+                        showSearch={showSearch}
                         doSearch={this.handleSearch.bind(this)}
-                        items={paginatedItems}/>
+                        items={paginatedItems}
+                        translation={translation}/>
                     {this.props.showPagination ?
                         <div className="grid gutter">
                             <div className="grid-fit-content u-ml-auto">

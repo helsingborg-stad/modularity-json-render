@@ -76,7 +76,7 @@ class App
      */
     public function registerMetaBoxes()
     {
-        add_meta_box('json-api-fields', __('JSON API settings', 'modularity-json-render'),
+        add_meta_box('json-api-fields', __('Data settings', 'modularity-json-render'),
             function () {
                 echo '<div id="modularity-json-render"></div>';
             }, 'mod-json-render', 'normal', 'high');

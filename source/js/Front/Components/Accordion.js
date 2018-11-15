@@ -1,10 +1,10 @@
-const Accordion = ({items, showSearch, doSearch}) =>
+const Accordion = ({items, showSearch, doSearch, translation}) =>
     <div className="accordion accordion-icon accordion-list">
         {showSearch ?
             <div className="accordion-search">
-                <input type="text" name="json-render-search" onChange={doSearch} placeholder="Filter on..."/>
+                <input type="text" name="json-render-search" onChange={doSearch} placeholder={translation.filterOn}/>
             </div> : ''}
-        {Object.keys(items).length === 0 ? <div className="gutter"><p>No results found</p></div> : ''}
+        {Object.keys(items).length === 0 ? <div className="gutter"><p>{translation.noResults}</p></div> : ''}
         {items.map(item => (
             <section className="accordion-section" key={item.id}>
                 <label tabIndex="0" className="accordion-toggle" htmlFor="accordion-section-1">

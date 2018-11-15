@@ -55,23 +55,28 @@ class Settings extends React.Component {
     }
 
     render() {
+        const {translation} = this.props;
         const {showFieldSelection, url} = this.state;
         const {itemContainer, title, content} = this.state.fieldMap;
 
         if (url && itemContainer !== null && title && content) {
             return (
                 <div>
-                    <Summary {...this.state} />
+                    <Summary {...this.state}
+                             translation={translation} />
                     <InputFields {...this.state} />
-                    <p><a href="#" onClick={this.resetOptions.bind(this)} className="button">Reset settings</a></p>
+                    <p><a href="#" onClick={this.resetOptions.bind(this)} className="button">{translation.resetSettings}</a></p>
                 </div>
             );
         } else if (showFieldSelection) {
             return (
                 <div>
-                    <FieldSelection url={url} fieldMap={this.state.fieldMap} updateFieldMap={this.updateFieldMap.bind(this)}/>
+                    <FieldSelection url={url}
+                                    fieldMap={this.state.fieldMap}
+                                    updateFieldMap={this.updateFieldMap.bind(this)}
+                                    translation={translation}/>
                     <InputFields {...this.state} />
-                    <p><a href="#" onClick={this.resetOptions} className="button">Reset settings</a></p>
+                    <p><a href="#" onClick={this.resetOptions.bind(this)} className="button">{translation.resetSettings}</a></p>
                 </div>
             );
         } else {
@@ -80,13 +85,13 @@ class Settings extends React.Component {
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <p>
                             <label>
-                                <strong>Data source</strong>
+                                <strong>API URL</strong>
                             </label>
                             <br/>
-                            <i>Enter a valid JSON api url.</i>
+                            <i>{translation.validJsonUrl}</i>
                         </p>
                         <input type="text" className="url-input" value={url} onChange={this.urlChange.bind(this)}/>
-                        <p><input type="submit" className="button button-primary" value="Submit"/></p>
+                        <p><input type="submit" className="button button-primary" value={translation.sendRequest}/></p>
                     </form>
                     <InputFields {...this.state} />
                 </div>

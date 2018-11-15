@@ -20,7 +20,8 @@ class DataList extends React.Component {
                                   fieldMap={this.props.fieldMap}
                                   onClickContainer={e => this.setFieldMap(data[item].objectPath, e)}
                                   onClickTitle={e => this.setFieldMap(data[item], e)}
-                                  onClickContent={e => this.setFieldMap(data[item], e)}/>;
+                                  onClickContent={e => this.setFieldMap(data[item], e)}
+                                  translation={this.props.translation}/>;
 
             if (typeof data[item] === 'object' && data[item] !== null) {
                 child = React.cloneElement(child, {
@@ -33,9 +34,9 @@ class DataList extends React.Component {
     }
 
     render() {
+        const {translation, data} = this.props;
         const fieldMap = this.props.fieldMap;
 
-        let data = this.props.data;
         if (Array.isArray(data)) {
             fieldMap.itemContainer = '';
         }
@@ -54,12 +55,12 @@ class DataList extends React.Component {
 
             return (
                 <div>
-                    <h3>Select items container</h3>
+                    <h3>{translation.selectItemsContainer}</h3>
                     <ul className="json-tree">{this.renderNodes(data)}</ul>
                 </div>
             );
         } else {
-            let objectData = objectPath.get(this.props.data, fieldMap.itemContainer);
+            let objectData = objectPath.get(data, fieldMap.itemContainer);
 
             if (Array.isArray(objectData)) {
                 objectData = objectData[0];
@@ -74,7 +75,7 @@ class DataList extends React.Component {
 
             return (
                 <div>
-                    <h3>Select title and content fields</h3>
+                    <h3>{translation.selectTitleContent}</h3>
                     <ul className="json-tree">{this.renderNodes(objectData)}</ul>
                 </div>
             );

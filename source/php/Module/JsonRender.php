@@ -53,7 +53,14 @@ class JsonRender extends \Modularity\Module
     public function script()
     {
         $this->react::enqueue(); // Enqueue react
-        wp_enqueue_script('modularity-' . $this->slug); // Enqueue script
+        wp_enqueue_script('modularity-' . $this->slug);
+        wp_localize_script('modularity-' . $this->slug, 'modJsonRender', array(
+            'translation' => array(
+                'somethingWentWrong' => __('Something went wrong, please try again later.', 'modularity-json-render'),
+                'noResults' => __('No results found.', 'modularity-json-render'),
+                'filterOn' => __('Filter on...', 'modularity-json-render')
+            )
+        ));
     }
 
     public function style()
@@ -69,10 +76,21 @@ class JsonRender extends \Modularity\Module
         }
 
         $this->react::enqueue(); // Enqueue react
-        wp_enqueue_script('modularity-json-render-admin-js'); // Enqueue script
+        wp_enqueue_script('modularity-json-render-admin-js');
         $options = $this->getOptions($post->ID);
         wp_localize_script('modularity-json-render-admin-js', 'modJsonRender', array(
-            'options' => $options
+            'options' => $options,
+            'translation' => array(
+                'resetSettings' => __('Reset settings', 'modularity-json-render'),
+                'validJsonUrl' => __('Enter a valid JSON api url.', 'modularity-json-render'),
+                'sendRequest' => __('Send request', 'modularity-json-render'),
+                'selectItemsContainer' => __('Select where to retrieve the information', 'modularity-json-render'),
+                'selectTitleContent' => __('Select title and content fields', 'modularity-json-render'),
+                'title' => __('Title', 'modularity-json-render'),
+                'content' => __('Content', 'modularity-json-render'),
+                'select' => __('Select', 'modularity-json-render'),
+                'couldNotFetch' => __('Could not fetch data from URL.', 'modularity-json-render'),
+            )
         ));
 
         wp_enqueue_style('modularity-' . $this->slug . '-admin'); // Enqueue styles

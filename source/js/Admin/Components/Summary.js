@@ -1,15 +1,15 @@
-const Summary = ({url, fieldMap}) =>
+const Summary = ({url, fieldMap, translation}) =>
     <div>
         <p>
-            <strong>Data source</strong><br/>
+            <strong>API URL</strong><br/>
             <a href={url} target="_blank">{url}</a>
         </p>
         <p>
-            <strong>Title</strong><br/>
+            <strong>{translation.title}</strong><br/>
             {fieldMap.title.replace('.', ' –> ')}
         </p>
         <p>
-            <strong>Content</strong><br/>
+            <strong>{translation.content}</strong><br/>
             {fieldMap.content.replace('.', ' –> ')}
         </p>
     </div>;
