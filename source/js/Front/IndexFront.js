@@ -1,7 +1,10 @@
+// Polyfills
+import 'es6-promise';
+import 'isomorphic-fetch';
+// Components
 import JsonParser from './Components/JsonParser';
 
 const domElements = document.getElementsByClassName("modularity-json-render");
-
 for (let i = 0; i < domElements.length; i++) {
     const element = domElements[i];
     ReactDOM.render(

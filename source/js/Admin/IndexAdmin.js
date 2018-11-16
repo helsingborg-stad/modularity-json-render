@@ -1,3 +1,7 @@
+// Polyfills
+import 'es6-promise';
+import 'isomorphic-fetch';
+// Components
 import Settings from './Components/Settings';
 
 const modJsonRenderElement = 'modularity-json-render';
