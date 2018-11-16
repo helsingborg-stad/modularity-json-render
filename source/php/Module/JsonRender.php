@@ -19,6 +19,32 @@ class JsonRender extends \Modularity\Module
         $this->react = new \ModularityJsonRender\Helper\React();
 
         add_action('save_post', array($this, 'saveOptions'), 10, 3);
+        add_action('admin_notices', array($this, 'validationNotice'));
+        add_filter('post_updated_messages', array($this, 'updateNotices'));
+    }
+
+    public function validationNotice()
+    {
+        if (!$errors = get_transient('mod_json_render_error')) {
+            return;
+        }
+
+        // Clear and the transient
+        delete_transient('mod_json_render_error');
+
+        foreach ($errors as $error) {
+            $class = 'notice notice-error is-dismissible';
+            printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($error['message']));
+        }
+    }
+
+    public function updateNotices($messages)
+    {
+        if (!empty(get_transient('mod_json_render_error'))) {
+            $messages = array();
+        }
+
+        return $messages;
     }
 
     public function saveOptions($postId, $post, $update)
@@ -27,10 +53,34 @@ class JsonRender extends \Modularity\Module
             return;
         }
 
-        if (array_key_exists('mod_json_render_url', $_POST) && array_key_exists('mod_json_render_url', $_POST)) {
-            update_post_meta($postId, 'json_url', $_POST['mod_json_render_url']);
-            update_post_meta($postId, 'fieldmap', $_POST['mod_json_render_fieldmap']);
+        if (array_key_exists('mod_json_render_url', $_POST) && array_key_exists('mod_json_render_fieldmap', $_POST)) {
+            $url = $_POST['mod_json_render_url'];
+            $fieldMap = json_decode(html_entity_decode(stripslashes($_POST['mod_json_render_fieldmap'])));
+
+            if ($url
+                && (isset($fieldMap->title) && !empty($fieldMap->title))
+                && (isset($fieldMap->content) && !empty($fieldMap->content))) {
+                update_post_meta($postId, 'json_url', $_POST['mod_json_render_url']);
+                update_post_meta($postId, 'fieldmap', $_POST['mod_json_render_fieldmap']);
+            } else {
+                $this->addSettingsError();
+                remove_action('save_post', array($this, 'saveOptions'));
+                wp_update_post(array('ID' => $postId, 'post_status' => 'draft'));
+                add_action('save_post', array($this, 'saveOptions'));
+            }
         }
+    }
+
+    public function addSettingsError()
+    {
+        add_settings_error(
+            'missing-settings-fields',
+            'missing-settings-fields',
+            __('Complete the data settings.', 'modularity-json-render'),
+            'error'
+        );
+
+        set_transient('mod_json_render_error', get_settings_errors(), 30);
     }
 
     public function data(): array
