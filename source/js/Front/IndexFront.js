@@ -1,19 +1,16 @@
 import JsonParser from './Components/JsonParser';
 
-const modJsonRenderElement = 'modularity-json-render';
-const domElement = document.getElementById(modJsonRenderElement);
-const {translation} = modJsonRender;
+const domElements = document.getElementsByClassName("modularity-json-render");
 
-const props = {
-    url: domElement.dataset.url,
-    fieldMap: JSON.parse(domElement.dataset.fieldMap),
-    showSearch: domElement.dataset.showSearch,
-    showPagination: domElement.dataset.showPagination,
-    perPage: parseInt(domElement.dataset.perPage),
-    translation: translation
-};
-
-ReactDOM.render(
-    <JsonParser {...props}/>,
-    domElement
-);
+for (let i = 0; i < domElements.length; i++) {
+    const element = domElements[i];
+    ReactDOM.render(
+        <JsonParser
+            url={element.dataset.url}
+            fieldMap={JSON.parse(element.dataset.fieldMap)}
+            showSearch={element.dataset.showSearch}
+            showPagination={element.dataset.showPagination}
+            perPage={parseInt(element.dataset.perPage)}/>,
+        element
+    );
+}

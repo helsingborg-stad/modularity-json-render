@@ -3,6 +3,8 @@ import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
 import {Pagination} from 'hbg-react';
 
+const {translation} = modJsonRender;
+
 class JsonParser extends React.Component {
     constructor() {
         super();
@@ -154,7 +156,7 @@ class JsonParser extends React.Component {
     }
 
     render() {
-        const {translation, showSearch} = this.props;
+        const {showSearch} = this.props;
         const {error, isLoaded, paginatedItems, totalPages, currentPage} = this.state;
 
         if (error) {
