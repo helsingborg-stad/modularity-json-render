@@ -2,17 +2,6 @@ import DataList from './DataList';
 import getApiData from '../../Utilities/getApiData';
 
 class FieldSelection extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            items: []
-        };
-
-        this.updateFieldMap = this.updateFieldMap.bind(this);
-    }
-
     updateFieldMap(value) {
         this.props.updateFieldMap(value);
     }
@@ -23,15 +12,15 @@ class FieldSelection extends React.Component {
             .then(
                 ({result}) => {
                     if (!result || Object.keys(result).length === 0) {
-                        this.setState({
-                            error: Error(translation.couldNotFetch),
-                            isLoaded: true
-                        });
+                        this.props.setError(Error(translation.couldNotFetch));
+                        this.props.setLoaded(true);
                         return;
                     }
-                    this.setState({isLoaded: true, items: result});
+                    this.props.setItems(result);
+                    this.props.setLoaded(true);
                 }, ({error}) => {
-                    this.setState({isLoaded: true, error});
+                    this.props.setLoaded(true);
+                    this.props.setError(error);
                 }
             );
     }
@@ -41,8 +30,8 @@ class FieldSelection extends React.Component {
     }
 
     render() {
-        const {url, fieldMap, translation} = this.props;
-        const {error, isLoaded, items} = this.state;
+        const {url, error, fieldMap, translation, isLoaded, items} = this.props;
+
         if (error) {
             return <div className="notice notice-error inline"><p>{error.message}</p></div>;
         } else if (!isLoaded) {
@@ -52,7 +41,7 @@ class FieldSelection extends React.Component {
                 data={items}
                 url={url}
                 fieldMap={fieldMap}
-                updateFieldMap={this.updateFieldMap}
+                updateFieldMap={this.updateFieldMap.bind(this)}
                 translation={translation}/>;
         }
     }

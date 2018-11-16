@@ -8,6 +8,9 @@ class Settings extends React.Component {
         this.state = {
             showFieldSelection: false,
             url: '',
+            isLoaded: false,
+            error: null,
+            items: [],
             fieldMap: {
                 itemContainer: null,
                 title: '',
@@ -54,9 +57,21 @@ class Settings extends React.Component {
         this.setState({fieldMap: newVal});
     }
 
+    setError(error) {
+        this.setState({error});
+    }
+
+    setLoaded(value) {
+        this.setState({isLoaded: value});
+    }
+
+    setItems(items) {
+        this.setState({items: items});
+    }
+
     render() {
         const {translation} = this.props;
-        const {showFieldSelection, url} = this.state;
+        const {showFieldSelection, url, error, isLoaded, items} = this.state;
         const {itemContainer, title, content} = this.state.fieldMap;
 
         if (url && itemContainer !== null && title && content) {
@@ -72,6 +87,12 @@ class Settings extends React.Component {
             return (
                 <div>
                     <FieldSelection url={url}
+                                    error={error}
+                                    setError={this.setError.bind(this)}
+                                    isLoaded={isLoaded}
+                                    setLoaded={this.setLoaded.bind(this)}
+                                    items={items}
+                                    setItems={this.setItems.bind(this)}
                                     fieldMap={this.state.fieldMap}
                                     updateFieldMap={this.updateFieldMap.bind(this)}
                                     translation={translation}/>
