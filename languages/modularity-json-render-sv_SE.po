@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2018-11-15 15:31+0100\n"
-"PO-Revision-Date: 2018-11-15 15:31+0100\n"
+"POT-Creation-Date: 2018-11-16 11:05+0100\n"
+"PO-Revision-Date: 2018-11-16 11:07+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -63,51 +63,55 @@ msgstr ""
 msgid "Retrives data from API and renders it as a list."
 msgstr ""
 
-#: source/php/Module/JsonRender.php:59
+#: source/php/Module/JsonRender.php:79
+msgid "Complete the data settings."
+msgstr "Fullfölj informationsinställningarna."
+
+#: source/php/Module/JsonRender.php:109
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, vänligen försök igen senare."
 
-#: source/php/Module/JsonRender.php:60
+#: source/php/Module/JsonRender.php:110
 msgid "No results found."
 msgstr "Inga resultat hittades."
 
-#: source/php/Module/JsonRender.php:61
+#: source/php/Module/JsonRender.php:111
 msgid "Filter on..."
 msgstr "Filtrera på…"
 
-#: source/php/Module/JsonRender.php:84
+#: source/php/Module/JsonRender.php:134
 msgid "Reset settings"
 msgstr "Återställ inställningar"
 
-#: source/php/Module/JsonRender.php:85
+#: source/php/Module/JsonRender.php:135
 msgid "Enter a valid JSON api url."
 msgstr "Ange en giltig JSON API-URL."
 
-#: source/php/Module/JsonRender.php:86
+#: source/php/Module/JsonRender.php:136
 msgid "Send request"
 msgstr "Skicka begäran"
 
-#: source/php/Module/JsonRender.php:87
+#: source/php/Module/JsonRender.php:137
 msgid "Select where to retrieve the information"
 msgstr "Välj var informationen ska hämtas från"
 
-#: source/php/Module/JsonRender.php:88
+#: source/php/Module/JsonRender.php:138
 msgid "Select title and content fields"
 msgstr "Välj titel-och innehållsfält"
 
-#: source/php/Module/JsonRender.php:89
+#: source/php/Module/JsonRender.php:139
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Module/JsonRender.php:90
+#: source/php/Module/JsonRender.php:140
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/Module/JsonRender.php:91
+#: source/php/Module/JsonRender.php:141
 msgid "Select"
 msgstr "Välj"
 
-#: source/php/Module/JsonRender.php:92
+#: source/php/Module/JsonRender.php:142
 msgid "Could not fetch data from URL."
 msgstr "Det gick inte att hämta data."
 
