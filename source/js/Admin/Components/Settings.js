@@ -78,26 +78,31 @@ class Settings extends React.Component {
             return (
                 <div>
                     <Summary {...this.state}
-                             translation={translation} />
+                             translation={translation}
+                    />
                     <InputFields {...this.state} />
-                    <p><a href="#" onClick={this.resetOptions.bind(this)} className="button">{translation.resetSettings}</a></p>
+                    <p><a href="#" onClick={this.resetOptions.bind(this)}
+                          className="button">{translation.resetSettings}</a></p>
                 </div>
             );
         } else if (showFieldSelection) {
             return (
                 <div>
-                    <FieldSelection url={url}
-                                    error={error}
-                                    setError={this.setError.bind(this)}
-                                    isLoaded={isLoaded}
-                                    setLoaded={this.setLoaded.bind(this)}
-                                    items={items}
-                                    setItems={this.setItems.bind(this)}
-                                    fieldMap={this.state.fieldMap}
-                                    updateFieldMap={this.updateFieldMap.bind(this)}
-                                    translation={translation}/>
+                    <FieldSelection
+                        url={url}
+                        error={error}
+                        setError={this.setError.bind(this)}
+                        isLoaded={isLoaded}
+                        setLoaded={this.setLoaded.bind(this)}
+                        items={items}
+                        setItems={this.setItems.bind(this)}
+                        fieldMap={this.state.fieldMap}
+                        updateFieldMap={this.updateFieldMap.bind(this)}
+                        translation={translation}
+                    />
                     <InputFields {...this.state} />
-                    <p><a href="#" onClick={this.resetOptions.bind(this)} className="button">{translation.resetSettings}</a></p>
+                    <p><a href="#" onClick={this.resetOptions.bind(this)}
+                          className="button">{translation.resetSettings}</a></p>
                 </div>
             );
         } else {

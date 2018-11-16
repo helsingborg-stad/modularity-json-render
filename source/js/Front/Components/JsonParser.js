@@ -185,7 +185,8 @@ class JsonParser extends React.Component {
                         showSearch={showSearch}
                         doSearch={this.handleSearch.bind(this)}
                         items={paginatedItems}
-                        translation={translation}/>
+                        translation={translation}
+                    />
                     {this.props.showPagination ?
                         <div className="grid gutter">
                             <div className="grid-fit-content u-ml-auto">

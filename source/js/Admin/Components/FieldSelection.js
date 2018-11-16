@@ -2,8 +2,8 @@ import DataList from './DataList';
 import getApiData from '../../Utilities/getApiData';
 
 class FieldSelection extends React.Component {
-    updateFieldMap(value) {
-        this.props.updateFieldMap(value);
+    componentDidMount() {
+        this.getData();
     }
 
     getData() {
@@ -25,8 +25,8 @@ class FieldSelection extends React.Component {
             );
     }
 
-    componentDidMount() {
-        this.getData();
+    updateFieldMap(value) {
+        this.props.updateFieldMap(value);
     }
 
     render() {
@@ -37,12 +37,15 @@ class FieldSelection extends React.Component {
         } else if (!isLoaded) {
             return <div className="spinner is-active"></div>;
         } else {
-            return <DataList
-                data={items}
-                url={url}
-                fieldMap={fieldMap}
-                updateFieldMap={this.updateFieldMap.bind(this)}
-                translation={translation}/>;
+            return (
+                <DataList
+                    data={items}
+                    url={url}
+                    fieldMap={fieldMap}
+                    updateFieldMap={this.updateFieldMap.bind(this)}
+                    translation={translation}
+                />
+            );
         }
     }
 }

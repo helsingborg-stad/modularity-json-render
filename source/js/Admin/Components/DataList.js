@@ -56,7 +56,9 @@ class DataList extends React.Component {
             return (
                 <div>
                     <h3>{translation.selectItemsContainer}</h3>
-                    <ul className="json-tree">{this.renderNodes(data)}</ul>
+                    <ul className="json-tree">
+                        {this.renderNodes(data)}
+                    </ul>
                 </div>
             );
         } else {
@@ -76,7 +78,9 @@ class DataList extends React.Component {
             return (
                 <div>
                     <h3>{translation.selectTitleContent}</h3>
-                    <ul className="json-tree">{this.renderNodes(objectData)}</ul>
+                    <ul className="json-tree">
+                        {this.renderNodes(objectData)}
+                    </ul>
                 </div>
             );
         }
