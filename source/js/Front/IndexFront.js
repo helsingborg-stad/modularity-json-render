@@ -5,6 +5,8 @@ import 'isomorphic-fetch';
 import JsonParser from './Components/JsonParser';
 
 const domElements = document.getElementsByClassName("modularity-json-render");
+const {translation} = modJsonRender;
+
 for (let i = 0; i < domElements.length; i++) {
     const element = domElements[i];
     ReactDOM.render(
@@ -13,7 +15,9 @@ for (let i = 0; i < domElements.length; i++) {
             fieldMap={JSON.parse(element.dataset.fieldMap)}
             showSearch={element.dataset.showSearch}
             showPagination={element.dataset.showPagination}
-            perPage={parseInt(element.dataset.perPage)}/>,
+            perPage={parseInt(element.dataset.perPage)}
+            translation={translation}
+        />,
         element
     );
 }

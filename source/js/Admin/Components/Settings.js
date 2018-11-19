@@ -77,8 +77,9 @@ class Settings extends React.Component {
         if (url && itemContainer !== null && title && content) {
             return (
                 <div>
-                    <Summary {...this.state}
-                             translation={translation}
+                    <Summary
+                        {...this.state}
+                        translation={translation}
                     />
                     <InputFields {...this.state} />
                     <p><a href="#" onClick={this.resetOptions.bind(this)}
