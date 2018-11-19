@@ -52,7 +52,7 @@
     "react-dom": "^16.6.3",
     "react-onclickoutside": "^6.7.1",
     "reactify": "^1.1.1",
-    "recursive-iterator": "^3.3.0",
+    "recursive-iterator": "2.0.3",
     "rev-del": "^1.0.5",
     "run-sequence": "^2.2.1",
     "uuid": "^3.3.2",
