@@ -12,7 +12,6 @@ class App
 
         //Init module
         add_action('plugins_loaded', array($this, 'registerModule'));
-        add_action('Modularity/Module/TemplatePath', array($this, 'registerModuleTemplate'));
 
         //Register meta boxes
         add_action('add_meta_boxes', array($this, 'registerMetaBoxes'));
@@ -30,17 +29,6 @@ class App
                 'JsonRender'
             );
         }
-    }
-
-    /**
-     * Register module view
-     * @param  $paths In what paths the module template resides
-     * @return array
-     */
-    public function registerModuleTemplate($paths)
-    {
-        $paths[] = MODULARITYJSONRENDER_PATH . 'source/php/Module/views/';
-        return $paths;
     }
 
     /**
