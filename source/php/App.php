@@ -26,7 +26,7 @@ class App
     {
         if (function_exists('modularity_register_module')) {
             modularity_register_module(
-                MODULARITYJSONRENDER_PATH . 'Source/php/Module/',
+                MODULARITYJSONRENDER_PATH . 'source/php/Module/',
                 'JsonRender'
             );
         }
@@ -37,10 +37,9 @@ class App
      * @param  $paths In what paths the module template resides
      * @return array
      */
-
     public function registerModuleTemplate($paths)
     {
-        $paths[] = MODULARITYJSONRENDER_PATH . 'Source/php/Module/views/';
+        $paths[] = MODULARITYJSONRENDER_PATH . 'source/php/Module/views/';
         return $paths;
     }
 
