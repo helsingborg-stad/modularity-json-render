@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2018-11-16 11:05+0100\n"
-"PO-Revision-Date: 2018-11-16 11:07+0100\n"
+"POT-Creation-Date: 2018-11-20 11:06+0100\n"
+"PO-Revision-Date: 2018-11-20 11:07+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -108,12 +108,28 @@ msgid "Content"
 msgstr "Innehåll"
 
 #: source/php/Module/JsonRender.php:141
+msgid "Title field"
+msgstr "Titelfält"
+
+#: source/php/Module/JsonRender.php:142
+msgid "Content field"
+msgstr "Innehållsfält"
+
+#: source/php/Module/JsonRender.php:143
 msgid "Select"
 msgstr "Välj"
 
-#: source/php/Module/JsonRender.php:142
+#: source/php/Module/JsonRender.php:144
 msgid "Could not fetch data from URL."
 msgstr "Det gick inte att hämta data."
+
+#: source/php/Module/JsonRender.php:145
+msgid "Summary"
+msgstr "Sammanfattning"
+
+#: source/php/Module/JsonRender.php:146
+msgid "Below is a summary of the data settings."
+msgstr "Nedan visas en sammanfattning av informationsinställningarna."
 
 #. Plugin Name of the plugin/theme
 msgid "Modularity Json Render"
@@ -128,7 +144,7 @@ msgid "Renders JSON api:s as a list etc."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Sebastian Thulin"
+msgid "Sebastian Thulin, Jonatan Hanson"
 msgstr ""
 
 #. Author URI of the plugin/theme

@@ -138,8 +138,12 @@ class JsonRender extends \Modularity\Module
                 'selectTitleContent' => __('Select title and content fields', 'modularity-json-render'),
                 'title' => __('Title', 'modularity-json-render'),
                 'content' => __('Content', 'modularity-json-render'),
+                'titleField' => __('Title field', 'modularity-json-render'),
+                'contentField' => __('Content field', 'modularity-json-render'),
                 'select' => __('Select', 'modularity-json-render'),
                 'couldNotFetch' => __('Could not fetch data from URL.', 'modularity-json-render'),
+                'summary' => __('Summary', 'modularity-json-render'),
+                'summaryDescription' => __('Below is a summary of the data settings.', 'modularity-json-render'),
             )
         ));
 
