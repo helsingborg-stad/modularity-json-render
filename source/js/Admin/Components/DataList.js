@@ -32,8 +32,6 @@ class DataList extends React.Component {
                                   sample={sample}
                                   fieldMap={this.props.fieldMap}
                                   onClickContainer={e => this.setFieldMap(data[item].objectPath, e)}
-                                  onClickTitle={e => this.setFieldMap(data[item], e)}
-                                  onClickContent={e => this.setFieldMap(data[item], e)}
                                   translation={this.props.translation}/>;
 
             if (typeof data[item] === 'object' && data[item] !== null) {
@@ -93,19 +91,16 @@ class DataList extends React.Component {
                 <div className="grid-container">
                     <div className="grid-item">
                         <h3>{translation.selectTitleContent}</h3>
-                        <ul className="json-tree">
-                            {this.renderNodes(objectData)}
-                        </ul>
+                        {this.renderNodes(objectData)}
                     </div>
-
                     <div className="grid-item">
                         <div>
                             <h3>Heading</h3>
-                            <DropArea id="heading-drop" list={[]}/>
+                            <DropArea id="heading-area" list={[]} />
                         </div>
                         <div>
                             <h3>Content</h3>
-                            <DropArea id="content-drop" list={[]}/>
+                            <DropArea id="content-area" list={[]}/>
                         </div>
                     </div>
                 </div>

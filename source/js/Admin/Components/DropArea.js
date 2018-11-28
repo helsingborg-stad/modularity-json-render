@@ -8,11 +8,8 @@ const itemTarget = {
         const sourceObj = monitor.getItem();
 
         if (id !== sourceObj.listId) {
-            console.log("Drop");
-            console.log(sourceObj);
             component.pushItem(sourceObj);
         } else {
-            console.log("same list, return");
             return {listId: id};
         }
     }
@@ -56,6 +53,18 @@ class DropArea extends React.Component {
         }));
     }
 
+    changeHeading(index, e) {
+        this.setState(update(this.state, {
+            items: {
+                [index]: {
+                    heading: {
+                        $set: e.target.value
+                    }
+                }
+            }
+        }));
+    }
+
     render() {
         const {items} = this.state;
         const {isOver, connectDropTarget} = this.props;
@@ -64,13 +73,14 @@ class DropArea extends React.Component {
         return connectDropTarget(
             <div className="drop-area" style={{backgroundColor}}>
                 {items.map((item, i) => {
-                    console.log("The item:");
-                    console.log(item);
                     return (
                         <DragItem
                             key={item.id}
+                            id={item.id}
                             index={i}
                             listId={this.props.id}
+                            heading={item.heading}
+                            headingChange={e => this.changeHeading(i, e)}
                             item={item.item}
                             removeItem={this.removeItem.bind(this)}
                             moveItem={this.moveItem.bind(this)}
