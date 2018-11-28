@@ -1,4 +1,5 @@
 import Accordion from './Accordion';
+import AccordionTable from './AccordionTable';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
 import {Pagination} from 'hbg-react';
@@ -52,6 +53,8 @@ class JsonParser extends React.Component {
     }
 
     mapData(jsonData) {
+        console.log(jsonData);
+
         const {fieldMap} = this.props;
         // Get the object containing items from JSON
         let items = this.getObjectProp(jsonData, fieldMap.itemContainer ? fieldMap.itemContainer.split('.') : []);
@@ -68,6 +71,8 @@ class JsonParser extends React.Component {
         items = items.filter(function (item) {
             return item.id && item.title && item.content;
         });
+
+        console.log(items);
 
         return items;
     }
@@ -179,12 +184,19 @@ class JsonParser extends React.Component {
         } else {
             return (
                 <div>
-                    <Accordion
+                    <AccordionTable
                         showSearch={showSearch}
                         doSearch={this.handleSearch.bind(this)}
                         items={paginatedItems}
                         translation={translation}
                     />
+
+                    {/*<Accordion*/}
+                        {/*showSearch={showSearch}*/}
+                        {/*doSearch={this.handleSearch.bind(this)}*/}
+                        {/*items={paginatedItems}*/}
+                        {/*translation={translation}*/}
+                    {/*/>*/}
                     {this.props.showPagination ?
                         <div className="grid gutter">
                             <div className="grid-fit-content u-ml-auto">
