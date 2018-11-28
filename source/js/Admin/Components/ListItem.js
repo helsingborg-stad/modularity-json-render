@@ -1,20 +1,35 @@
-const ListItem = ({value, children, fieldMap, object, onClickTitle, onClickContent, onClickContainer, translation}) => {
+import DragItem from './DragItem';
+import uuidv1 from "uuid/v1";
+
+const ListItem = ({field, value, sample, children, fieldMap, onClickTitle, onClickContainer, translation}) => {
     if (children) {
         return (<li>
-            {Array.isArray(object) && fieldMap.itemContainer === null ?
-                <span><span className="dashicons dashicons-portfolio"></span> {value} <a href="#" className="tree-select" data-field="itemContainer" onClick={onClickContainer}>{translation.select}</a></span> :  <span>{value}</span>}
+            {Array.isArray(value) && fieldMap.itemContainer === null ?
+                <span><strong>
+                    <span className="dashicons dashicons-portfolio"></span> {field}
+                    <a href="#"
+                       className="tree-select"
+                       data-field="itemContainer"
+                       onClick={onClickContainer}>{translation.select}</a>
+                    </strong></span> :
+                <span>{field}</span>}
             <ul>{children}</ul>
         </li>);
     } else {
-        return (<li>
-            {fieldMap.title === object && fieldMap.title ? <strong>{translation.title}: </strong> : ''}
-            {fieldMap.content === object && fieldMap.content ? <strong>{translation.content}: </strong> : ''}
-            <span>{value}</span>
-            {!fieldMap.title && (fieldMap.content !== object) && fieldMap.itemContainer !== null ?
-                <a href="#" className="tree-select" data-field="title" onClick={onClickTitle}>{translation.title}</a> : ''}
-            {!fieldMap.content && (fieldMap.title !== object) && fieldMap.itemContainer !== null ?
-                <a href="#" className="tree-select" data-field="content" onClick={onClickContent}>{translation.content}</a> : ''}
-        </li>);
+        const item = {
+            field: field,
+            value: value,
+            sample: sample
+        };
+
+        return (
+            <li>{fieldMap.itemContainer === null ? <span>{field}</span> :
+                <DragItem
+                    id={uuidv1()}
+                    item={item}
+                />
+            }</li>
+        );
     }
 };
 

@@ -74,19 +74,20 @@ class Settings extends React.Component {
         const {showFieldSelection, url, error, isLoaded, items} = this.state;
         const {itemContainer, title, content} = this.state.fieldMap;
 
-        if (url && itemContainer !== null && title && content) {
-            return (
-                <div>
-                    <Summary
-                        {...this.state}
-                        translation={translation}
-                    />
-                    <InputFields {...this.state} />
-                    <p><a href="#" onClick={this.resetOptions.bind(this)}
-                          className="button">{translation.resetSettings}</a></p>
-                </div>
-            );
-        } else if (showFieldSelection) {
+        // if (url && itemContainer !== null && title && content) {
+        //     return (
+        //         <div>
+        //             <Summary
+        //                 {...this.state}
+        //                 translation={translation}
+        //             />
+        //             <InputFields {...this.state} />
+        //             <p><a href="#" onClick={this.resetOptions.bind(this)}
+        //                   className="button">{translation.resetSettings}</a></p>
+        //         </div>
+        //     );
+        //} else if (showFieldSelection) {
+        if (showFieldSelection) {
             return (
                 <div>
                     <FieldSelection
