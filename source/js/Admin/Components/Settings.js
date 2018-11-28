@@ -1,6 +1,5 @@
 import FieldSelection from './FieldSelection';
 import InputFields from './InputFields';
-import Summary from './Summary';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -13,8 +12,8 @@ class Settings extends React.Component {
             items: [],
             fieldMap: {
                 itemContainer: null,
-                title: '',
-                content: ''
+                heading: [],
+                content: []
             }
         };
     }
@@ -30,8 +29,8 @@ class Settings extends React.Component {
                 url: options.url ? options.url : '',
                 fieldMap: options.fieldMap ? JSON.parse(options.fieldMap) : {
                     itemContainer: null,
-                    title: '',
-                    content: ''
+                    heading: [],
+                    content: []
                 },
                 showFieldSelection: !!options.url
             });
@@ -49,7 +48,7 @@ class Settings extends React.Component {
 
     resetOptions(event) {
         event.preventDefault();
-        this.setState({showFieldSelection: false, url: '', fieldMap: {itemContainer: null, title: '', content: ''}});
+        this.setState({showFieldSelection: false, url: '', fieldMap: {itemContainer: null, heading: [], content: []}});
     }
 
     updateFieldMap(value) {
@@ -72,21 +71,7 @@ class Settings extends React.Component {
     render() {
         const {translation} = this.props;
         const {showFieldSelection, url, error, isLoaded, items} = this.state;
-        const {itemContainer, title, content} = this.state.fieldMap;
 
-        // if (url && itemContainer !== null && title && content) {
-        //     return (
-        //         <div>
-        //             <Summary
-        //                 {...this.state}
-        //                 translation={translation}
-        //             />
-        //             <InputFields {...this.state} />
-        //             <p><a href="#" onClick={this.resetOptions.bind(this)}
-        //                   className="button">{translation.resetSettings}</a></p>
-        //         </div>
-        //     );
-        //} else if (showFieldSelection) {
         if (showFieldSelection) {
             return (
                 <div>
