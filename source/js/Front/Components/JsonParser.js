@@ -1,5 +1,4 @@
 import Accordion from './Accordion';
-import AccordionTable from './AccordionTable';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
 import {Pagination} from 'hbg-react';
@@ -53,8 +52,6 @@ class JsonParser extends React.Component {
     }
 
     mapData(jsonData) {
-        console.log(jsonData);
-
         const {fieldMap} = this.props;
         // Get the object containing items from JSON
         let items = this.getObjectProp(jsonData, fieldMap.itemContainer ? fieldMap.itemContainer.split('.') : []);
@@ -64,15 +61,14 @@ class JsonParser extends React.Component {
         // Map the data items
         items = items.map(item => ({
             id: uuidv1(),
-            title: this.getObjectProp(item, fieldMap.title.split('.')),
-            content: this.getObjectProp(item, fieldMap.content.split('.'))
+            heading: fieldMap.heading.map(heading => (
+                this.getObjectProp(item, heading.item.value.split('.'))
+            )),
+            content: fieldMap.content.map(content => ({
+                title: content.heading,
+                value: this.getObjectProp(item, content.item.value.split('.'))
+            })),
         }));
-        // Remove objects with missing fields
-        items = items.filter(function (item) {
-            return item.id && item.title && item.content;
-        });
-
-        console.log(items);
 
         return items;
     }
@@ -159,7 +155,7 @@ class JsonParser extends React.Component {
     }
 
     render() {
-        const {showSearch, translation} = this.props;
+        const {showSearch, translation, view, fieldMap} = this.props;
         const {error, isLoaded, paginatedItems, totalPages, currentPage} = this.state;
 
         if (error) {
@@ -184,31 +180,30 @@ class JsonParser extends React.Component {
         } else {
             return (
                 <div>
-                    <AccordionTable
+                    {(view === 'accordion' || view === 'accordiontable') &&
+                    <Accordion
                         showSearch={showSearch}
                         doSearch={this.handleSearch.bind(this)}
                         items={paginatedItems}
                         translation={translation}
+                        view={view}
+                        fieldMap={fieldMap}
                     />
+                    }
 
-                    {/*<Accordion*/}
-                        {/*showSearch={showSearch}*/}
-                        {/*doSearch={this.handleSearch.bind(this)}*/}
-                        {/*items={paginatedItems}*/}
-                        {/*translation={translation}*/}
-                    {/*/>*/}
-                    {this.props.showPagination ?
-                        <div className="grid gutter">
-                            <div className="grid-fit-content u-ml-auto">
-                                <Pagination
-                                    current={currentPage}
-                                    total={totalPages}
-                                    next={this.nextPage.bind(this)}
-                                    prev={this.prevPage.bind(this)}
-                                    input={this.paginationInput.bind(this)}
-                                />
-                            </div>
-                        </div> : ''}
+                    {this.props.showPagination &&
+                    <div className="grid gutter">
+                        <div className="grid-fit-content u-ml-auto">
+                            <Pagination
+                                current={currentPage}
+                                total={totalPages}
+                                next={this.nextPage.bind(this)}
+                                prev={this.prevPage.bind(this)}
+                                input={this.paginationInput.bind(this)}
+                            />
+                        </div>
+                    </div>
+                    }
                 </div>
             );
         }
