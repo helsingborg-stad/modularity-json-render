@@ -4,7 +4,7 @@
     @endif
     <div class="modularity-json-render"
          data-url="{{ $url }}"
-         data-view="accordiontable"
+         data-view="{{ $view }}"
          data-field-map="{{ $fieldMap }}"
          data-show-search="{{ $show_search ? true : false }}"
          data-show-pagination="{{ $show_pagination ? true : false }}"

@@ -55,14 +55,16 @@ class JsonRender extends \Modularity\Module
 
         if (array_key_exists('mod_json_render_url', $_POST) && array_key_exists('mod_json_render_fieldmap', $_POST)) {
             $url = $_POST['mod_json_render_url'];
+            $view = $_POST['mod_json_render_view'];
             $fieldMap = json_decode(html_entity_decode(stripslashes($_POST['mod_json_render_fieldmap'])));
 
             // TODO fixa validation utifrån om man valt accordion, accordiontable, table
 //            if ($url
 //                && (isset($fieldMap->heading) && !empty($fieldMap->heading))
 //                && (isset($fieldMap->content) && !empty($fieldMap->content))) {
-            if ($url && isset($fieldMap->heading) && isset($fieldMap->content)) {
-                update_post_meta($postId, 'json_url', $_POST['mod_json_render_url']);
+            if ($url && $view && isset($fieldMap->heading) && isset($fieldMap->content)) {
+                update_post_meta($postId, 'json_url', $url);
+                update_post_meta($postId, 'view', $view);
                 update_post_meta($postId, 'fieldmap', $_POST['mod_json_render_fieldmap']);
             } else {
                 $this->addSettingsError();
@@ -91,6 +93,7 @@ class JsonRender extends \Modularity\Module
 
         $data = get_fields($this->ID);
         $data['url'] = $options['url'];
+        $data['view'] = $options['view'];
         $data['fieldMap'] = $options['fieldMap'];
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
 
@@ -156,9 +159,11 @@ class JsonRender extends \Modularity\Module
     public function getOptions($postId)
     {
         $url = get_post_meta($postId, 'json_url', true);
+        $view = get_post_meta($postId, 'view', true);
         $fieldmap = get_post_meta($postId, 'fieldmap', true);
         $options = array(
             'url' => $url ? $url : null,
+            'view' => $view ? $view : null,
             'fieldMap' => $fieldmap ? $fieldmap : null
         );
 

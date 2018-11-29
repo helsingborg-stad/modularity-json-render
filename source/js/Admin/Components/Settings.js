@@ -7,6 +7,7 @@ class Settings extends React.Component {
         this.state = {
             showFieldSelection: false,
             url: '',
+            view: 'accordion',
             isLoaded: false,
             error: null,
             items: [],
@@ -27,6 +28,7 @@ class Settings extends React.Component {
             const options = modJsonRender.options;
             this.setState({
                 url: options.url ? options.url : '',
+                view: options.view ? options.view : 'accordion',
                 fieldMap: options.fieldMap ? JSON.parse(options.fieldMap) : {
                     itemContainer: null,
                     heading: [],
