@@ -81,13 +81,12 @@
     }
 
     .grid-item {
-        border:1px solid lightseagreen;
-        padding: 20px;
+        padding: 15px;
     }
 
     .drag-item {
         margin: 0 0 10px 0;
-        padding: 8px;
+        padding: 0 10px 0 10px;
         border: 1px solid #ccc;
         background: #f7f7f7;
         border-radius: 3px;
@@ -100,8 +99,8 @@
 
     .drop-area {
         padding: 10px;
-        min-height: 103px;
-        border: 1px dashed palegreen;
+        min-height: 85px;
+        border: 1px dashed #a0a5aa;
 
         .drag-item {
             &:last-child {
