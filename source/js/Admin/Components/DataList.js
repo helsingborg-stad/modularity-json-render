@@ -6,10 +6,16 @@ import objectPath from 'object-path';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext} from 'react-dnd';
 
+const dropAreas = ['heading', 'content'];
+
 class DataList extends React.Component {
-    setFieldMap(path, event) {
-        event.preventDefault();
-        this.props.updateFieldMap({[event.target.dataset.field]: path});
+    updateFieldMap(field, value) {
+        this.props.updateFieldMap({[field]: value});
+    }
+
+    setItemContainer(e, field, value) {
+        e.preventDefault();
+        this.updateFieldMap(field, value);
     }
 
     renderNodes(data) {
@@ -31,7 +37,7 @@ class DataList extends React.Component {
                                   value={data[item]}
                                   sample={sample}
                                   fieldMap={this.props.fieldMap}
-                                  onClickContainer={e => this.setFieldMap(data[item].objectPath, e)}
+                                  onClickContainer={e => this.setItemContainer(e, 'itemContainer', data[item].objectPath)}
                                   translation={this.props.translation}/>;
 
             if (typeof data[item] === 'object' && data[item] !== null) {
@@ -59,7 +65,7 @@ class DataList extends React.Component {
             }
 
             for (let {parent, node, key, path} of new RecursiveIterator(data)) {
-                if (typeof node === 'object' && node !== null) {
+                if (! (typeof node === 'object' && node !== null)) {
                     let pathString = path.join('.');
                     objectPath.set(data, pathString + '.objectPath', pathString);
                 }
@@ -81,7 +87,7 @@ class DataList extends React.Component {
             }
 
             for (let {parent, node, key, path} of new RecursiveIterator(objectData)) {
-                if (typeof node !== 'object') {
+                if (! (typeof node === 'object' && node !== null)) {
                     let pathString = path.join('.');
                     objectPath.set(objectData, pathString, pathString);
                 }
@@ -94,14 +100,18 @@ class DataList extends React.Component {
                         {this.renderNodes(objectData)}
                     </div>
                     <div className="grid-item">
-                        <div>
-                            <h3>Heading</h3>
-                            <DropArea id="heading-area" list={[]} />
-                        </div>
-                        <div>
-                            <h3>Content</h3>
-                            <DropArea id="content-area" list={[]}/>
-                        </div>
+                        {dropAreas.map((area) => {
+                            return (
+                                <div key={area}>
+                                    <h3>{area.charAt(0).toUpperCase() + area.slice(1)}</h3>
+                                    <DropArea
+                                        id={area}
+                                        list={fieldMap[area]}
+                                        itemsChange={this.updateFieldMap.bind(this)}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             );

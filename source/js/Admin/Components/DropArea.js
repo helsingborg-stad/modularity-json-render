@@ -2,23 +2,14 @@ import {DropTarget} from 'react-dnd';
 import DragItem from "./DragItem";
 import update from 'immutability-helper';
 
-const itemTarget = {
-    drop(props, monitor, component) {
-        const {id} = props;
-        const sourceObj = monitor.getItem();
-
-        if (id !== sourceObj.listId) {
-            component.pushItem(sourceObj);
-        } else {
-            return {listId: id};
-        }
-    }
-};
-
 class DropArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {items: props.list};
+    }
+
+    itemsChange() {
+        this.props.itemsChange(this.props.id, this.state.items);
     }
 
     pushItem(newItem) {
@@ -27,6 +18,7 @@ class DropArea extends React.Component {
                 $push: [newItem]
             }
         }));
+        this.itemsChange();
     }
 
     removeItem(index) {
@@ -37,6 +29,7 @@ class DropArea extends React.Component {
                 ]
             }
         }));
+        this.itemsChange();
     }
 
     moveItem(dragIndex, hoverIndex) {
@@ -51,6 +44,7 @@ class DropArea extends React.Component {
                 ]
             }
         }));
+        this.itemsChange();
     }
 
     changeHeading(index, e) {
@@ -62,7 +56,9 @@ class DropArea extends React.Component {
                     }
                 }
             }
-        }));
+        }), () => {
+            this.itemsChange();
+        });
     }
 
     render() {
@@ -91,6 +87,19 @@ class DropArea extends React.Component {
         );
     }
 }
+
+const itemTarget = {
+    drop(props, monitor, component) {
+        const {id} = props;
+        const sourceObj = monitor.getItem();
+
+        if (id !== sourceObj.listId) {
+            component.pushItem(sourceObj);
+        } else {
+            return {listId: id};
+        }
+    }
+};
 
 export default DropTarget('jsonItem', itemTarget, (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),

@@ -12,7 +12,6 @@ const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, t
                     <span className="dashicons dashicons-portfolio"></span> {field}
                         <a href="#"
                            className="tree-select"
-                           data-field="itemContainer"
                            onClick={onClickContainer}>{translation.select}</a>
                     </strong></span> :
                     <span>{field}</span>}
@@ -22,7 +21,6 @@ const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, t
         } else {
             return <li><span>{field}</span></li>;
         }
-
     } else {
         if (children) {
             return <ul>{children}</ul>;
@@ -42,7 +40,6 @@ const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, t
                 </li>
             );
         }
-
     }
 };
 

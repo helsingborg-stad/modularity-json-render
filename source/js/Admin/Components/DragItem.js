@@ -6,23 +6,15 @@ class DragItem extends React.Component {
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = isDragging ? 0 : 1;
 
-        let sample = typeof item.sample === 'string' || typeof item.sample === 'number' ? item.sample : 'Empty';
+        let sample = typeof item.sample === 'string' || typeof item.sample === 'number' ? item.sample : '';
         sample = (sample.length > 50) ? sample.substring(0, 50) + '...' : sample;
 
-        if (listId) {
-            return connectDragSource(connectDropTarget(
-                <div className="drag-item" style={{opacity}}>
-                    <p><strong>{item.field}:</strong> <i>{sample}</i></p>
-                    <p><strong>Title:</strong><input type="text" name="" onChange={headingChange} value={heading} className=".regular-text"/></p>
-                </div>
-            ));
-        } else {
-            return connectDragSource(connectDropTarget(
-                <div className="drag-item" style={{opacity}}>
-                    <strong>{item.field}:</strong> <i>{sample}</i>
-                </div>
-            ));
-        }
+        return connectDragSource(connectDropTarget(
+            <div className="drag-item" style={{opacity}}>
+                <p><strong>{item.field}:</strong> <i>{sample}</i></p>
+                {listId ? <p><strong>Title:</strong><input type="text" name="" onChange={headingChange} value={heading} className=".regular-text"/></p> : ''}
+            </div>
+        ));
     }
 }
 
