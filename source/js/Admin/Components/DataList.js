@@ -1,5 +1,6 @@
 import ListItem from './ListItem';
 import DropArea from './DropArea';
+import ViewOption from './ViewOption';
 import RecursiveIterator from 'recursive-iterator';
 import objectPath from 'object-path';
 
@@ -16,6 +17,11 @@ class DataList extends React.Component {
     setItemContainer(e, field, value) {
         e.preventDefault();
         this.updateFieldMap(field, value);
+    }
+
+    setView(e) {
+        console.log(e.target.value);
+        this.props.setView(e.target.value);
     }
 
     renderNodes(data) {
@@ -52,7 +58,7 @@ class DataList extends React.Component {
 
     render() {
         let {data} = Object.assign({}, this.props);
-        const {translation} = this.props;
+        const {translation, view} = this.props;
         const fieldMap = this.props.fieldMap;
 
         if (Array.isArray(data)) {
@@ -112,6 +118,10 @@ class DataList extends React.Component {
                                 </div>
                             );
                         })}
+                        <ViewOption
+                            view={view}
+                            setView={this.setView.bind(this)}
+                        />
                     </div>
                 </div>
             );

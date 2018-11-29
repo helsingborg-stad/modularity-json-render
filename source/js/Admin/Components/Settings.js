@@ -70,15 +70,21 @@ class Settings extends React.Component {
         this.setState({items: items});
     }
 
+    setView(value) {
+        this.setState({view: value});
+    }
+
     render() {
         const {translation} = this.props;
-        const {showFieldSelection, url, error, isLoaded, items} = this.state;
+        const {showFieldSelection, url, view, error, isLoaded, items} = this.state;
 
         if (showFieldSelection) {
             return (
                 <div>
                     <FieldSelection
                         url={url}
+                        view={view}
+                        setView={this.setView.bind(this)}
                         error={error}
                         setError={this.setError.bind(this)}
                         isLoaded={isLoaded}

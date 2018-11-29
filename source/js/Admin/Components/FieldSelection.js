@@ -29,8 +29,12 @@ class FieldSelection extends React.Component {
         this.props.updateFieldMap(value);
     }
 
+    setView(value) {
+        this.props.setView(value);
+    }
+
     render() {
-        const {url, error, fieldMap, translation, isLoaded, items} = this.props;
+        const {url, view, error, fieldMap, translation, isLoaded, items} = this.props;
 
         if (error) {
             return <div className="notice notice-error inline"><p>{error.message}</p></div>;
@@ -41,6 +45,8 @@ class FieldSelection extends React.Component {
                 <DataList
                     data={items}
                     url={url}
+                    view={view}
+                    setView={this.setView.bind(this)}
                     fieldMap={fieldMap}
                     updateFieldMap={this.updateFieldMap.bind(this)}
                     translation={translation}
