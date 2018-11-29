@@ -57,9 +57,11 @@ class JsonRender extends \Modularity\Module
             $url = $_POST['mod_json_render_url'];
             $fieldMap = json_decode(html_entity_decode(stripslashes($_POST['mod_json_render_fieldmap'])));
 
-            if ($url
-                && (isset($fieldMap->title) && !empty($fieldMap->title))
-                && (isset($fieldMap->content) && !empty($fieldMap->content))) {
+            // TODO fixa validation utifrån om man valt accordion, accordiontable, table
+//            if ($url
+//                && (isset($fieldMap->heading) && !empty($fieldMap->heading))
+//                && (isset($fieldMap->content) && !empty($fieldMap->content))) {
+            if ($url && isset($fieldMap->heading) && isset($fieldMap->content)) {
                 update_post_meta($postId, 'json_url', $_POST['mod_json_render_url']);
                 update_post_meta($postId, 'fieldmap', $_POST['mod_json_render_fieldmap']);
             } else {
@@ -137,6 +139,7 @@ class JsonRender extends \Modularity\Module
                 'selectItemsContainer' => __('Select where to retrieve the information', 'modularity-json-render'),
                 'selectTitleContent' => __('Select title and content fields', 'modularity-json-render'),
                 'title' => __('Title', 'modularity-json-render'),
+                'heading' => __('Heading', 'modularity-json-render'),
                 'content' => __('Content', 'modularity-json-render'),
                 'titleField' => __('Title field', 'modularity-json-render'),
                 'contentField' => __('Content field', 'modularity-json-render'),

@@ -13,6 +13,7 @@ for (let i = 0; i < domElements.length; i++) {
     ReactDOM.render(
         <JsonParser
             url={element.dataset.url}
+            view={element.dataset.view}
             fieldMap={JSON.parse(element.dataset.fieldMap)}
             showSearch={element.dataset.showSearch}
             showPagination={element.dataset.showPagination}
