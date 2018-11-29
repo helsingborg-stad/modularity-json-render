@@ -106,6 +106,10 @@ class DataList extends React.Component {
                         {this.renderNodes(objectData)}
                     </div>
                     <div className="grid-item">
+                        <ViewOption
+                            view={view}
+                            setView={this.setView.bind(this)}
+                        />
                         {dropAreas.map((area) => {
                             return (
                                 <div key={area}>
@@ -118,10 +122,6 @@ class DataList extends React.Component {
                                 </div>
                             );
                         })}
-                        <ViewOption
-                            view={view}
-                            setView={this.setView.bind(this)}
-                        />
                     </div>
                 </div>
             );

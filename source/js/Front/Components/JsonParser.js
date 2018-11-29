@@ -1,4 +1,5 @@
 import Accordion from './Accordion';
+import Table from './Table';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
 import {Pagination} from 'hbg-react';
@@ -182,6 +183,17 @@ class JsonParser extends React.Component {
                 <div>
                     {(view === 'accordion' || view === 'accordiontable') &&
                     <Accordion
+                        showSearch={showSearch}
+                        doSearch={this.handleSearch.bind(this)}
+                        items={paginatedItems}
+                        translation={translation}
+                        view={view}
+                        fieldMap={fieldMap}
+                    />
+                    }
+
+                    {view === 'table' &&
+                    <Table
                         showSearch={showSearch}
                         doSearch={this.handleSearch.bind(this)}
                         items={paginatedItems}
