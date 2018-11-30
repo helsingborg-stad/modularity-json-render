@@ -11,10 +11,6 @@
         width: 100%;
     }
 
-    li, p {
-        word-break: break-all;
-    }
-
     ul.json-tree, ul.json-tree ul {
         list-style: none;
         margin: 0;
@@ -62,13 +58,6 @@
         ul, li {
             list-style: none;
         }
-
-        //ul.json-tree li {
-        //    line-height: 45px;
-        //}
-        //ul.json-tree li:before {
-        //    height: 1.7em;
-        //}
     }
 
     /* ================ GRID ============== */
@@ -76,15 +65,12 @@
     .grid-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10px;
+        grid-gap: 40px;
         grid-auto-rows: minmax(100px, auto);
     }
 
-    .grid-item {
-        padding: 15px;
-    }
-
     .drag-item {
+        word-break: break-all;
         margin: 0 0 10px 0;
         padding: 0 10px 0 10px;
         border: 1px solid #ccc;
