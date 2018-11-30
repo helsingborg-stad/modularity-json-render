@@ -11,6 +11,7 @@ class JsonParser extends React.Component {
             error: null,
             isLoaded: false,
             items: [],
+            itemValues: [],
             filteredItems: [],
             paginatedItems: [],
             totalPages: 0,
@@ -41,7 +42,7 @@ class JsonParser extends React.Component {
                             filteredItems: data,
                             paginatedItems: data,
                             totalPages: Math.ceil(data.length / perPage)
-                    },
+                        },
                         () => {
                             if (showPagination) {
                                 this.updateItemList();
@@ -72,6 +73,21 @@ class JsonParser extends React.Component {
             })),
         }));
 
+        // Create another array with the field values in a flat list to make search easier
+        let itemValues = items.map(item => {
+            let obj = {};
+            obj.id = item.id;
+            obj.values = Object.values(item.heading);
+            item.content.forEach(function (section) {
+                obj.values.push(section.value);
+            });
+            return obj;
+        });
+
+        this.setState({
+            itemValues
+        });
+
         return items;
     }
 
@@ -93,14 +109,22 @@ class JsonParser extends React.Component {
     }
 
     handleSearch(e) {
-        let searchString = e.target.value;
-        let filteredItems = this.state.items;
+        let searchString = typeof(e.target.value === 'string') ? e.target.value.toLowerCase() : e.target.value;
+        const {itemValues, items} = this.state;
         const {perPage, showPagination} = this.props;
 
-        filteredItems = filteredItems.filter((item) => {
-            let title = item.title.toLowerCase();
-            let content = item.content.toLowerCase();
-            return title.indexOf(searchString.toLowerCase()) !== -1 || content.indexOf(searchString.toLowerCase()) !== -1;
+        let filteredItems = itemValues.filter(item => {
+            let isFound = false;
+            item.values.forEach((val) => {
+                val = String(val).toLowerCase();
+                if (val.indexOf(searchString) !== -1) {
+                    isFound = true;
+                    return;
+                }
+            });
+            return isFound;
+        }).map(item => {
+            return items.find(obj => obj.id === item.id);
         });
 
         if (showPagination) {
@@ -121,7 +145,6 @@ class JsonParser extends React.Component {
 
     updateItemList() {
         const {filteredItems, currentPage} = this.state;
-        console.log(currentPage);
         const {perPage} = this.props;
         const begin = ((currentPage - 1) * perPage);
         const end = begin + perPage;
