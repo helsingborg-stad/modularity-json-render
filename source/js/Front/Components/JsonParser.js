@@ -36,16 +36,17 @@ class JsonParser extends React.Component {
                         return;
                     }
                     this.setState({
-                        isLoaded: true,
-                        items: data,
-                        filteredItems: data,
-                        paginatedItems: data,
-                        totalPages: Math.ceil(data.length / perPage)
-                    });
-
-                    if (showPagination) {
-                        this.updateItemList(1);
-                    }
+                            isLoaded: true,
+                            items: data,
+                            filteredItems: data,
+                            paginatedItems: data,
+                            totalPages: Math.ceil(data.length / perPage)
+                    },
+                        () => {
+                            if (showPagination) {
+                                this.updateItemList();
+                            }
+                        });
                 }, ({error}) => {
                     this.setState({isLoaded: true, error});
                 }
@@ -104,11 +105,12 @@ class JsonParser extends React.Component {
 
         if (showPagination) {
             this.setState({
-                filteredItems,
-                currentPage: 1,
-                totalPages: Math.ceil(filteredItems.length / perPage)
-            });
-            this.updateItemList(1);
+                    filteredItems,
+                    currentPage: 1,
+                    totalPages: Math.ceil(filteredItems.length / perPage)
+                },
+                () => this.updateItemList()
+            );
         } else {
             this.setState({
                 filteredItems,
@@ -117,8 +119,9 @@ class JsonParser extends React.Component {
         }
     }
 
-    updateItemList(currentPage) {
-        const {filteredItems} = this.state;
+    updateItemList() {
+        const {filteredItems, currentPage} = this.state;
+        console.log(currentPage);
         const {perPage} = this.props;
         const begin = ((currentPage - 1) * perPage);
         const end = begin + perPage;
@@ -133,8 +136,7 @@ class JsonParser extends React.Component {
             return;
         }
         const currentPage = this.state.currentPage += 1;
-        this.setState({currentPage: currentPage});
-        this.updateItemList(currentPage);
+        this.setState({currentPage: currentPage}, () => this.updateItemList());
     }
 
     prevPage() {
@@ -142,17 +144,20 @@ class JsonParser extends React.Component {
             return;
         }
         const currentPage = this.state.currentPage -= 1;
-        this.setState({currentPage: currentPage});
-        this.updateItemList(currentPage);
+        this.setState({currentPage: currentPage}, () => this.updateItemList());
     }
 
     paginationInput(e) {
         let currentPage = e.target.value ? parseInt(e.target.value) : '';
         currentPage = (currentPage > this.state.totalPages) ? this.state.totalPages : currentPage;
-        this.setState({currentPage: currentPage});
-        if (currentPage) {
-            this.updateItemList(currentPage);
-        }
+        this.setState(
+            {currentPage: currentPage},
+            () => {
+                if (currentPage) {
+                    this.updateItemList();
+                }
+            }
+        );
     }
 
     render() {

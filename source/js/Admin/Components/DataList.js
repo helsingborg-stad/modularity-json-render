@@ -20,7 +20,6 @@ class DataList extends React.Component {
     }
 
     setView(e) {
-        console.log(e.target.value);
         this.props.setView(e.target.value);
     }
 

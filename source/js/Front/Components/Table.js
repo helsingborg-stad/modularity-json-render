@@ -11,7 +11,7 @@ const Table = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
         }
 
         {Object.keys(items).length > 0 &&
-        <table className="table table-striped table-hover">
+        <table className="table table-striped">
             <thead>
             <tr>
                 {fieldMap.heading.map((heading, i) => (

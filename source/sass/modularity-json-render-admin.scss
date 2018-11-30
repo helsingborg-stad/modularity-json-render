@@ -102,6 +102,10 @@
         min-height: 85px;
         border: 1px dashed #a0a5aa;
 
+        input {
+            margin-left: 5px;
+        }
+
         .drag-item {
             &:last-child {
                 margin: 0;
