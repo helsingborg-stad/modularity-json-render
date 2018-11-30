@@ -50,7 +50,7 @@ class Settings extends React.Component {
 
     resetOptions(event) {
         event.preventDefault();
-        this.setState({error: null, isLoaded: false, showFieldSelection: false, url: '', fieldMap: {itemContainer: null, heading: [], content: []}});
+        this.setState({error: null, isLoaded: false, showFieldSelection: false, url: '', items: [], fieldMap: {itemContainer: null, heading: [], content: []}});
     }
 
     updateFieldMap(value) {

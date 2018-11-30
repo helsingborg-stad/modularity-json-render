@@ -63,8 +63,9 @@ class DropArea extends React.Component {
 
     render() {
         const {items} = this.state;
-        const {isOver, connectDropTarget} = this.props;
-        const backgroundColor = isOver ? 'palegreen' : '#FFF';
+        const {isOver, connectDropTarget, canDrop} = this.props;
+        let backgroundColor = canDrop ? 'palegreen' : 'palevioletred';
+        backgroundColor = isOver ? backgroundColor : '#FFF';
 
         return connectDropTarget(
             <div className="drop-area" style={{backgroundColor}}>
@@ -98,10 +99,17 @@ const itemTarget = {
         } else {
             return {listId: id};
         }
+    },
+    canDrop(props, monitor) {
+        if (props.limit === null) {
+            return true;
+        }
+        return props.list.length < props.limit;
     }
 };
 
 export default DropTarget('jsonItem', itemTarget, (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
+    canDrop: monitor.canDrop(),
 }))(DropArea);

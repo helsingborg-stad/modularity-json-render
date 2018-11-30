@@ -1,13 +1,12 @@
 import ListItem from './ListItem';
 import DropArea from './DropArea';
 import ViewOption from './ViewOption';
+import {dropAreas} from '../Config/config';
 import RecursiveIterator from 'recursive-iterator';
 import objectPath from 'object-path';
 
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext} from 'react-dnd';
-
-const dropAreas = ['heading', 'content'];
 
 class DataList extends React.Component {
     updateFieldMap(field, value) {
@@ -70,7 +69,7 @@ class DataList extends React.Component {
             }
 
             for (let {parent, node, key, path} of new RecursiveIterator(data)) {
-                if (! (typeof node === 'object' && node !== null)) {
+                if (typeof node === 'object' && node !== null) {
                     let pathString = path.join('.');
                     objectPath.set(data, pathString + '.objectPath', pathString);
                 }
@@ -101,7 +100,8 @@ class DataList extends React.Component {
             return (
                 <div className="grid-container">
                     <div className="grid-item">
-                        <h3>{translation.selectTitleContent}</h3>
+                        <h3>{translation.infoFields}</h3>
+                        <p><i>Drag and drop fields into the areas to the right. The areas accept different values depending on selected view option.</i></p>
                         {this.renderNodes(objectData)}
                     </div>
                     <div className="grid-item">
@@ -109,14 +109,15 @@ class DataList extends React.Component {
                             view={view}
                             setView={this.setView.bind(this)}
                         />
-                        {dropAreas.map((area) => {
+                        {dropAreas(view).map((area) => {
                             return (
-                                <div key={area}>
-                                    <h3>{area.charAt(0).toUpperCase() + area.slice(1)}</h3>
+                                <div key={area.id}>
+                                    <h3>{area.id.charAt(0).toUpperCase() + area.id.slice(1)}</h3>
                                     <DropArea
-                                        id={area}
-                                        list={fieldMap[area]}
+                                        id={area.id}
+                                        list={fieldMap[area.id]}
                                         itemsChange={this.updateFieldMap.bind(this)}
+                                        limit={area.limit}
                                     />
                                 </div>
                             );

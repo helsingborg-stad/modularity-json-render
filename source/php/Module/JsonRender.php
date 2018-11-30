@@ -140,7 +140,7 @@ class JsonRender extends \Modularity\Module
                 'validJsonUrl' => __('Enter a valid JSON api url.', 'modularity-json-render'),
                 'sendRequest' => __('Send request', 'modularity-json-render'),
                 'selectItemsContainer' => __('Select where to retrieve the information', 'modularity-json-render'),
-                'selectTitleContent' => __('Select title and content fields', 'modularity-json-render'),
+                'infoFields' => __('Information fields', 'modularity-json-render'),
                 'title' => __('Title', 'modularity-json-render'),
                 'heading' => __('Heading', 'modularity-json-render'),
                 'content' => __('Content', 'modularity-json-render'),
