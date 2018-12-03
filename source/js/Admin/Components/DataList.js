@@ -4,7 +4,6 @@ import ViewOption from './ViewOption';
 import {dropAreas} from '../Config/config';
 import RecursiveIterator from 'recursive-iterator';
 import objectPath from 'object-path';
-
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext} from 'react-dnd';
 

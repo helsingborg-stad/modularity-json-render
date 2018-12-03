@@ -8,6 +8,21 @@ class DropArea extends React.Component {
         this.state = {items: props.list};
     }
 
+    componentDidMount() {
+        this.applyLimit();
+    }
+
+    applyLimit() {
+        if (this.props.limit !== null) {
+            this.setState(update(this.state, {
+                items: {
+                    $set: this.state.items.slice(0, this.props.limit)
+                }
+            }));
+            this.itemsChange();
+        }
+    }
+
     itemsChange() {
         this.props.itemsChange(this.props.id, this.state.items);
     }
@@ -64,8 +79,8 @@ class DropArea extends React.Component {
     render() {
         const {items} = this.state;
         const {isOver, connectDropTarget, canDrop} = this.props;
-        let backgroundColor = canDrop ? 'palegreen' : 'palevioletred';
-        backgroundColor = isOver ? backgroundColor : '#FFF';
+        let backgroundColor = canDrop ? '#98fb98' : '#f08080';
+        backgroundColor = isOver ? backgroundColor : '#fff';
 
         return connectDropTarget(
             <div className="drop-area" style={{backgroundColor}}>
