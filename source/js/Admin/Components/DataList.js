@@ -108,6 +108,7 @@ class DataList extends React.Component {
                             view={view}
                             setView={this.setView.bind(this)}
                         />
+                        <div className="drop-container">
                         {dropAreas(view).map((area) => {
                             return (
                                 <div key={area.id}>
@@ -121,6 +122,7 @@ class DataList extends React.Component {
                                 </div>
                             );
                         })}
+                        </div>
                     </div>
                 </div>
             );

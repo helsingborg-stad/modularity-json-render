@@ -91,6 +91,12 @@
         }
     }
 
+    .drop-container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+
     .drop-area {
         padding: 10px;
         min-height: 85px;
@@ -106,5 +112,4 @@
             }
         }
     }
-
 }
