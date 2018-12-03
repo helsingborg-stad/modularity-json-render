@@ -58,11 +58,7 @@ class JsonRender extends \Modularity\Module
             $view = $_POST['mod_json_render_view'];
             $fieldMap = json_decode(html_entity_decode(stripslashes($_POST['mod_json_render_fieldmap'])));
 
-            // TODO fixa validation utifrån om man valt accordion, accordiontable, table
-//            if ($url
-//                && (isset($fieldMap->heading) && !empty($fieldMap->heading))
-//                && (isset($fieldMap->content) && !empty($fieldMap->content))) {
-            if ($url && $view && isset($fieldMap->heading) && isset($fieldMap->content)) {
+            if ($url && $view && isset($fieldMap->heading) && !empty($fieldMap->heading)) {
                 update_post_meta($postId, 'json_url', $url);
                 update_post_meta($postId, 'view', $view);
                 update_post_meta($postId, 'fieldmap', $_POST['mod_json_render_fieldmap']);
