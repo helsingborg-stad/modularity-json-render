@@ -60,8 +60,6 @@
         }
     }
 
-    /* ================ GRID ============== */
-
     .grid-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -80,6 +78,16 @@
 
         &:hover {
             background: #e6e6e6;
+        }
+
+        .remove-item {
+            text-decoration: none;
+            float: right;
+            color: #464b50;
+
+            &:hover {
+                color: #82878c;
+            }
         }
     }
 

@@ -2,7 +2,7 @@ import {DragSource, DropTarget} from 'react-dnd';
 
 class DragItem extends React.Component {
     render() {
-        const {listId, item, heading, headingChange} = this.props;
+        const {listId, item, heading, headingChange, removeItem, index} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = isDragging ? 0 : 1;
 
@@ -11,8 +11,11 @@ class DragItem extends React.Component {
 
         return connectDragSource(connectDropTarget(
             <div className="drag-item" style={{opacity}}>
-                <p><strong>{item.field}:</strong> <i>{sample}</i></p>
-                {listId ? <p><strong>Title:</strong><input type="text" name="" onChange={headingChange} value={heading} className=".regular-text"/></p> : ''}
+                <p>
+                    <strong>{item.field}:</strong> <i>{sample}</i>
+                    {listId && <a href="#" className="remove-item" onClick={(e) => {e.preventDefault(); removeItem(index);}}><span className="dashicons dashicons-no"></span></a>}
+                </p>
+                {listId && <p><strong>Title:</strong><input type="text" name="" onChange={headingChange} value={heading} className=".regular-text"/></p>}
             </div>
         ));
     }

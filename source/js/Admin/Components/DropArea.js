@@ -38,13 +38,15 @@ class DropArea extends React.Component {
 
     removeItem(index) {
         this.setState(update(this.state, {
-            items: {
-                $splice: [
-                    [index, 1]
-                ]
-            }
-        }));
-        this.itemsChange();
+                items: {
+                    $splice: [
+                        [index, 1]
+                    ]
+                }
+            }),
+            () => {
+                this.itemsChange();
+            });
     }
 
     moveItem(dragIndex, hoverIndex) {
@@ -62,7 +64,7 @@ class DropArea extends React.Component {
         this.itemsChange();
     }
 
-    changeHeading(index, e) {
+    changeHeading(e, index) {
         this.setState(update(this.state, {
             items: {
                 [index]: {
@@ -92,7 +94,7 @@ class DropArea extends React.Component {
                             index={i}
                             listId={this.props.id}
                             heading={item.heading}
-                            headingChange={e => this.changeHeading(i, e)}
+                            headingChange={e => this.changeHeading(e, i)}
                             item={item.item}
                             removeItem={this.removeItem.bind(this)}
                             moveItem={this.moveItem.bind(this)}
