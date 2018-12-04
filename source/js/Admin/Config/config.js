@@ -27,8 +27,7 @@ function dropAreas(view) {
             );
             break;
     }
-
     return dropAreas;
 }
 
-export {dropAreas};
+export {dropAreas, translation};
