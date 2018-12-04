@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2018-12-04 10:54+0100\n"
-"PO-Revision-Date: 2018-12-04 10:54+0100\n"
+"POT-Creation-Date: 2018-12-04 11:00+0100\n"
+"PO-Revision-Date: 2018-12-04 11:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -120,30 +120,38 @@ msgid "Select"
 msgstr "Välj"
 
 #: source/php/Module/JsonRender.php:145
+msgid "Next"
+msgstr "Nästa"
+
+#: source/php/Module/JsonRender.php:146
+msgid "Previous"
+msgstr "Föregående"
+
+#: source/php/Module/JsonRender.php:147
 msgid "Could not fetch data from URL."
 msgstr "Det gick inte att hämta data."
 
-#: source/php/Module/JsonRender.php:146
+#: source/php/Module/JsonRender.php:148
 msgid "List"
 msgstr "Lista"
 
-#: source/php/Module/JsonRender.php:147
+#: source/php/Module/JsonRender.php:149
 msgid "Accordion"
 msgstr "Expanderbar lista"
 
-#: source/php/Module/JsonRender.php:148
+#: source/php/Module/JsonRender.php:150
 msgid "Accordion table"
 msgstr "Expanderbar tabell"
 
-#: source/php/Module/JsonRender.php:149
+#: source/php/Module/JsonRender.php:151
 msgid "Table"
 msgstr "Tabell"
 
-#: source/php/Module/JsonRender.php:150
+#: source/php/Module/JsonRender.php:152
 msgid "Select view"
 msgstr "Välj vy"
 
-#: source/php/Module/JsonRender.php:151
+#: source/php/Module/JsonRender.php:153
 msgid ""
 "Drag and drop fields into the areas to the right. The areas accept different "
 "amount of values depending on selected view."

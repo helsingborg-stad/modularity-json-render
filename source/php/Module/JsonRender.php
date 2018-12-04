@@ -109,7 +109,9 @@ class JsonRender extends \Modularity\Module
             'translation' => array(
                 'somethingWentWrong' => __('Something went wrong, please try again later.', 'modularity-json-render'),
                 'noResults' => __('No results found.', 'modularity-json-render'),
-                'filterOn' => __('Filter on...', 'modularity-json-render')
+                'filterOn' => __('Filter on...', 'modularity-json-render'),
+                'next' => __('Next', 'modularity-json-render'),
+                'prev' => __('Previous', 'modularity-json-render'),
             )
         ));
     }

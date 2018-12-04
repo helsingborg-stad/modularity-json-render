@@ -242,6 +242,8 @@ class JsonParser extends React.Component {
                                 next={this.nextPage.bind(this)}
                                 prev={this.prevPage.bind(this)}
                                 input={this.paginationInput.bind(this)}
+                                langPrev={translation.prev}
+                                langNext={translation.next}
                             />
                         </div>
                     </div>
