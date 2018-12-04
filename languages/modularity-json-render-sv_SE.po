@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2018-11-20 11:06+0100\n"
-"PO-Revision-Date: 2018-11-20 11:07+0100\n"
+"POT-Creation-Date: 2018-12-04 08:44+0100\n"
+"PO-Revision-Date: 2018-12-04 08:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-WPHeader: modularity-json-render.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -47,7 +47,7 @@ msgstr "Visa paginering"
 msgid "Per page"
 msgstr "Per sida"
 
-#: source/php/App.php:79
+#: source/php/App.php:66
 msgid "Data settings"
 msgstr "Informationsinställningar"
 
@@ -67,53 +67,49 @@ msgstr ""
 msgid "Complete the data settings."
 msgstr "Fullfölj informationsinställningarna."
 
-#: source/php/Module/JsonRender.php:109
+#: source/php/Module/JsonRender.php:110
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, vänligen försök igen senare."
 
-#: source/php/Module/JsonRender.php:110
+#: source/php/Module/JsonRender.php:111
 msgid "No results found."
 msgstr "Inga resultat hittades."
 
-#: source/php/Module/JsonRender.php:111
+#: source/php/Module/JsonRender.php:112
 msgid "Filter on..."
 msgstr "Filtrera på…"
 
-#: source/php/Module/JsonRender.php:134
+#: source/php/Module/JsonRender.php:135
 msgid "Reset settings"
 msgstr "Återställ inställningar"
 
-#: source/php/Module/JsonRender.php:135
+#: source/php/Module/JsonRender.php:136
 msgid "Enter a valid JSON api url."
 msgstr "Ange en giltig JSON API-URL."
 
-#: source/php/Module/JsonRender.php:136
+#: source/php/Module/JsonRender.php:137
 msgid "Send request"
 msgstr "Skicka begäran"
 
-#: source/php/Module/JsonRender.php:137
+#: source/php/Module/JsonRender.php:138
 msgid "Select where to retrieve the information"
 msgstr "Välj var informationen ska hämtas från"
 
-#: source/php/Module/JsonRender.php:138
-msgid "Select title and content fields"
-msgstr "Välj titel-och innehållsfält"
-
 #: source/php/Module/JsonRender.php:139
+msgid "Information fields"
+msgstr "Informationsfält"
+
+#: source/php/Module/JsonRender.php:140
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Module/JsonRender.php:140
-msgid "Content"
-msgstr "Innehåll"
-
 #: source/php/Module/JsonRender.php:141
-msgid "Title field"
-msgstr "Titelfält"
+msgid "Heading"
+msgstr "Rubrik"
 
 #: source/php/Module/JsonRender.php:142
-msgid "Content field"
-msgstr "Innehållsfält"
+msgid "Content"
+msgstr "Innehåll"
 
 #: source/php/Module/JsonRender.php:143
 msgid "Select"
@@ -124,12 +120,32 @@ msgid "Could not fetch data from URL."
 msgstr "Det gick inte att hämta data."
 
 #: source/php/Module/JsonRender.php:145
-msgid "Summary"
-msgstr "Sammanfattning"
+msgid "List"
+msgstr "Lista"
 
 #: source/php/Module/JsonRender.php:146
-msgid "Below is a summary of the data settings."
-msgstr "Nedan visas en sammanfattning av informationsinställningarna."
+msgid "Accordion"
+msgstr "Expanderbar lista"
+
+#: source/php/Module/JsonRender.php:147
+msgid "Accordion table"
+msgstr "Expanderbar tabell"
+
+#: source/php/Module/JsonRender.php:148
+msgid "Table"
+msgstr "Tabell"
+
+#: source/php/Module/JsonRender.php:149
+msgid "Select view"
+msgstr "Välj vy"
+
+#: source/php/Module/JsonRender.php:150
+msgid ""
+"Drag and drop fields into the areas to the right. The areas accept different "
+"amount of values depending on selected view."
+msgstr ""
+"Dra och släpp fält i områdena till höger. Områdena accepterar olika antal "
+"fält beroende på vald vy."
 
 #. Plugin Name of the plugin/theme
 msgid "Modularity Json Render"
@@ -150,6 +166,24 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/sebastianthulin"
 msgstr ""
+
+#~ msgid "Display view"
+#~ msgstr "Visningsvy"
+
+#~ msgid "Select title and content fields"
+#~ msgstr "Välj titel-och innehållsfält"
+
+#~ msgid "Title field"
+#~ msgstr "Titelfält"
+
+#~ msgid "Content field"
+#~ msgstr "Innehållsfält"
+
+#~ msgid "Summary"
+#~ msgstr "Sammanfattning"
+
+#~ msgid "Below is a summary of the data settings."
+#~ msgstr "Nedan visas en sammanfattning av informationsinställningarna."
 
 #~ msgid "Select items container"
 #~ msgstr "Välj objekthållare"
