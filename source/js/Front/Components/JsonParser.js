@@ -1,5 +1,6 @@
 import Accordion from './Accordion';
 import Table from './Table';
+import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
 import {Pagination} from 'hbg-react';
@@ -183,9 +184,31 @@ class JsonParser extends React.Component {
         );
     }
 
+    switchView(view) {
+        const props = {
+            showSearch: this.props.showSearch,
+            doSearch: this.handleSearch.bind(this),
+            items: this.state.paginatedItems,
+            translation: this.props.translation,
+            view: view,
+            fieldMap: this.props.fieldMap
+        };
+
+        switch (view) {
+            case 'accordion':
+                return <Accordion {...props} />;
+            case 'accordiontable':
+                return <Accordion {...props} />;
+            case 'table':
+                return <Table {...props} />;
+            default:
+                return <List {...props} />;
+        }
+    }
+
     render() {
-        const {showSearch, translation, view, fieldMap} = this.props;
-        const {error, isLoaded, paginatedItems, totalPages, currentPage} = this.state;
+        const {translation, view} = this.props;
+        const {error, isLoaded, totalPages, currentPage} = this.state;
 
         if (error) {
             return (
@@ -209,28 +232,7 @@ class JsonParser extends React.Component {
         } else {
             return (
                 <div>
-                    {(view === 'accordion' || view === 'accordiontable') &&
-                    <Accordion
-                        showSearch={showSearch}
-                        doSearch={this.handleSearch.bind(this)}
-                        items={paginatedItems}
-                        translation={translation}
-                        view={view}
-                        fieldMap={fieldMap}
-                    />
-                    }
-
-                    {view === 'table' &&
-                    <Table
-                        showSearch={showSearch}
-                        doSearch={this.handleSearch.bind(this)}
-                        items={paginatedItems}
-                        translation={translation}
-                        view={view}
-                        fieldMap={fieldMap}
-                    />
-                    }
-
+                    {this.switchView(view)}
                     {this.props.showPagination &&
                     <div className="grid gutter">
                         <div className="grid-fit-content u-ml-auto">
