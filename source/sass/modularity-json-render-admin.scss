@@ -67,6 +67,40 @@
         grid-auto-rows: minmax(100px, auto);
     }
 
+    .drop-container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+
+    .drop-area {
+        padding: 10px;
+        min-height: 85px;
+        border: 1px dashed #a0a5aa;
+
+        input {
+            margin-left: 5px;
+        }
+
+        .drag-item {
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        &--white {
+            background-color: #fff;
+        }
+
+        &--green {
+            background-color: #98fb98;
+        }
+
+        &--red {
+            background-color: #f08080;
+        }
+    }
+
     .drag-item {
         word-break: break-all;
         margin: 0 0 10px 0;
@@ -89,27 +123,11 @@
                 color: #82878c;
             }
         }
-    }
 
-    .drop-container {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-    }
-
-    .drop-area {
-        padding: 10px;
-        min-height: 85px;
-        border: 1px dashed #a0a5aa;
-
-        input {
-            margin-left: 5px;
-        }
-
-        .drag-item {
-            &:last-child {
-                margin: 0;
-            }
+        &--transparent {
+            opacity: 0;
         }
     }
+
+
 }

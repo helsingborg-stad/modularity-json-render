@@ -4,13 +4,13 @@ class DragItem extends React.Component {
     render() {
         const {listId, item, heading, headingChange, removeItem, index} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
-        const opacity = isDragging ? 0 : 1;
+        const opacity = isDragging ? 'transparent' : '';
 
         let sample = typeof item.sample === 'string' || typeof item.sample === 'number' ? item.sample : '';
         sample = (sample.length > 50) ? sample.substring(0, 50) + '...' : sample;
 
         return connectDragSource(connectDropTarget(
-            <div className="drag-item" style={{opacity}}>
+            <div className={`drag-item drag-item--${opacity}`}>
                 <p>
                     <strong>{item.field}:</strong> <i>{sample}</i>
                     {listId && <a href="#" className="remove-item" onClick={(e) => {e.preventDefault(); removeItem(index);}}><span className="dashicons dashicons-no"></span></a>}

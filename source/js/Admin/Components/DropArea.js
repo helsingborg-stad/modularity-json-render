@@ -81,12 +81,13 @@ class DropArea extends React.Component {
     render() {
         const {items} = this.state;
         const {isOver, connectDropTarget, canDrop} = this.props;
-        let backgroundColor = canDrop ? '#98fb98' : '#f08080';
-        backgroundColor = isOver ? backgroundColor : '#fff';
+        let backgroundColor = canDrop ? 'green' : 'red';
+        backgroundColor = isOver ? backgroundColor : 'white';
 
         return connectDropTarget(
-            <div className="drop-area" style={{backgroundColor}}>
-                {items.map((item, i) => {
+            <div className={`drop-area drop-area--${backgroundColor}`}>
+
+            {items.map((item, i) => {
                     return (
                         <DragItem
                             key={item.id}
