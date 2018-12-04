@@ -1,12 +1,20 @@
-const ViewOption = ({view, setView}) =>
+const ViewOption = ({view, setView, translation}) =>
 <div>
     <h3>View</h3>
+    <div className="radio">
+        <label>
+            <input type="radio" value="list"
+                   checked={view === 'list'}
+                   onChange={setView} />
+            {translation.list}
+        </label>
+    </div>
     <div className="radio">
         <label>
             <input type="radio" value="accordion"
                    checked={view === 'accordion'}
                    onChange={setView} />
-            Accordion
+            {translation.accordion}
         </label>
     </div>
     <div className="radio">
@@ -14,7 +22,7 @@ const ViewOption = ({view, setView}) =>
             <input type="radio" value="accordiontable"
                    checked={view === 'accordiontable'}
                    onChange={setView} />
-            Accordion table
+            {translation.accordiontable}
         </label>
     </div>
     <div className="radio">
@@ -22,7 +30,7 @@ const ViewOption = ({view, setView}) =>
             <input type="radio" value="table"
                    checked={view === 'table'}
                    onChange={setView} />
-            Table
+            {translation.table}
         </label>
     </div>
 </div>

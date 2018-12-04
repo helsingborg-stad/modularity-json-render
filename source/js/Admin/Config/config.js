@@ -1,22 +1,29 @@
+const {translation} = modJsonRender;
+
 function dropAreas(view) {
     let dropAreas = [];
 
     switch(view) {
+        case 'list':
+            dropAreas.push(
+                {id: 'heading', limit: 1, label: translation.heading}
+            );
+            break;
         case 'accordion':
             dropAreas.push(
-                {id: 'heading', limit: 1},
-                {id: 'content', limit: null}
+                {id: 'heading', limit: 1, label: translation.heading},
+                {id: 'content', limit: null, label: translation.content}
             );
             break;
         case 'accordiontable':
             dropAreas.push(
-                {id: 'heading', limit: null},
-                {id: 'content', limit: null}
+                {id: 'heading', limit: null, label: translation.heading},
+                {id: 'content', limit: null, label: translation.content}
             );
             break;
         case 'table':
             dropAreas.push(
-                {id: 'heading', limit: null}
+                {id: 'heading', limit: null, label: translation.heading}
             );
             break;
     }

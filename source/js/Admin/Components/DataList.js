@@ -107,6 +107,7 @@ class DataList extends React.Component {
                         <ViewOption
                             view={view}
                             setView={this.setView.bind(this)}
+                            translation={translation}
                         />
                         <div className="drop-container">
                         {dropAreas(view).map((area) => {
