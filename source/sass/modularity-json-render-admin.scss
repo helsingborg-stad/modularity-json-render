@@ -1,4 +1,7 @@
 #json-api-fields {
+
+    /* General */
+
     .spinner {
         float: none;
         display: block;
@@ -7,9 +10,7 @@
         padding: 10px 10px 30px 10px;
     }
 
-    .url-input {
-        width: 100%;
-    }
+    /* JSON tree */
 
     ul.json-tree, ul.json-tree ul {
         list-style: none;
@@ -54,17 +55,21 @@
         border-left: 1px solid #82878c;
     }
 
-    .grid-item {
-        ul, li {
-            list-style: none;
-        }
-    }
+    /* Drag and drop style */
 
     .grid-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 40px;
         grid-auto-rows: minmax(100px, auto);
+
+        ul, li {
+            list-style: none;
+        }
+
+        @media screen and (max-width: 1210px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     .drop-container {
@@ -74,19 +79,9 @@
     }
 
     .drop-area {
-        padding: 10px;
-        min-height: 85px;
+        padding: 0 9px 9px 9px;
+        min-height: 152px;
         border: 1px dashed #a0a5aa;
-
-        input {
-            margin-left: 5px;
-        }
-
-        .drag-item {
-            &:last-child {
-                margin: 0;
-            }
-        }
 
         &--white {
             background-color: #fff;
@@ -101,27 +96,12 @@
         }
     }
 
-    .drag-item {
-        word-break: break-all;
-        margin: 0 0 10px 0;
-        padding: 0 10px 0 10px;
-        border: 1px solid #ccc;
-        background: #f7f7f7;
-        border-radius: 3px;
+    .drop-area__item {
+        background: #fff;
         cursor: move;
 
         &:hover {
-            background: #e6e6e6;
-        }
-
-        .remove-item {
-            text-decoration: none;
-            float: right;
-            color: #464b50;
-
-            &:hover {
-                color: #82878c;
-            }
+            background: #efefef;
         }
 
         &--transparent {
@@ -129,5 +109,26 @@
         }
     }
 
+    /* WP sortable menu fixes */
 
+    .menu-item-handle {
+        width: auto;
+
+        &:hover {
+            border-color: #ddd;
+        }
+    }
+
+    .description-wide {
+        width: 100%;
+    }
+
+    .menu-item-settings {
+        width: auto;
+        padding: 10px;
+    }
+
+    .item-edit::before {
+        content: '\f158';
+    }
 }
