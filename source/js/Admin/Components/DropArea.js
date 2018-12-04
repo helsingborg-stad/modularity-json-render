@@ -86,7 +86,6 @@ class DropArea extends React.Component {
 
         return connectDropTarget(
             <div className={`drop-area drop-area--${backgroundColor}`}>
-
             {items.map((item, i) => {
                     return (
                         <DragItem

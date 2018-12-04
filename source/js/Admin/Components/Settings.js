@@ -111,7 +111,7 @@ class Settings extends React.Component {
                             <br/>
                             <i>{translation.validJsonUrl}</i>
                         </p>
-                        <input type="text" className="url-input" value={url} onChange={this.urlChange.bind(this)}/>
+                        <input type="text" className="large-text" value={url} onChange={this.urlChange.bind(this)}/>
                         <p><input type="submit" className="button button-primary" value={translation.sendRequest}/></p>
                     </form>
                     <InputFields {...this.state} />
