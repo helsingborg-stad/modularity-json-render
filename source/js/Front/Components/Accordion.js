@@ -1,4 +1,5 @@
 import AccordionItem from './AccordionItem';
+import SearchField from './SearchField';
 
 const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
     <div>
@@ -14,9 +15,10 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
 
         <div className="accordion accordion-icon accordion-list">
             {showSearch &&
-            <div className="accordion-search">
-                <input type="text" name="json-render-search" onChange={doSearch} placeholder={translation.filterOn}/>
-            </div>
+                <SearchField
+                    doSearch={doSearch}
+                    translation={translation}
+                />
             }
             {Object.keys(items).length === 0 &&
             <div className="gutter"><p>{translation.noResults}</p></div>

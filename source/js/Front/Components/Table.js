@@ -1,9 +1,12 @@
+import SearchField from './SearchField';
+
 const Table = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
     <div>
         {showSearch &&
-        <div className="u-p-1">
-            <input type="text" name="json-render-search" onChange={doSearch} placeholder={translation.filterOn}/>
-        </div>
+        <SearchField
+            doSearch={doSearch}
+            translation={translation}
+        />
         }
 
         {Object.keys(items).length === 0 &&
@@ -32,7 +35,6 @@ const Table = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
             </tbody>
         </table>
         }
-    </div>
-;
+    </div>;
 
 export default Table;
