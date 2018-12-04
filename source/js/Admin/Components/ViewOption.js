@@ -1,6 +1,6 @@
 const ViewOption = ({view, setView, translation}) =>
 <div>
-    <h3>View</h3>
+    <h3>{translation.selectView}</h3>
     <div className="radio">
         <label>
             <input type="radio" value="list"

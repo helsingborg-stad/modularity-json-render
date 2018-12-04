@@ -140,12 +140,14 @@ class JsonRender extends \Modularity\Module
                 'title' => __('Title', 'modularity-json-render'),
                 'heading' => __('Heading', 'modularity-json-render'),
                 'content' => __('Content', 'modularity-json-render'),
-                'titleField' => __('Title field', 'modularity-json-render'),
-                'contentField' => __('Content field', 'modularity-json-render'),
                 'select' => __('Select', 'modularity-json-render'),
                 'couldNotFetch' => __('Could not fetch data from URL.', 'modularity-json-render'),
-                'summary' => __('Summary', 'modularity-json-render'),
-                'summaryDescription' => __('Below is a summary of the data settings.', 'modularity-json-render'),
+                'list' => __('List', 'modularity-json-render'),
+                'accordion' => __('Accordion', 'modularity-json-render'),
+                'accordiontable' => __('Accordion table', 'modularity-json-render'),
+                'table' => __('Table', 'modularity-json-render'),
+                'selectView' => __('Select view', 'modularity-json-render'),
+                'dragAndDropInfo' => __('Drag and drop fields into the areas to the right. The areas accept different amount of values depending on selected view.', 'modularity-json-render'),
             )
         ));
 

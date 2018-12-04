@@ -100,7 +100,7 @@ class DataList extends React.Component {
                 <div className="grid-container">
                     <div className="grid-item">
                         <h3>{translation.infoFields}</h3>
-                        <p><i>Drag and drop fields into the areas to the right. The areas accept different values depending on selected view option.</i></p>
+                        <p><i>{translation.dragAndDropInfo}</i></p>
                         {this.renderNodes(objectData)}
                     </div>
                     <div className="grid-item">
@@ -113,7 +113,7 @@ class DataList extends React.Component {
                         {dropAreas(view).map((area) => {
                             return (
                                 <div key={area.id}>
-                                    <h3>{area.id.charAt(0).toUpperCase() + area.id.slice(1)}</h3>
+                                    <h3>{area.label}</h3>
                                     <DropArea
                                         id={area.id}
                                         list={fieldMap[area.id]}
