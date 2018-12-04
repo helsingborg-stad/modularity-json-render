@@ -139,6 +139,7 @@ class JsonRender extends \Modularity\Module
                 'infoFields' => __('Information fields', 'modularity-json-render'),
                 'title' => __('Title', 'modularity-json-render'),
                 'heading' => __('Heading', 'modularity-json-render'),
+                'headings' => __('Headings', 'modularity-json-render'),
                 'content' => __('Content', 'modularity-json-render'),
                 'select' => __('Select', 'modularity-json-render'),
                 'couldNotFetch' => __('Could not fetch data from URL.', 'modularity-json-render'),

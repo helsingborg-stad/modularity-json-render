@@ -17,13 +17,13 @@ function dropAreas(view) {
             break;
         case 'accordiontable':
             dropAreas.push(
-                {id: 'heading', limit: null, label: translation.heading},
+                {id: 'heading', limit: null, label: translation.headings},
                 {id: 'content', limit: null, label: translation.content}
             );
             break;
         case 'table':
             dropAreas.push(
-                {id: 'heading', limit: null, label: translation.heading}
+                {id: 'heading', limit: null, label: translation.headings}
             );
             break;
     }
