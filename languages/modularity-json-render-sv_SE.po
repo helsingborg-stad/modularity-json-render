@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2018-12-04 11:00+0100\n"
-"PO-Revision-Date: 2018-12-04 11:00+0100\n"
+"POT-Creation-Date: 2018-12-04 15:08+0100\n"
+"PO-Revision-Date: 2018-12-04 15:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -79,53 +79,53 @@ msgstr "Inga resultat hittades."
 msgid "Filter on..."
 msgstr "Filtrera på…"
 
-#: source/php/Module/JsonRender.php:135
-msgid "Reset settings"
-msgstr "Återställ inställningar"
-
-#: source/php/Module/JsonRender.php:136
-msgid "Enter a valid JSON api url."
-msgstr "Ange en giltig JSON API-URL."
-
-#: source/php/Module/JsonRender.php:137
-msgid "Send request"
-msgstr "Skicka begäran"
-
-#: source/php/Module/JsonRender.php:138
-msgid "Select where to retrieve the information"
-msgstr "Välj var informationen ska hämtas från"
-
-#: source/php/Module/JsonRender.php:139
-msgid "Information fields"
-msgstr "Informationsfält"
-
-#: source/php/Module/JsonRender.php:140
-msgid "Title"
-msgstr "Titel"
-
-#: source/php/Module/JsonRender.php:141
-msgid "Heading"
-msgstr "Rubrik"
-
-#: source/php/Module/JsonRender.php:142
-msgid "Headings"
-msgstr "Rubriker"
-
-#: source/php/Module/JsonRender.php:143
-msgid "Content"
-msgstr "Innehåll"
-
-#: source/php/Module/JsonRender.php:144
-msgid "Select"
-msgstr "Välj"
-
-#: source/php/Module/JsonRender.php:145
+#: source/php/Module/JsonRender.php:113
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/JsonRender.php:146
+#: source/php/Module/JsonRender.php:114
 msgid "Previous"
 msgstr "Föregående"
+
+#: source/php/Module/JsonRender.php:137
+msgid "Reset settings"
+msgstr "Återställ inställningar"
+
+#: source/php/Module/JsonRender.php:138
+msgid "Enter a valid JSON api url."
+msgstr "Ange en giltig JSON API-URL."
+
+#: source/php/Module/JsonRender.php:139
+msgid "Send request"
+msgstr "Skicka begäran"
+
+#: source/php/Module/JsonRender.php:140
+msgid "Select where to retrieve the information"
+msgstr "Välj var informationen ska hämtas från"
+
+#: source/php/Module/JsonRender.php:141
+msgid "Information fields"
+msgstr "Informationsfält"
+
+#: source/php/Module/JsonRender.php:142
+msgid "Title"
+msgstr "Titel"
+
+#: source/php/Module/JsonRender.php:143
+msgid "Heading"
+msgstr "Rubrik"
+
+#: source/php/Module/JsonRender.php:144
+msgid "Headings"
+msgstr "Rubriker"
+
+#: source/php/Module/JsonRender.php:145
+msgid "Content"
+msgstr "Innehåll"
+
+#: source/php/Module/JsonRender.php:146
+msgid "Select"
+msgstr "Välj"
 
 #: source/php/Module/JsonRender.php:147
 msgid "Could not fetch data from URL."
@@ -158,6 +158,10 @@ msgid ""
 msgstr ""
 "Dra och släpp fält i områdena till höger. Områdena accepterar olika antal "
 "fält beroende på vald vy."
+
+#: source/php/Module/JsonRender.php:154
+msgid "Value"
+msgstr "Värde"
 
 #. Plugin Name of the plugin/theme
 msgid "Modularity Json Render"
