@@ -4,8 +4,6 @@ import ViewOption from './ViewOption';
 import {dropAreas} from '../Config/config';
 import RecursiveIterator from 'recursive-iterator';
 import objectPath from 'object-path';
-import HTML5Backend from 'react-dnd-html5-backend';
-import {DragDropContext} from 'react-dnd';
 
 class DataList extends React.Component {
     updateFieldMap(field, value) {
@@ -131,4 +129,4 @@ class DataList extends React.Component {
     }
 }
 
-export default DragDropContext(HTML5Backend)(DataList);
+export default DataList;

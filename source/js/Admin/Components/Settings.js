@@ -1,5 +1,7 @@
 import FieldSelection from './FieldSelection';
 import InputFields from './InputFields';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -121,4 +123,4 @@ class Settings extends React.Component {
     }
 }
 
-export default Settings;
+export default DragDropContext(HTML5Backend)(Settings);
