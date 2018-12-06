@@ -110,6 +110,9 @@ class JsonParser extends React.Component {
     }
 
     autoLink(string) {
+        if (typeof string !== 'string' || !string) {
+            return string;
+        }
         const regex = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
         const subst = '<a href="$1">$1</a>';
 
