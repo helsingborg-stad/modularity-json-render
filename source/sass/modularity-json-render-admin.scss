@@ -57,7 +57,7 @@
 
     /* Drag and drop style */
 
-    .grid-container {
+    .grid {
         display: -ms-grid;
         display: grid;
         -ms-grid-columns: 1fr 40px 1fr;
@@ -73,12 +73,12 @@
         }
     }
 
-    .grid-item:first-child {
+    .grid__item:first-child {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
     }
 
-    .grid-item:last-child {
+    .grid__item:last-child {
         -ms-grid-row: 1;
         -ms-grid-column: 3;
     }

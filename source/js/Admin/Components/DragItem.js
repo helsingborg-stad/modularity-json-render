@@ -5,7 +5,7 @@ class DragItem extends React.Component {
     render() {
         const {listId, item, heading, headingChange, removeItem, index} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
-        const opacity = isDragging ? 'drop-area__item--transparent' : '';
+        const opacity = isDragging && listId ? 'drop-area__item--transparent' : '';
 
         let sample = typeof item.sample === 'string' || typeof item.sample === 'number' ? item.sample : '';
         sample = (sample.length > 50) ? sample.substring(0, 50) + '...' : sample;
