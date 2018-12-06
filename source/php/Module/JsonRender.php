@@ -6,7 +6,6 @@ class JsonRender extends \Modularity\Module
 {
     public $slug = 'json-render';
     public $supports = array();
-    public $react = false;
 
     public function init()
     {
@@ -14,9 +13,6 @@ class JsonRender extends \Modularity\Module
         $this->nameSingular = __("Json Render", 'modularity-json-render');
         $this->namePlural = __("Json Renders", 'modularity-json-render');
         $this->description = __("Retrives data from API and renders it as a list.", 'modularity-json-render');
-
-        //Get helper react
-        $this->react = new \ModularityJsonRender\Helper\React();
 
         add_action('save_post', array($this, 'saveOptions'), 10, 3);
         add_action('admin_notices', array($this, 'validationNotice'));
@@ -103,7 +99,11 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
-        $this->react::enqueue(); // Enqueue react
+        // Enqueue React
+        //class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
+
+        \ModularityJsonRender\Helper\React::enqueue();
+
         wp_enqueue_script('modularity-' . $this->slug);
         wp_localize_script('modularity-' . $this->slug, 'modJsonRender', array(
             'translation' => array(
@@ -128,7 +128,9 @@ class JsonRender extends \Modularity\Module
             return;
         }
 
-        $this->react::enqueue(); // Enqueue react
+        // Enqueue React
+        class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
+
         wp_enqueue_script('modularity-json-render-admin-js');
         $options = $this->getOptions($post->ID);
         wp_localize_script('modularity-json-render-admin-js', 'modJsonRender', array(
