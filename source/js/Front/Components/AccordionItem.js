@@ -10,7 +10,7 @@ const AccordionItem = ({heading, content, view}) =>
         <label tabIndex="0" className="accordion-toggle" htmlFor="accordion-section-1">
                 <span className="accordion-table">
                 {heading.map((title, i) => (
-                    <span key={i} className="column-header">{title}</span>
+                    <span key={i} className="column-header" dangerouslySetInnerHTML={{__html: title}} />
                 ))}
                 </span>
         </label>
