@@ -26,7 +26,6 @@ const streamify     = require('gulp-streamify');
 
 //Dependecies required to compile ES6 Scripts
 const browserify    = require('browserify');
-const reactify      = require('reactify');
 const source        = require('vinyl-source-stream');
 const buffer        = require('vinyl-buffer');
 const babelify      = require("babelify");
