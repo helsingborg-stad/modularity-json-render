@@ -96,12 +96,12 @@ class DataList extends React.Component {
 
             return (
                 <div className="grid-container nav-menus-php">
-                    <div>
+                    <div className="grid-item">
                         <h3>{translation.infoFields}</h3>
                         <p><i>{translation.dragAndDropInfo}</i></p>
                         {this.renderNodes(objectData)}
                     </div>
-                    <div>
+                    <div className="grid-item">
                         <ViewOption
                             view={view}
                             setView={this.setView.bind(this)}
