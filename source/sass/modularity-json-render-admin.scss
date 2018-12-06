@@ -58,18 +58,29 @@
     /* Drag and drop style */
 
     .grid-container {
+        display: -ms-grid;
         display: grid;
+        -ms-grid-columns: 1fr 40px 1fr;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 40px;
-        grid-auto-rows: minmax(100px, auto);
 
         ul, li {
             list-style: none;
         }
 
         @media screen and (max-width: 1210px) {
-            grid-template-columns: repeat(1, 1fr);
+            display: block;
         }
+    }
+
+    .grid-item:first-child {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+    }
+
+    .grid-item:last-child {
+        -ms-grid-row: 1;
+        -ms-grid-column: 3;
     }
 
     .drop-container {
