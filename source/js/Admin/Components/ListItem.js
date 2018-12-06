@@ -2,17 +2,13 @@ import DragItem from './DragItem';
 import uuidv1 from "uuid/v1";
 
 const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, translation}) => {
-
     if (fieldMap.itemContainer === null) {
-
         if (children) {
             return (<li>
                 {Array.isArray(value) ?
                     <span><strong>
                     <span className="dashicons dashicons-portfolio"></span> {field}
-                        <a href="#"
-                           className="tree-select"
-                           onClick={onClickContainer}>{translation.select}</a>
+                        <a href="#" className="tree-select" onClick={onClickContainer}>{translation.select}</a>
                     </strong></span> :
                     <span>{field}</span>}
 

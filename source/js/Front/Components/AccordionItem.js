@@ -1,6 +1,5 @@
 const AccordionItem = ({heading, content, view}) =>
     <section className="accordion-section">
-
         {view === 'accordion' &&
         <label tabIndex="0" className="accordion-toggle" htmlFor="accordion-section-1">
             {heading[0]}
@@ -23,7 +22,7 @@ const AccordionItem = ({heading, content, view}) =>
                     {section.title &&
                     <h2>{section.title}</h2>
                     }
-                    <p>{section.value}</p>
+                    <div dangerouslySetInnerHTML={{__html: section.value}} />
                 </div>
             ))}
         </div>

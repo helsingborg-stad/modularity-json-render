@@ -66,11 +66,11 @@ class JsonParser extends React.Component {
         items = items.map(item => ({
             id: uuidv1(),
             heading: fieldMap.heading.map(heading => (
-                this.getObjectProp(item, heading.item.value.split('.'))
+                this.autoLink(this.getObjectProp(item, heading.item.value.split('.')))
             )),
             content: fieldMap.content.map(content => ({
                 title: content.heading,
-                value: this.getObjectProp(item, content.item.value.split('.'))
+                value: this.autoLink(this.getObjectProp(item, content.item.value.split('.')))
             })),
         }));
 
@@ -107,6 +107,13 @@ class JsonParser extends React.Component {
         }
 
         return obj;
+    }
+
+    autoLink(string) {
+        const regex = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
+        const subst = '<a href="$1">$1</a>';
+
+        return string.replace(regex, subst);
     }
 
     handleSearch(e) {

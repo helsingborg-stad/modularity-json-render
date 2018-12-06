@@ -19,7 +19,7 @@ const List = ({items, showSearch, doSearch, translation}) =>
                 <ul className="c-list">
                     {items.map(item => (
                         <li key={item.id} className="c-list__item">
-                            {item.heading[0]}
+                            <div dangerouslySetInnerHTML={{__html: item.heading[0]}} />
                         </li>
                     ))}
                 </ul>

@@ -28,7 +28,7 @@ const Table = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
             {items.map(item => (
                 <tr key={item.id}>
                     {item.heading.map((heading, i) => (
-                        <td key={i}>{heading}</td>
+                        <td key={i} dangerouslySetInnerHTML={{__html: heading}} />
                     ))}
                 </tr>
             ))}
