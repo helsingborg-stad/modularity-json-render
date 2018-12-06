@@ -100,9 +100,7 @@ class JsonRender extends \Modularity\Module
     public function script()
     {
         // Enqueue React
-        //class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
-
-        \ModularityJsonRender\Helper\React::enqueue();
+        class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         wp_enqueue_script('modularity-' . $this->slug);
         wp_localize_script('modularity-' . $this->slug, 'modJsonRender', array(
