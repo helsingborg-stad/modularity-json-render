@@ -1,12 +1,13 @@
 import {translation} from '../Config/config';
+import {isDate, getDate, getDateTime} from '../../Utilities/date';
 import {DragSource, DropTarget} from 'react-dnd';
 
 class DragItem extends React.Component {
     render() {
-        const {listId, item, heading, prefix, suffix, fieldChange, removeItem, index} = this.props;
+        const {listId, item, heading, prefix, suffix, dateFormat, fieldChange, removeItem, index} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = isDragging && listId ? 'drop-area__item--transparent' : '';
-
+        const isEditable = !!listId;
         let sample = typeof item.sample === 'string' || typeof item.sample === 'number' ? item.sample : '';
         sample = (sample.length > 50) ? sample.substring(0, 50) + '...' : sample;
 
@@ -18,8 +19,8 @@ class DragItem extends React.Component {
                             <span className="menu-item-title">{item.field}</span>
                         </span>
                         <span className="item-controls">
-                            {listId &&
-                            <a href="#" className="item-edit" onClick={(e) => {e.preventDefault();removeItem(index);}}></a>
+                            {isEditable &&
+                            <a href="#" className="item-edit" onClick={(e) => {e.preventDefault(); removeItem(index);}}></a>
                             }
                         </span>
                     </div>
@@ -28,29 +29,58 @@ class DragItem extends React.Component {
                     <p className="description description-wide">
                         {translation.value}: {sample}
                     </p>
-                    {listId &&
+                    {isEditable &&
                     <div>
                         <p className="description description-wide">
                             <label>
                                 {translation.title}<br/>
-                                <input type="text" name="heading" onChange={fieldChange} value={heading}
+                                <input type="text" data-name="heading" onChange={fieldChange} value={heading}
                                        className="large-text"/>
                             </label>
                         </p>
                         <p className="description description-wide">
                             <label>
                                 {translation.prefix}<br/>
-                                <input type="text" name="prefix" onChange={fieldChange} value={prefix}
+                                <input type="text" data-name="prefix" onChange={fieldChange} value={prefix}
                                        className="large-text"/>
                             </label>
                         </p>
                         <p className="description description-wide">
                             <label>
                                 {translation.suffix}<br/>
-                                <input type="text" name="suffix" onChange={fieldChange} value={suffix}
+                                <input type="text" data-name="suffix" onChange={fieldChange} value={suffix}
                                        className="large-text"/>
                             </label>
                         </p>
+                    </div>
+                    }
+                    {(isEditable && isDate(sample)) &&
+                    <div className="description description-wide">
+                        <label>{translation.selectDateFormat}</label>
+                        <div className="radio">
+                            <label>
+                                <input type="radio" value="" data-name="dateFormat"
+                                       checked={!dateFormat}
+                                       onChange={fieldChange}/>
+                                {translation.none}
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio" value="Y-m-d" data-name="dateFormat"
+                                       checked={dateFormat === 'Y-m-d'}
+                                       onChange={fieldChange}/>
+                                {getDate(sample)}
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio" value="Y-m-d H:i" data-name="dateFormat"
+                                       checked={dateFormat === 'Y-m-d H:i'}
+                                       onChange={fieldChange}/>
+                                {getDateTime(sample)}
+                            </label>
+                        </div>
                     </div>
                     }
                 </div>
@@ -67,6 +97,7 @@ const itemSource = {
             heading: props.heading,
             prefix: props.prefix,
             suffix: props.suffix,
+            dateFormat: props.dateFormat,
             listId: props.listId,
             item: props.item
         };

@@ -154,6 +154,8 @@ class JsonRender extends \Modularity\Module
                 'value' => __('Value', 'modularity-json-render'),
                 'prefix' => __('Prefix', 'modularity-json-render'),
                 'suffix' => __('Suffix', 'modularity-json-render'),
+                'selectDateFormat' => __('Select date format', 'modularity-json-render'),
+                'none' => __('None', 'modularity-json-render'),
             )
         ));
 

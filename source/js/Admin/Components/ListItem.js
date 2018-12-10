@@ -24,17 +24,18 @@ const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, t
             const item = {
                 field: field,
                 value: value,
-                sample: sample
+                sample: sample,
             };
             return (
                 <li>
                     <DragItem
                         id={uuidv1()}
                         heading={field}
-                        prefix=""
-                        suffix=""
                         item={item}
-                    />
+                        prefix=''
+                        suffix=''
+                        dateFormat=''
+                />
                 </li>
             );
         }

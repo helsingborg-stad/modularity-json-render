@@ -3,6 +3,7 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
+import {isDate, getDate, getDateTime} from '../../Utilities/date';
 import {Pagination} from 'hbg-react';
 
 class JsonParser extends React.Component {
@@ -63,21 +64,30 @@ class JsonParser extends React.Component {
             return;
         }
         // Map the data items
-        items = items.map(item => ({
-            id: uuidv1(),
-            heading: fieldMap.heading.map(heading => (
-                (heading.prefix ? heading.prefix : '') +
-                (heading.prefix ? this.getObjectProp(item, heading.item.value.split('.')) : this.autoLink(this.getObjectProp(item, heading.item.value.split('.')))) +
-                (heading.suffix ? heading.suffix : '')
-            )),
-            content: fieldMap.content.map(content => ({
-                title: content.heading,
-                value:
-                    (content.prefix ? content.prefix : '') +
-                    (content.prefix ? this.getObjectProp(item, content.item.value.split('.')) : this.autoLink(this.getObjectProp(item, content.item.value.split('.')))) +
-                    (content.suffix ? content.suffix : '')
-            })),
-        }));
+        items = items.map(item => (
+            {
+                id: uuidv1(),
+                heading: fieldMap.heading.map(heading => {
+                    let value = this.getObjectProp(item, heading.item.value.split('.'));
+                    value = (!value || value === 'null') ? '' : value;
+                    value = (value && heading.prefix) ? value : this.autoLink(value);
+                    value = (value && isDate(value) && heading.dateFormat === 'Y-m-d') ? getDate(value) : value;
+                    value = (value && isDate(value) && heading.dateFormat === 'Y-m-d H:i') ? getDateTime(value) : value;
+                    return (heading.prefix ? heading.prefix : '') + value + (heading.suffix ? heading.suffix : '');
+                }),
+                content: fieldMap.content.map(content => {
+                    let value = this.getObjectProp(item, content.item.value.split('.'));
+                    value = (!value || value === 'null') ? '' : value;
+                    value = (value && content.prefix) ? value : this.autoLink(value);
+                    value = (value && isDate(value) && content.dateFormat === 'Y-m-d') ? getDate(value) : value;
+                    value = (value && isDate(value) && content.dateFormat === 'Y-m-d H:i') ? getDateTime(value) : value;
+                    return {
+                        title: content.heading,
+                        value: (content.prefix ? content.prefix : '') + value + (content.suffix ? content.suffix : '')
+                    };
+                }),
+            }));
+
 
         // Create another array with the field values in a flat list to make search easier
         let itemValues = items.map(item => {

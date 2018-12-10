@@ -68,7 +68,7 @@ class DropArea extends React.Component {
         this.setState(update(this.state, {
             items: {
                 [index]: {
-                    [e.target.name]: {
+                    [e.target.dataset.name]: {
                         $set: e.target.value
                     }
                 }
@@ -96,6 +96,7 @@ class DropArea extends React.Component {
                             heading={item.heading}
                             prefix={item.prefix}
                             suffix={item.suffix}
+                            dateFormat={item.dateFormat}
                             fieldChange={e => this.fieldChange(e, i)}
                             item={item.item}
                             removeItem={this.removeItem.bind(this)}
