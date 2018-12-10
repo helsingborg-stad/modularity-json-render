@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2018-12-04 15:08+0100\n"
-"PO-Revision-Date: 2018-12-04 15:08+0100\n"
+"POT-Creation-Date: 2018-12-10 16:07+0100\n"
+"PO-Revision-Date: 2018-12-10 16:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -51,39 +51,39 @@ msgstr "Per sida"
 msgid "Data settings"
 msgstr "Informationsinställningar"
 
-#: source/php/Module/JsonRender.php:14
+#: source/php/Module/JsonRender.php:13
 msgid "Json Render"
 msgstr ""
 
-#: source/php/Module/JsonRender.php:15
+#: source/php/Module/JsonRender.php:14
 msgid "Json Renders"
 msgstr ""
 
-#: source/php/Module/JsonRender.php:16
+#: source/php/Module/JsonRender.php:15
 msgid "Retrives data from API and renders it as a list."
 msgstr ""
 
-#: source/php/Module/JsonRender.php:79
+#: source/php/Module/JsonRender.php:75
 msgid "Complete the data settings."
 msgstr "Fullfölj informationsinställningarna."
 
-#: source/php/Module/JsonRender.php:110
+#: source/php/Module/JsonRender.php:108
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, vänligen försök igen senare."
 
-#: source/php/Module/JsonRender.php:111
+#: source/php/Module/JsonRender.php:109
 msgid "No results found."
 msgstr "Inga resultat hittades."
 
-#: source/php/Module/JsonRender.php:112
+#: source/php/Module/JsonRender.php:110
 msgid "Filter on..."
 msgstr "Filtrera på…"
 
-#: source/php/Module/JsonRender.php:113
+#: source/php/Module/JsonRender.php:111
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/JsonRender.php:114
+#: source/php/Module/JsonRender.php:112
 msgid "Previous"
 msgstr "Föregående"
 
@@ -163,6 +163,22 @@ msgstr ""
 msgid "Value"
 msgstr "Värde"
 
+#: source/php/Module/JsonRender.php:155
+msgid "Prefix"
+msgstr ""
+
+#: source/php/Module/JsonRender.php:156
+msgid "Suffix"
+msgstr ""
+
+#: source/php/Module/JsonRender.php:157
+msgid "Select date format"
+msgstr "Välj datumformatering"
+
+#: source/php/Module/JsonRender.php:158
+msgid "None"
+msgstr "Ingen"
+
 #. Plugin Name of the plugin/theme
 msgid "Modularity Json Render"
 msgstr ""
@@ -200,6 +216,3 @@ msgstr ""
 
 #~ msgid "Below is a summary of the data settings."
 #~ msgstr "Nedan visas en sammanfattning av informationsinställningarna."
-
-#~ msgid "Select items container"
-#~ msgstr "Välj objekthållare"
