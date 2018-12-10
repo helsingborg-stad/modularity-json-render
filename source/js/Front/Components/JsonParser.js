@@ -66,11 +66,16 @@ class JsonParser extends React.Component {
         items = items.map(item => ({
             id: uuidv1(),
             heading: fieldMap.heading.map(heading => (
-                this.autoLink(this.getObjectProp(item, heading.item.value.split('.')))
+                (heading.prefix ? heading.prefix : '') +
+                (heading.prefix ? this.getObjectProp(item, heading.item.value.split('.')) : this.autoLink(this.getObjectProp(item, heading.item.value.split('.')))) +
+                (heading.suffix ? heading.suffix : '')
             )),
             content: fieldMap.content.map(content => ({
                 title: content.heading,
-                value: this.autoLink(this.getObjectProp(item, content.item.value.split('.')))
+                value:
+                    (content.prefix ? content.prefix : '') +
+                    (content.prefix ? this.getObjectProp(item, content.item.value.split('.')) : this.autoLink(this.getObjectProp(item, content.item.value.split('.')))) +
+                    (content.suffix ? content.suffix : '')
             })),
         }));
 

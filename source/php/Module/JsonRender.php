@@ -152,6 +152,8 @@ class JsonRender extends \Modularity\Module
                 'selectView' => __('Select view', 'modularity-json-render'),
                 'dragAndDropInfo' => __('Drag and drop fields into the areas to the right. The areas accept different amount of values depending on selected view.', 'modularity-json-render'),
                 'value' => __('Value', 'modularity-json-render'),
+                'prefix' => __('Prefix', 'modularity-json-render'),
+                'suffix' => __('Suffix', 'modularity-json-render'),
             )
         ));
 

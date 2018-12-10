@@ -31,6 +31,8 @@ const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, t
                     <DragItem
                         id={uuidv1()}
                         heading={field}
+                        prefix=""
+                        suffix=""
                         item={item}
                     />
                 </li>

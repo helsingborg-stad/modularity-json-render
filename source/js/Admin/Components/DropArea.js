@@ -64,11 +64,11 @@ class DropArea extends React.Component {
         this.itemsChange();
     }
 
-    changeHeading(e, index) {
+    fieldChange(e, index) {
         this.setState(update(this.state, {
             items: {
                 [index]: {
-                    heading: {
+                    [e.target.name]: {
                         $set: e.target.value
                     }
                 }
@@ -86,7 +86,7 @@ class DropArea extends React.Component {
 
         return connectDropTarget(
             <div className={`drop-area drop-area--${backgroundColor}`}>
-            {items.map((item, i) => {
+                {items.map((item, i) => {
                     return (
                         <DragItem
                             key={item.id}
@@ -94,7 +94,9 @@ class DropArea extends React.Component {
                             index={i}
                             listId={this.props.id}
                             heading={item.heading}
-                            headingChange={e => this.changeHeading(e, i)}
+                            prefix={item.prefix}
+                            suffix={item.suffix}
+                            fieldChange={e => this.fieldChange(e, i)}
                             item={item.item}
                             removeItem={this.removeItem.bind(this)}
                             moveItem={this.moveItem.bind(this)}

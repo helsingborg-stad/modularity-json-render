@@ -3,7 +3,7 @@ import {DragSource, DropTarget} from 'react-dnd';
 
 class DragItem extends React.Component {
     render() {
-        const {listId, item, heading, headingChange, removeItem, index} = this.props;
+        const {listId, item, heading, prefix, suffix, fieldChange, removeItem, index} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = isDragging && listId ? 'drop-area__item--transparent' : '';
 
@@ -29,12 +29,29 @@ class DragItem extends React.Component {
                         {translation.value}: {sample}
                     </p>
                     {listId &&
-                    <p className="description description-wide">
-                        <label>
-                            {translation.title}<br/>
-                            <input type="text" name="" onChange={headingChange} value={heading} className="large-text"/>
-                        </label>
-                    </p>
+                    <div>
+                        <p className="description description-wide">
+                            <label>
+                                {translation.title}<br/>
+                                <input type="text" name="heading" onChange={fieldChange} value={heading}
+                                       className="large-text"/>
+                            </label>
+                        </p>
+                        <p className="description description-wide">
+                            <label>
+                                {translation.prefix}<br/>
+                                <input type="text" name="prefix" onChange={fieldChange} value={prefix}
+                                       className="large-text"/>
+                            </label>
+                        </p>
+                        <p className="description description-wide">
+                            <label>
+                                {translation.suffix}<br/>
+                                <input type="text" name="suffix" onChange={fieldChange} value={suffix}
+                                       className="large-text"/>
+                            </label>
+                        </p>
+                    </div>
                     }
                 </div>
             </div>
@@ -48,6 +65,8 @@ const itemSource = {
             id: props.id,
             index: props.index,
             heading: props.heading,
+            prefix: props.prefix,
+            suffix: props.suffix,
             listId: props.listId,
             item: props.item
         };
