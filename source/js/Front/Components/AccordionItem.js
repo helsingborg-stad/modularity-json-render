@@ -20,7 +20,7 @@ const AccordionItem = ({heading, content, view}) =>
             {content.filter(section => section.value).map((section, i) => (
                 <div key={i} className="u-mb-2">
                     {section.title &&
-                    <h2>{section.title}</h2>
+                    <h4>{section.title}</h4>
                     }
                     <div dangerouslySetInnerHTML={{__html: section.value}} />
                 </div>
