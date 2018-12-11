@@ -1,5 +1,6 @@
 const isDate = date => {
-    return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+    const newDate = new Date(date);
+    return (newDate !== "Invalid Date") && !isNaN(newDate) && newDate > new Date('01/01/1971 00:00');
 };
 
 const getDate = date => {
