@@ -4,7 +4,7 @@ import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
-import {Pagination} from 'hbg-react';
+import Pagination from './Pagination';
 
 class JsonParser extends React.Component {
     constructor() {
@@ -259,7 +259,7 @@ class JsonParser extends React.Component {
                 <div>
                     {this.switchView(view)}
                     {this.props.showPagination &&
-                    <div className="grid gutter">
+                    <div className="grid u-justify-content--center gutter">
                         <div className="grid-fit-content u-ml-auto">
                             <Pagination
                                 current={currentPage}
