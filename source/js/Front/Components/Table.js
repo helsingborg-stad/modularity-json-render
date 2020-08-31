@@ -1,7 +1,7 @@
 import SearchField from './SearchField';
 
 const Table = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
-    <div>
+    <div class="c-table table-striped table-bordered">
         {showSearch &&
         <SearchField
             doSearch={doSearch}
@@ -14,21 +14,22 @@ const Table = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
         }
 
         {Object.keys(items).length > 0 &&
-        <table className="table table-striped">
-            <thead>
-            <tr>
+        <table class="c-table__table">
+            <thead class="c-table__head">
+            <tr class="c-table__line">
                 {fieldMap.heading.map((heading, i) => (
-                    <th key={i}>
+                    <th class="c-table__column" key={i}>
                         {heading.heading}
                     </th>
                 ))}
             </tr>
             </thead>
-            <tbody>
+
+            <tbody class="c-table__body">
             {items.map(item => (
-                <tr key={item.id}>
+                <tr class="c-table__line" key={item.id}>
                     {item.heading.map((heading, i) => (
-                        <td key={i} dangerouslySetInnerHTML={{__html: heading}} />
+                        <td class="c-table__column" key={i} dangerouslySetInnerHTML={{__html: heading}} />
                     ))}
                 </tr>
             ))}
