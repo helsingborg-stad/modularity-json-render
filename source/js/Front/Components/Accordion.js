@@ -13,7 +13,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
         </header>
         }
 
-        <div className="accordion accordion-icon accordion-list">
+        <div className="accordion accordion-icon accordion-list c-accordion">
             {showSearch &&
                 <SearchField
                     doSearch={doSearch}
