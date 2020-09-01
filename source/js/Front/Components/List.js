@@ -16,10 +16,10 @@ const List = ({items, showSearch, doSearch, translation}) =>
         {Object.keys(items).length > 0 &&
         <div className="grid">
             <div className="grid-xs-12">
-                <ul className="c-list">
+                <ul className="c-listing">
                     {items.map(item => (
-                        <li key={item.id} className="c-list__item">
-                            <div dangerouslySetInnerHTML={{__html: item.heading[0]}} />
+                        <li key={item.id} className="c-listing__item">
+                            <div className="c-listing__label" dangerouslySetInnerHTML={{__html: item.heading[0]}} />
                         </li>
                     ))}
                 </ul>
