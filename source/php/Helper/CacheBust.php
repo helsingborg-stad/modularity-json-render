@@ -31,7 +31,7 @@ class CacheBust
      */
     public static function getRevManifest()
     {
-        $jsonPath = MODULARITYJSONRENDER_PATH . apply_filters('ModularityJsonRender/Helper/CacheBust/RevManifestPath', 'dist/rev-manifest.json');
+        $jsonPath = MODULARITYJSONRENDER_PATH . apply_filters('ModularityJsonRender/Helper/CacheBust/RevManifestPath', 'dist/manifest.json');
 
         if (file_exists($jsonPath)) {
             return json_decode(file_get_contents($jsonPath), true);

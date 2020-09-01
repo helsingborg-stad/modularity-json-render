@@ -20,6 +20,7 @@ if (! defined('WPINC')) {
 
 define('MODULARITYJSONRENDER_PATH', plugin_dir_path(__FILE__));
 define('MODULARITYJSONRENDER_URL', plugins_url('', __FILE__));
+define('MODULARITYJSONRENDER_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . 'source/php/Module/views');
 define('MODULARITYJSONRENDER_TEMPLATE_PATH', MODULARITYJSONRENDER_PATH . 'templates/');
 
 load_plugin_textdomain('modularity-json-render', false, plugin_basename(dirname(__FILE__)) . '/languages');
@@ -32,6 +33,13 @@ $loader = new ModularityJsonRender\Vendor\Psr4ClassLoader();
 $loader->addPrefix('ModularityJsonRender', MODULARITYJSONRENDER_PATH);
 $loader->addPrefix('ModularityJsonRender', MODULARITYJSONRENDER_PATH . 'source/php/');
 $loader->register();
+
+add_filter( '/Modularity/externalViewPath', function($arr) 
+    {
+        $arr['mod-json-render'] = MODULARITYJSONRENDER_MODULE_VIEW_PATH;
+        return $arr;
+    }, 10, 3
+);
 
 // Acf auto import and export
 add_action('plugins_loaded', function () {
