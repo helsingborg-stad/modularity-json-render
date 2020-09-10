@@ -21,8 +21,8 @@ module.exports = {
      */
     entry: {
 
-        'js/Admin/IndexAdmin': './source/js/Admin/indexAdmin.js',
-        'js/Front/IndexFront': './source/js/Front/indexFront.js',
+        'js/Admin/IndexAdmin': './source/js/Admin/IndexAdmin.js',
+        'js/Front/IndexFront': './source/js/Front/IndexFront.js',
         
         'css/modularity-json-render-admin': './source/sass/modularity-json-render-admin.scss',
         
