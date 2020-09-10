@@ -2,8 +2,17 @@
 .*
 ~*
 
+# Ignore the ignore on .github folder.
+!.github/
+
 # ignore node/grunt dependency directories
 node_modules/
+
+# ignore composer vendor folder
+vendor/
+
+# ignore dist folder
+dist/
 
 # ignore jekyll build directory
 /_site
