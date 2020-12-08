@@ -3,9 +3,8 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
-import  {toggleButton, toggle} from '../../Utilities/expandSection';
+import toggleButton from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
-
 import Pagination from './Pagination';
 
 class JsonParser extends React.Component {
@@ -25,10 +24,12 @@ class JsonParser extends React.Component {
 
     componentDidMount() {
         this.getData();
+
     }
 
     getData() {
         const {url, perPage, showPagination} = this.props;
+
         getApiData(url)
             .then(
                 ({result}) => {
@@ -164,14 +165,17 @@ class JsonParser extends React.Component {
                 () => this.updateItemList()
             );
         } else {
+
             this.setState({
                 filteredItems,
                 paginatedItems: filteredItems
             });
         }
+
     }
 
     updateItemList() {
+
         const {filteredItems, currentPage} = this.state;
         const {perPage} = this.props;
         const begin = ((currentPage - 1) * perPage);
@@ -180,6 +184,9 @@ class JsonParser extends React.Component {
         this.setState({
             paginatedItems: filteredItems.slice(begin, end)
         });
+
+        // Listen for expandable items
+        this.listenForExpand();
     }
 
     nextPage() {
@@ -188,6 +195,7 @@ class JsonParser extends React.Component {
         }
         const currentPage = this.state.currentPage += 1;
         this.setState({currentPage: currentPage}, () => this.updateItemList());
+
     }
 
     prevPage() {
@@ -233,6 +241,19 @@ class JsonParser extends React.Component {
         }
     }
 
+    /**
+     * Event listener for expandable list | table
+     */
+    listenForExpand() {
+        console.log('Creating listener');
+        document.querySelectorAll('[js-expand-button]').forEach((button) => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const expanded = button.getAttribute('aria-expanded') === 'true';
+                toggleButton(button, expanded);
+            });
+        });
+    }
 
 
     /**
@@ -240,19 +261,9 @@ class JsonParser extends React.Component {
      * @returns {JSX.Element}
      */
     render() {
+
         const {translation, view} = this.props;
         const {error, isLoaded, totalPages, currentPage} = this.state;
-        const self = this;
-
-        const buttons = document.querySelectorAll('[js-expand-button]');
-
-        buttons.forEach((button) => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const expanded = button.getAttribute('aria-expanded') === 'true';
-                toggleButton(button, expanded);
-            });
-        });
 
         if (error) {
             return (
@@ -263,6 +274,7 @@ class JsonParser extends React.Component {
                 </div>
             );
         } else if (!isLoaded) {
+
             return (
                 <div className="gutter">
                     <div className="loading">
@@ -277,6 +289,7 @@ class JsonParser extends React.Component {
             return (
                 <div>
                     {this.switchView(view)}
+
                     {this.props.showPagination &&
                     <div className="grid u-justify-content--center gutter">
                         <div className="grid-fit-content u-ml-auto">

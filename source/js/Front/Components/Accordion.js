@@ -1,5 +1,6 @@
 import AccordionItem from './AccordionItem';
 import SearchField from './SearchField';
+import uuidv1 from 'uuid/v1';
 
 const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
     <div>
@@ -27,13 +28,15 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
             {Object.keys(items).length === 0 &&
             <div className="gutter"><p>{translation.noResults}</p></div>
             }
+
             {items.map((item, index) => (
+
                 <AccordionItem
                     key={item.id}
                     heading={item.heading}
                     content={item.content}
                     view={view}
-                    index={index}
+                    index={uuidv1()}
                 />
             ))}
         </div>
