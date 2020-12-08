@@ -3,7 +3,9 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
+import  {toggleButton, toggle} from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
+
 import Pagination from './Pagination';
 
 class JsonParser extends React.Component {
@@ -135,7 +137,7 @@ class JsonParser extends React.Component {
     }
 
     handleSearch(e) {
-        let searchString = typeof(e.target.value === 'string') ? e.target.value.toLowerCase() : e.target.value;
+        let searchString = typeof (e.target.value === 'string') ? e.target.value.toLowerCase() : e.target.value;
         const {itemValues, items} = this.state;
         const {perPage, showPagination} = this.props;
 
@@ -231,9 +233,26 @@ class JsonParser extends React.Component {
         }
     }
 
+
+
+    /**
+     * Render parser
+     * @returns {JSX.Element}
+     */
     render() {
         const {translation, view} = this.props;
         const {error, isLoaded, totalPages, currentPage} = this.state;
+        const self = this;
+
+        const buttons = document.querySelectorAll('[js-expand-button]');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const expanded = button.getAttribute('aria-expanded') === 'true';
+                toggleButton(button, expanded);
+            });
+        });
 
         if (error) {
             return (
@@ -276,6 +295,8 @@ class JsonParser extends React.Component {
                 </div>
             );
         }
+
+
     }
 }
 

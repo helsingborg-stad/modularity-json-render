@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 
 class Pagination extends Component {
+
     static propTypes = {
         current: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -14,6 +15,7 @@ class Pagination extends Component {
     };
 
     render() {
+
         const {
             current,
             total,
@@ -25,10 +27,10 @@ class Pagination extends Component {
         } = this.props;
 
         return (
-            <div className="grid u-margin__top--2">
-                <div className="grid-fit-content">
-                    <div className="grid sm-gutter">
-                        <div className="grid-fit-content">
+            <div className="o-grid u-margin__top--2">
+
+
+                        <div className="o-grid-5">
                             <Button
                                 onClick={prev}
                                 disabled={current === 1}
@@ -42,11 +44,11 @@ class Pagination extends Component {
                             </Button>
                         </div>
 
-                        <div className="grid-fit-content">
+                        <div className="o-grid-2">
                             <span class="c-typography c-typography__variant--h3">{current} / {total}</span>
                         </div>
 
-                        <div className="grid-fit-content">
+                        <div className="o-grid-5">
                             <Button
                                 onClick={next}
                                 disabled={current === total}
@@ -60,8 +62,7 @@ class Pagination extends Component {
                             </Button>
                         </div>
                     </div>
-                </div>
-            </div>
+
         );
     }
 }

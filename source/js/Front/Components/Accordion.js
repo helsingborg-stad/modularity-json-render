@@ -13,22 +13,27 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
         </header>
         }
 
-        <div className="accordion accordion-icon accordion-list c-accordion">
+        <div id="5fce30f28f9be"
+             className="c-accordion"
+             js-expand-container=""
+             data-uid="5fce30f28f9d0">
+
             {showSearch &&
-                <SearchField
-                    doSearch={doSearch}
-                    translation={translation}
-                />
+            <SearchField
+                doSearch={doSearch}
+                translation={translation}
+            />
             }
             {Object.keys(items).length === 0 &&
             <div className="gutter"><p>{translation.noResults}</p></div>
             }
-            {items.map(item => (
+            {items.map((item, index) => (
                 <AccordionItem
                     key={item.id}
                     heading={item.heading}
                     content={item.content}
                     view={view}
+                    index={index}
                 />
             ))}
         </div>
