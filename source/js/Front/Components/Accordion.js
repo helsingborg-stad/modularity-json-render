@@ -1,6 +1,5 @@
 import AccordionItem from './AccordionItem';
 import SearchField from './SearchField';
-import uuidv1 from 'uuid/v1';
 
 const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
     <div>
@@ -36,7 +35,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
                     heading={item.heading}
                     content={item.content}
                     view={view}
-                    index={uuidv1()}
+                    index={index + '-' + Math.round(Math.random() * 100000000)}
                 />
             ))}
         </div>

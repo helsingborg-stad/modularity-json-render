@@ -3,8 +3,9 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
-import toggleButton from '../../Utilities/expandSection';
+import {toggleButton} from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
+
 import Pagination from './Pagination';
 
 class JsonParser extends React.Component {
@@ -186,7 +187,7 @@ class JsonParser extends React.Component {
         });
 
         // Listen for expandable items
-        this.listenForExpand();
+        this.executeEventListener();
     }
 
     nextPage() {
@@ -244,8 +245,8 @@ class JsonParser extends React.Component {
     /**
      * Event listener for expandable list | table
      */
-    listenForExpand() {
-        console.log('Creating listener');
+    executeEventListener() {
+        console.log('F.Y.I - Adding event Listener to buttons');
         document.querySelectorAll('[js-expand-button]').forEach((button) => {
             button.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -255,6 +256,40 @@ class JsonParser extends React.Component {
         });
     }
 
+
+
+    /*
+    expandEventListner(e, button){
+        e.preventDefault();
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        toggleButton(button, expanded);
+    }
+
+    */
+
+    /**
+     * Event listener for expandable list | table
+     */
+    /*prepareEventListener() {
+        console.log('F.Y.I - Adding event Listener to buttons');
+        const self = this;
+        document.querySelectorAll('[js-expand-button]').forEach((button) => {
+            button.addEventListener('click', self.executeEventListener(e, button));
+        });
+    }
+
+     */
+
+    /**
+     * Expand
+     * @param e
+     * @param button
+     */
+    /*executeEventListener(e, button){
+        e.preventDefault();
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        toggleButton(button, expanded);
+    }*/
 
     /**
      * Render parser
