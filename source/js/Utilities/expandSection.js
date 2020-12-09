@@ -3,10 +3,11 @@
  *  This one is primary for the expandable items such as the expandable list or table
  */
 
+
 /**
  * Toggles a button's and its siblings "pressed" state
- * @param {HTMLElement} button
- * @param {bool} expanded
+ * @param button
+ * @param expanded
  */
 const toggleButton = (button, expanded) => {
 
@@ -34,9 +35,9 @@ const toggleButton = (button, expanded) => {
 
 /**
  * Toggle helper
- * @param {HTMLElement} button
- * @param {bool} expanded
- * @return {boolean} the resulting state
+ * @param button
+ * @param expanded
+ * @returns {boolean}
  */
 const toggleExpandItem = (button, expanded) => {
 
@@ -64,5 +65,10 @@ const toggleExpandItem = (button, expanded) => {
     return safeExpanded;
 };
 
+const triggerEventListener = params => () => {
+    const expanded =  params.element.getAttribute('aria-expanded') === 'true';
+    toggleButton(params.element, expanded);
+    console.log('Added Listerner');
+}
 
-export {toggleButton, toggleExpandItem};
+export {toggleButton, toggleExpandItem, triggerEventListener};

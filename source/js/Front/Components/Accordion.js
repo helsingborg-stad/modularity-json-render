@@ -13,7 +13,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
         </header>
         }
 
-        <div id="5fce30f28f9be"
+        <div id="jsonRenderData"
              className="c-accordion"
              js-expand-container=""
              data-uid="5fce30f28f9d0">

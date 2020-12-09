@@ -3,7 +3,7 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
-import {toggleButton} from '../../Utilities/expandSection';
+import {toggleButton, triggerEventListener} from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
 
 import Pagination from './Pagination';
@@ -175,6 +175,46 @@ class JsonParser extends React.Component {
 
     }
 
+
+    /**
+     * Observe new nodes added in DOM.
+     */
+    observeNewData() {
+
+        this.executeEventListener();
+        
+        const observer = new MutationObserver(function (mutations) {
+            for (let mutation of mutations) {
+                for (let node of mutation.addedNodes) {
+                    for (let element of node.querySelectorAll('button')) {
+
+                        // Visuellt test för att visa vi kommer åt elementet
+                        element.classList.add('newNode');
+                        element.style = 'border: 1px solid orange; color:green;';
+                        console.log('before adding  Listerner' + element);
+                        // slut test
+
+                        // Tar bort event lyssnare
+                        element.removeEventListener('click', triggerEventListener({element: element}));
+                        element.addEventListener('click', triggerEventListener({element: element}));
+                    }
+                }
+            }
+        });
+
+        const observerElement = document.getElementById('jsonRenderData');
+
+        observer.observe(observerElement, {
+            characterData: true,
+            attributes: false,
+            childList: true,
+            subtree: true
+        });
+
+        //observer.disconnect();
+
+    }
+
     updateItemList() {
 
         const {filteredItems, currentPage} = this.state;
@@ -182,12 +222,12 @@ class JsonParser extends React.Component {
         const begin = ((currentPage - 1) * perPage);
         const end = begin + perPage;
 
+
         this.setState({
             paginatedItems: filteredItems.slice(begin, end)
         });
 
-        // Listen for expandable items
-        this.executeEventListener();
+        this.observeNewData();
     }
 
     nextPage() {
@@ -257,7 +297,6 @@ class JsonParser extends React.Component {
     }
 
 
-
     /*
     expandEventListner(e, button){
         e.preventDefault();
@@ -285,6 +324,7 @@ class JsonParser extends React.Component {
      * @param e
      * @param button
      */
+
     /*executeEventListener(e, button){
         e.preventDefault();
         const expanded = button.getAttribute('aria-expanded') === 'true';

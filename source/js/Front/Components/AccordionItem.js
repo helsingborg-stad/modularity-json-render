@@ -17,7 +17,6 @@ const AccordionItem = ({heading, content, view, index}) =>
 
         {view === 'accordion' &&
         <button
-            authorfix="JOHAN"
             class="c-accordion__button"
             aria-controls={'c-accordion__aria-jasonRender-' + index}
             aria-expanded="false"
