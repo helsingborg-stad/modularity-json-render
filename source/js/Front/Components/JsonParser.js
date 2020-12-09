@@ -182,7 +182,7 @@ class JsonParser extends React.Component {
     observeNewData() {
 
         this.executeEventListener();
-        
+
         const observer = new MutationObserver(function (mutations) {
             for (let mutation of mutations) {
                 for (let node of mutation.addedNodes) {
@@ -215,6 +215,9 @@ class JsonParser extends React.Component {
 
     }
 
+    /**
+     * Update List items 
+     */
     updateItemList() {
 
         const {filteredItems, currentPage} = this.state;
@@ -230,6 +233,9 @@ class JsonParser extends React.Component {
         this.observeNewData();
     }
 
+    /**
+     * Next page
+     */
     nextPage() {
         if (this.state.currentPage === this.state.totalPages) {
             return;
@@ -239,6 +245,9 @@ class JsonParser extends React.Component {
 
     }
 
+    /**
+     * Previous page
+     */
     prevPage() {
         if (this.state.currentPage <= 1) {
             return;
@@ -247,6 +256,10 @@ class JsonParser extends React.Component {
         this.setState({currentPage: currentPage}, () => this.updateItemList());
     }
 
+    /**
+     * Pagination Input
+     * @param e
+     */
     paginationInput(e) {
         let currentPage = e.target.value ? parseInt(e.target.value) : '';
         currentPage = (currentPage > this.state.totalPages) ? this.state.totalPages : currentPage;
@@ -286,50 +299,12 @@ class JsonParser extends React.Component {
      * Event listener for expandable list | table
      */
     executeEventListener() {
-        console.log('F.Y.I - Adding event Listener to buttons');
         document.querySelectorAll('[js-expand-button]').forEach((button) => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const expanded = button.getAttribute('aria-expanded') === 'true';
-                toggleButton(button, expanded);
-            });
+            button.removeEventListener('click', triggerEventListener({element: button}));
+            button.addEventListener('click', triggerEventListener({element: button}));
         });
     }
 
-
-    /*
-    expandEventListner(e, button){
-        e.preventDefault();
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        toggleButton(button, expanded);
-    }
-
-    */
-
-    /**
-     * Event listener for expandable list | table
-     */
-    /*prepareEventListener() {
-        console.log('F.Y.I - Adding event Listener to buttons');
-        const self = this;
-        document.querySelectorAll('[js-expand-button]').forEach((button) => {
-            button.addEventListener('click', self.executeEventListener(e, button));
-        });
-    }
-
-     */
-
-    /**
-     * Expand
-     * @param e
-     * @param button
-     */
-
-    /*executeEventListener(e, button){
-        e.preventDefault();
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        toggleButton(button, expanded);
-    }*/
 
     /**
      * Render parser

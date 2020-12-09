@@ -65,9 +65,16 @@ const toggleExpandItem = (button, expanded) => {
     return safeExpanded;
 };
 
+/**
+ * Trigger for eventlisterner
+ * @param params
+ * @returns {function(): void}
+ */
 const triggerEventListener = params => () => {
     const expanded =  params.element.getAttribute('aria-expanded') === 'true';
     toggleButton(params.element, expanded);
+
+    // ta bort seb
     console.log('Added Listerner');
 }
 
