@@ -243,7 +243,14 @@ class JsonParser extends React.Component {
             paginatedItems: filteredItems.slice(begin, end)
         });
 
-        this.observeNewData();
+        setTimeout(() => {
+            document.querySelectorAll('[js-expand-button]').forEach((button) => {
+                button.removeEventListener('click', triggerEventListener({element: button}));
+                button.addEventListener('click', triggerEventListener({element: button}));
+            });
+        }, 100);
+
+        // this.observeNewData();
     }
 
     /**
@@ -293,7 +300,8 @@ class JsonParser extends React.Component {
             items: this.state.paginatedItems,
             translation: this.props.translation,
             view: view,
-            fieldMap: this.props.fieldMap
+            fieldMap: this.props.fieldMap,
+            itemClicked: this.executeEventListener.bind(this)
         };
 
         switch (view) {
@@ -312,6 +320,7 @@ class JsonParser extends React.Component {
      * Event listener for expandable list | table
      */
     executeEventListener() {
+        console.log("CLIEKD FINC");
         document.querySelectorAll('[js-expand-button]').forEach((button) => {
             button.removeEventListener('click', triggerEventListener({element: button}));
             button.addEventListener('click', triggerEventListener({element: button}));

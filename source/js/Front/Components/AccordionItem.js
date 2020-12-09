@@ -1,4 +1,4 @@
-const AccordionItem = ({heading, content, view, index}) =>
+const AccordionItem = ({heading, content, view, index, itemClicked}) =>
     <section className="accordion-section c-accordion__section">
 
         {view === 'accordiontable' &&
@@ -17,6 +17,7 @@ const AccordionItem = ({heading, content, view, index}) =>
 
         {view === 'accordion' &&
         <button
+            onClick={itemClicked.bind(this)}
             class="c-accordion__button"
             aria-controls={'c-accordion__aria-jasonRender-' + index}
             aria-expanded="false"

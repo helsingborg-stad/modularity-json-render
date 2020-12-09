@@ -1,7 +1,7 @@
 import AccordionItem from './AccordionItem';
 import SearchField from './SearchField';
 
-const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =>
+const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, itemClicked}) =>
     <div>
         {view === 'accordiontable' &&
         <header className="accordion-table accordion-table-head">
@@ -36,6 +36,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap}) =
                     content={item.content}
                     view={view}
                     index={index + '-' + Math.round(Math.random() * 100000000)}
+                    itemClicked={itemClicked.bind(this)}
                 />
             ))}
         </div>
