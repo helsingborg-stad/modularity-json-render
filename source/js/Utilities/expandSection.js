@@ -62,8 +62,6 @@ const toggleExpandItem = (button, expanded) => {
         controls.setAttribute('aria-hidden', 'true');
     }
 
-    console.log('Expanded:');
-    console.log(safeExpanded);
     return safeExpanded;
 };
 
@@ -75,9 +73,6 @@ const toggleExpandItem = (button, expanded) => {
 const triggerEventListener = params => () => {
     const expanded =  params.element.getAttribute('aria-expanded') === 'true';
     toggleButton(params.element, expanded);
-
-    // ta bort sen
-    console.log('Added Listerner');
 }
 
 export {toggleButton, toggleExpandItem, triggerEventListener};

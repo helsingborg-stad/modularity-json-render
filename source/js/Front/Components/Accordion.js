@@ -3,20 +3,12 @@ import SearchField from './SearchField';
 
 const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, itemClicked}) =>
     <div>
-        {view === 'accordiontable' &&
-        <header className="accordion-table accordion-table-head">
-            {fieldMap.heading.map((heading, i) => (
-                <span key={i} className="column-header">
-                        {heading.heading}
-                    </span>
-            ))}
-        </header>
-        }
 
-        <div id="jsonRenderData"
-             className="c-accordion"
-             js-expand-container=""
-             data-uid="5fce30f28f9d0">
+        <div
+            id="jsonRenderData"
+            className="c-accordion"
+            js-expand-container=""
+            data-uid="5fce30f28f9d0">
 
             {showSearch &&
             <SearchField
@@ -37,6 +29,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
                     view={view}
                     index={index + '-' + Math.round(Math.random() * 100000000)}
                     itemClicked={itemClicked.bind(this)}
+                    fieldMap={fieldMap}
                 />
             ))}
         </div>

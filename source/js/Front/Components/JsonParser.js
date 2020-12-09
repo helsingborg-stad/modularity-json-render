@@ -3,7 +3,7 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
-import {toggleButton, triggerEventListener} from '../../Utilities/expandSection';
+import {toggleButton} from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
 
 import Pagination from './Pagination';
@@ -178,57 +178,6 @@ class JsonParser extends React.Component {
 
 
     /**
-     * Observe new nodes added in DOM.
-     */
-    observeNewData() {
-
-        this.executeEventListener();
-        //console.log(this.state.currentPage);
-        //console.log(this.state.pageHistory);
-        //if (this.state.pageHistory.indexOf(this.state.currentPage)  === -1) {
-
-            const observer = new MutationObserver(function (mutations) {
-                for (let mutation of mutations) {
-                    for (let node of mutation.addedNodes) {
-                        for (let element of node.querySelectorAll('button')) {
-
-                            // Visuellt test för att visa vi kommer åt elementet
-                            element.classList.add('newNode');
-                            element.style = 'border: 1px solid orange; color:green;';
-                            // slut test
-
-                            // Tar bort event lyssnare
-                            element.removeEventListener('click', triggerEventListener({element: element}));
-                            element.addEventListener('click', triggerEventListener({element: element}));
-                        }
-                    }
-                }
-            });
-
-            const observerElement = document.getElementById('jsonRenderData');
-
-            observer.observe(observerElement, {
-                characterData: true,
-                attributes: false,
-                childList: true,
-                subtree: true
-            });
-        //}
-
-
-        /*let history = [...this.state.pageHistory]
-        let currentState = history.indexOf(this.state.currentPage)
-
-        currentState === -1 ? history.push(this.state.currentPage) : null;
-        console.log(currentState);
-        if(currentState !== null)
-            this.setState({ array: history });
-        */
-        //observer.disconnect();
-
-    }
-
-    /**
      * Update List items
      */
     updateItemList() {
@@ -238,19 +187,9 @@ class JsonParser extends React.Component {
         const begin = ((currentPage - 1) * perPage);
         const end = begin + perPage;
 
-
         this.setState({
             paginatedItems: filteredItems.slice(begin, end)
         });
-
-        setTimeout(() => {
-            document.querySelectorAll('[js-expand-button]').forEach((button) => {
-                button.removeEventListener('click', triggerEventListener({element: button}));
-                button.addEventListener('click', triggerEventListener({element: button}));
-            });
-        }, 100);
-
-        // this.observeNewData();
     }
 
     /**
@@ -319,12 +258,9 @@ class JsonParser extends React.Component {
     /**
      * Event listener for expandable list | table
      */
-    executeEventListener() {
-        console.log("CLIEKD FINC");
-        document.querySelectorAll('[js-expand-button]').forEach((button) => {
-            button.removeEventListener('click', triggerEventListener({element: button}));
-            button.addEventListener('click', triggerEventListener({element: button}));
-        });
+    executeEventListener(e) {
+        const expanded =  e.target.parentElement.getAttribute('aria-expanded') === 'true';
+        toggleButton(e.target.parentElement, expanded);
     }
 
 
