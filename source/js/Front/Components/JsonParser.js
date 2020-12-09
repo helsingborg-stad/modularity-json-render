@@ -19,7 +19,8 @@ class JsonParser extends React.Component {
             filteredItems: [],
             paginatedItems: [],
             totalPages: 0,
-            currentPage: 1
+            currentPage: 1,
+            pageHistory: []
         };
     }
 
@@ -182,41 +183,53 @@ class JsonParser extends React.Component {
     observeNewData() {
 
         this.executeEventListener();
+        //console.log(this.state.currentPage);
+        //console.log(this.state.pageHistory);
+        //if (this.state.pageHistory.indexOf(this.state.currentPage)  === -1) {
 
-        const observer = new MutationObserver(function (mutations) {
-            for (let mutation of mutations) {
-                for (let node of mutation.addedNodes) {
-                    for (let element of node.querySelectorAll('button')) {
+            const observer = new MutationObserver(function (mutations) {
+                for (let mutation of mutations) {
+                    for (let node of mutation.addedNodes) {
+                        for (let element of node.querySelectorAll('button')) {
 
-                        // Visuellt test för att visa vi kommer åt elementet
-                        element.classList.add('newNode');
-                        element.style = 'border: 1px solid orange; color:green;';
-                        console.log('before adding  Listerner' + element);
-                        // slut test
+                            // Visuellt test för att visa vi kommer åt elementet
+                            element.classList.add('newNode');
+                            element.style = 'border: 1px solid orange; color:green;';
+                            // slut test
 
-                        // Tar bort event lyssnare
-                        element.removeEventListener('click', triggerEventListener({element: element}));
-                        element.addEventListener('click', triggerEventListener({element: element}));
+                            // Tar bort event lyssnare
+                            element.removeEventListener('click', triggerEventListener({element: element}));
+                            element.addEventListener('click', triggerEventListener({element: element}));
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        const observerElement = document.getElementById('jsonRenderData');
+            const observerElement = document.getElementById('jsonRenderData');
 
-        observer.observe(observerElement, {
-            characterData: true,
-            attributes: false,
-            childList: true,
-            subtree: true
-        });
+            observer.observe(observerElement, {
+                characterData: true,
+                attributes: false,
+                childList: true,
+                subtree: true
+            });
+        //}
 
+
+        /*let history = [...this.state.pageHistory]
+        let currentState = history.indexOf(this.state.currentPage)
+
+        currentState === -1 ? history.push(this.state.currentPage) : null;
+        console.log(currentState);
+        if(currentState !== null)
+            this.setState({ array: history });
+        */
         //observer.disconnect();
 
     }
 
     /**
-     * Update List items 
+     * Update List items
      */
     updateItemList() {
 
