@@ -15,9 +15,23 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
                 doSearch={doSearch}
                 translation={translation}
             />
+
             }
+
             {Object.keys(items).length === 0 &&
             <div className="gutter"><p>{translation.noResults}</p></div>
+            }
+
+            {view === 'accordiontable' &&
+            <header className="c-accordion__button-wrapper">
+                {fieldMap.heading.map((heading, i) => (
+                    <span key={i}
+                          className={'match-heading'}>
+                        {heading.heading}
+                    </span>
+                ))}
+                <span className="colum-alignment">&nbsp;</span>
+            </header>
             }
 
             {items.map((item, index) => (

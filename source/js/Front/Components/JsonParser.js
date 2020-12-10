@@ -316,8 +316,6 @@ class JsonParser extends React.Component {
                 </div>
             );
         }
-
-
     }
 }
 

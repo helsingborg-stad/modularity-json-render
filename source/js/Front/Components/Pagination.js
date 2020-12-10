@@ -23,7 +23,8 @@ class Pagination extends Component {
             prev,
             input,
             langPrev,
-            langNext
+            langNext,
+            style
         } = this.props;
 
         return (
@@ -52,6 +53,7 @@ class Pagination extends Component {
                             <Button
                                 onClick={next}
                                 disabled={current === total}
+                                //style={style}
                             >
                                 {langNext ? (
                                     <span className="u-hidden@xs u-hidden@sm">

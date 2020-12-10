@@ -25,7 +25,7 @@ module.exports = {
         'js/Front/IndexFront': './source/js/Front/IndexFront.js',
         
         'css/modularity-json-render-admin': './source/sass/modularity-json-render-admin.scss',
-        
+        'css/modularity-json-render-front': './source/sass/modularity-json-render-front.scss'
     },
     /**
      * Output settings

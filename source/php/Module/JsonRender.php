@@ -110,6 +110,7 @@ class JsonRender extends \Modularity\Module
                 'filterOn' => __('Filter on...', 'modularity-json-render'),
                 'next' => __('Next', 'modularity-json-render'),
                 'prev' => __('Previous', 'modularity-json-render'),
+                'search' => __('Search', 'modularity-json-render')
             )
         ));
     }
@@ -155,7 +156,7 @@ class JsonRender extends \Modularity\Module
                 'prefix' => __('Prefix', 'modularity-json-render'),
                 'suffix' => __('Suffix', 'modularity-json-render'),
                 'selectDateFormat' => __('Select date format', 'modularity-json-render'),
-                'none' => __('None', 'modularity-json-render'),
+                'none' => __('None', 'modularity-json-render')
             )
         ));
 
