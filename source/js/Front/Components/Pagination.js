@@ -50,7 +50,7 @@ class Pagination extends Component {
                         </div>
 
                         <div className="o-grid-5">
-                            <div class="anti-prop">
+                            <div class="u-position--relative u-float--right">
                                 <Button
                                     onClick={next}
                                     disabled={current === total}
