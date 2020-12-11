@@ -50,18 +50,20 @@ class Pagination extends Component {
                         </div>
 
                         <div className="o-grid-5">
-                            <Button
-                                onClick={next}
-                                disabled={current === total}
-                                //style={style}
-                            >
-                                {langNext ? (
-                                    <span className="u-hidden@xs u-hidden@sm">
-                                        {langNext}
-                                    </span>
-                                ) : null}{" "}
-                                <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
-                            </Button>
+                            <div class="anti-prop">
+                                <Button
+                                    onClick={next}
+                                    disabled={current === total}
+                                    //style={style}
+                                >
+                                    {langNext ? (
+                                        <span className="u-hidden@xs u-hidden@sm">
+                                            {langNext}
+                                        </span>
+                                    ) : null}{" "}
+                                    <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
+                                </Button>
+                           </div>
                         </div>
                     </div>
 
