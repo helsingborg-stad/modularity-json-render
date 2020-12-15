@@ -15,7 +15,6 @@ class Pagination extends Component {
     };
 
     render() {
-
         const {
             current,
             total,
@@ -29,7 +28,6 @@ class Pagination extends Component {
 
         return (
             <div className="o-grid u-margin__top--2">
-
 
                         <div className="o-grid-5">
                             <Button
@@ -54,7 +52,6 @@ class Pagination extends Component {
                                 <Button
                                     onClick={next}
                                     disabled={current === total}
-                                    //style={style}
                                 >
                                     {langNext ? (
                                         <span className="u-hidden@xs u-hidden@sm">
