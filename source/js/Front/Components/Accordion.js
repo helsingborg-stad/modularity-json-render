@@ -10,8 +10,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
             js-expand-container=""
             data-uid="5fce30f28f9d0">
 
-            {showSearch &&
-                <SearchField
+            {showSearch && <SearchField
                     doSearch={doSearch}
                     translation={translation}
                 />
