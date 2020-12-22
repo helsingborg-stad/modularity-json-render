@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 
 class Pagination extends Component {
+
     static propTypes = {
         current: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -21,14 +22,14 @@ class Pagination extends Component {
             prev,
             input,
             langPrev,
-            langNext
+            langNext,
+            style
         } = this.props;
 
         return (
-            <div className="grid u-margin__top--2">
-                <div className="grid-fit-content">
-                    <div className="grid sm-gutter">
-                        <div className="grid-fit-content">
+            <div className="o-grid u-margin__top--2">
+
+                        <div className="o-grid-5">
                             <Button
                                 onClick={prev}
                                 disabled={current === 1}
@@ -42,26 +43,27 @@ class Pagination extends Component {
                             </Button>
                         </div>
 
-                        <div className="grid-fit-content">
+                        <div className="o-grid-2">
                             <span class="c-typography c-typography__variant--h3">{current} / {total}</span>
                         </div>
 
-                        <div className="grid-fit-content">
-                            <Button
-                                onClick={next}
-                                disabled={current === total}
-                            >
-                                {langNext ? (
-                                    <span className="u-hidden@xs u-hidden@sm">
-                                        {langNext}
-                                    </span>
-                                ) : null}{" "}
-                                <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
-                            </Button>
+                        <div className="o-grid-5">
+                            <div class=" u-float--right">
+                                <Button
+                                    onClick={next}
+                                    disabled={current === total}
+                                >
+                                    {langNext ? (
+                                        <span className="u-hidden@xs u-hidden@sm">
+                                            {langNext}
+                                        </span>
+                                    ) : null}{" "}
+                                    <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
+                                </Button>
+                           </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
         );
     }
 }

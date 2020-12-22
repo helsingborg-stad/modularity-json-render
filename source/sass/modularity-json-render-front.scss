@@ -1,0 +1,27 @@
+.modularity-mod-json-render {
+
+  .c-accordion__button-wrapper {
+    display: flex;
+    user-select: all;
+    .c-icon {
+      position:absolute;
+      right:30px;
+
+    }
+
+    .colum-alignment {
+      width:1%;
+      flex-grow: 0;
+    }
+
+    span {
+      pointer-events: none;
+      width:20%;
+      flex-grow: 1;
+    }
+  }
+  
+}
+
+
+

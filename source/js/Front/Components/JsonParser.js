@@ -3,7 +3,9 @@ import Table from './Table';
 import List from './List';
 import uuidv1 from 'uuid/v1';
 import getApiData from '../../Utilities/getApiData';
+import {toggleButton} from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
+
 import Pagination from './Pagination';
 
 class JsonParser extends React.Component {
@@ -17,16 +19,19 @@ class JsonParser extends React.Component {
             filteredItems: [],
             paginatedItems: [],
             totalPages: 0,
-            currentPage: 1
+            currentPage: 1,
+            pageHistory: []
         };
     }
 
     componentDidMount() {
         this.getData();
+
     }
 
     getData() {
         const {url, perPage, showPagination} = this.props;
+
         getApiData(url)
             .then(
                 ({result}) => {
@@ -135,7 +140,7 @@ class JsonParser extends React.Component {
     }
 
     handleSearch(e) {
-        let searchString = typeof(e.target.value === 'string') ? e.target.value.toLowerCase() : e.target.value;
+        let searchString = typeof (e.target.value === 'string') ? e.target.value.toLowerCase() : e.target.value;
         const {itemValues, items} = this.state;
         const {perPage, showPagination} = this.props;
 
@@ -162,14 +167,21 @@ class JsonParser extends React.Component {
                 () => this.updateItemList()
             );
         } else {
+
             this.setState({
                 filteredItems,
                 paginatedItems: filteredItems
             });
         }
+
     }
 
+
+    /**
+     * Update List items
+     */
     updateItemList() {
+
         const {filteredItems, currentPage} = this.state;
         const {perPage} = this.props;
         const begin = ((currentPage - 1) * perPage);
@@ -180,14 +192,21 @@ class JsonParser extends React.Component {
         });
     }
 
+    /**
+     * Next page
+     */
     nextPage() {
         if (this.state.currentPage === this.state.totalPages) {
             return;
         }
         const currentPage = this.state.currentPage += 1;
         this.setState({currentPage: currentPage}, () => this.updateItemList());
+
     }
 
+    /**
+     * Previous page
+     */
     prevPage() {
         if (this.state.currentPage <= 1) {
             return;
@@ -196,6 +215,10 @@ class JsonParser extends React.Component {
         this.setState({currentPage: currentPage}, () => this.updateItemList());
     }
 
+    /**
+     * Pagination Input
+     * @param e
+     */
     paginationInput(e) {
         let currentPage = e.target.value ? parseInt(e.target.value) : '';
         currentPage = (currentPage > this.state.totalPages) ? this.state.totalPages : currentPage;
@@ -216,7 +239,8 @@ class JsonParser extends React.Component {
             items: this.state.paginatedItems,
             translation: this.props.translation,
             view: view,
-            fieldMap: this.props.fieldMap
+            fieldMap: this.props.fieldMap,
+            itemClicked: this.executeEventListener.bind(this)
         };
 
         switch (view) {
@@ -231,7 +255,21 @@ class JsonParser extends React.Component {
         }
     }
 
+    /**
+     * Event listener for expandable list | table
+     */
+    executeEventListener(e) {
+        const expanded =  e.target.parentElement.getAttribute('aria-expanded') === 'true';
+        toggleButton(e.target.parentElement, expanded);
+    }
+
+
+    /**
+     * Render parser
+     * @returns {JSX.Element}
+     */
     render() {
+
         const {translation, view} = this.props;
         const {error, isLoaded, totalPages, currentPage} = this.state;
 
@@ -244,6 +282,7 @@ class JsonParser extends React.Component {
                 </div>
             );
         } else if (!isLoaded) {
+
             return (
                 <div className="gutter">
                     <div className="loading">
@@ -258,6 +297,7 @@ class JsonParser extends React.Component {
             return (
                 <div>
                     {this.switchView(view)}
+
                     {this.props.showPagination &&
                     <div className="grid u-justify-content--center gutter">
                         <div className="grid-fit-content u-ml-auto">

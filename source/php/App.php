@@ -37,9 +37,15 @@ class App
      */
     public function registerFrontendAssets()
     {
+        if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('css/modularity-json-render-front.min.css'))) {
+            wp_register_style('modularity-json-render-front', MODULARITYJSONRENDER_URL . '/dist/' . 'css/modularity-json-render-front.min.css');
+            wp_enqueue_style('modularity-json-render-front');
+        }
+
         if (file_exists(MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.min.js'))) {
             wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . 'js/Front/IndexFront.min.js', array('jquery', 'react', 'react-dom'));
         }
+
     }
 
     /**
