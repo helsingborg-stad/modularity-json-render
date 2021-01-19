@@ -6,7 +6,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
 
         <div
             id="jsonRenderData"
-            className="c-accordion"
+            className="c-collection c-collection--bordered c-collection--sharp-top"
             js-expand-container=""
             data-uid="5fce30f28f9d0">
 
@@ -34,6 +34,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
 
             {items.map((item, index) => (
                 <AccordionItem
+                    className="c-collection__item c-collection__item--action"
                     key={item.id}
                     heading={item.heading}
                     content={item.content}

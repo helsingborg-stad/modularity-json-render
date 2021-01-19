@@ -2,11 +2,11 @@
 
   .c-accordion__button-wrapper {
     display: flex;
-    user-select: all;
+
     .c-icon {
       position:absolute;
       right:30px;
-
+      pointer-events: none;
     }
 
     .colum-alignment {
@@ -15,10 +15,13 @@
     }
 
     span {
-      pointer-events: none;
       width:20%;
       flex-grow: 1;
     }
+  }
+
+  .c-card__footer .o-grid div {
+    margin-bottom: 0px;
   }
   
 }

@@ -14,8 +14,8 @@ const List = ({items, showSearch, doSearch, translation}) =>
         }
 
         {Object.keys(items).length > 0 &&
-        <div className="grid">
-            <div className="grid-xs-12">
+        <div className="o-grid">
+            <div className="o-grid-12@xs">
                 <ul className="c-listing">
                     {items.map(item => (
                         <li key={item.id} className="c-listing__item">
