@@ -2,23 +2,28 @@
 
   .c-accordion__button-wrapper {
     display: flex;
-    user-select: all;
+
     .c-icon {
       position:absolute;
       right:30px;
-
+      pointer-events: none;
     }
 
     .colum-alignment {
       width:1%;
       flex-grow: 0;
+
     }
 
     span {
-      pointer-events: none;
       width:20%;
       flex-grow: 1;
+      pointer-events: none;
     }
+  }
+
+  .c-card__footer .o-grid div {
+    margin-bottom: 0px;
   }
   
 }

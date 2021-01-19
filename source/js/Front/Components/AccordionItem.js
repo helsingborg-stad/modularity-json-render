@@ -4,7 +4,7 @@ const AccordionItem = ({heading, content, view, index, itemClicked}) =>
         {view === 'accordiontable' &&
             <button
                 onClick={itemClicked.bind(this)}
-                className="c-accordion__button column-headings-flex"
+                className="c-accordion__button column-headings-flex "
                 aria-controls={'c-accordion__aria-jasonRender-' + index}
                 aria-expanded="false"
                 js-expand-button=""

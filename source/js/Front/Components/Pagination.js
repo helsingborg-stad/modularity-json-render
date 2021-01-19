@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Button from "./Button";
 
 class Pagination extends Component {
@@ -27,43 +27,46 @@ class Pagination extends Component {
         } = this.props;
 
         return (
-            <div className="o-grid u-margin__top--2">
+            <div className="c-card__footer">
+                <div className="o-grid">
 
-                        <div className="o-grid-5">
-                            <Button
-                                onClick={prev}
-                                disabled={current === 1}
-                            >
-                                <i className="pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl" />{" "}
-                                {langPrev ? (
-                                    <span className="u-hidden@xs u-hidden@sm">
+                    <div className="o-grid-5">
+                        <Button
+                            onClick={prev}
+                            disabled={current === 1}
+                            class="c-button--md c-button--lg@sm c-button--lg@xs "
+                        >
+                            <span className="c-icon material-icons">navigate_before</span>{" "}
+                            {langPrev ? (
+                                <span className="u-display--none@xs u-display--none@sm">
                                         {langPrev}
                                     </span>
-                                ) : null}
-                            </Button>
-                        </div>
-
-                        <div className="o-grid-2">
-                            <span class="c-typography c-typography__variant--h3">{current} / {total}</span>
-                        </div>
-
-                        <div className="o-grid-5">
-                            <div class=" u-float--right">
-                                <Button
-                                    onClick={next}
-                                    disabled={current === total}
-                                >
-                                    {langNext ? (
-                                        <span className="u-hidden@xs u-hidden@sm">
-                                            {langNext}
-                                        </span>
-                                    ) : null}{" "}
-                                    <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl" />
-                                </Button>
-                           </div>
-                        </div>
+                            ) : null}
+                        </Button>
                     </div>
 
+                    <div className="o-grid-2">
+                        <span class="c-typography c-typography__variant--h3">{current} / {total}</span>
+                    </div>
+
+                    <div className="o-grid-5">
+                        <div class=" u-float--right">
+                            <Button
+                                onClick={next}
+                                disabled={current === total}
+                                className="c-button c-button__filled c-button__filled--default c-button--md ripple ripple--before"
+                            >
+                                {langNext ? (
+                                    <span className="u-display--none@xs u-display--none@sm">
+                                            {langNext}
+                                        </span>
+                                ) : null}{" "}
+                                <span className="u-hidden@xl c-icon material-icons">navigate_next</span>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

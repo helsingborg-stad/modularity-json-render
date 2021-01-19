@@ -293,13 +293,14 @@ class JsonParser extends React.Component {
                     </div>
                 </div>
             );
+
         } else {
             return (
                 <div>
                     {this.switchView(view)}
 
                     {this.props.showPagination &&
-                    <div className="grid u-justify-content--center gutter">
+                    <div className="o-grid u-justify-content--center gutter">
                         <div className="grid-fit-content u-ml-auto">
                             <Pagination
                                 current={currentPage}
