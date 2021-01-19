@@ -36,7 +36,7 @@ class Pagination extends Component {
                             disabled={current === 1}
                             class="c-button--md c-button--lg@sm c-button--lg@xs "
                         >
-                            <span className="c-icon c-icon--size-xxl material-icons">navigate_before</span>{" "}
+                            <span className="c-icon material-icons">navigate_before</span>{" "}
                             {langPrev ? (
                                 <span className="u-display--none@xs u-display--none@sm">
                                         {langPrev}
@@ -61,7 +61,7 @@ class Pagination extends Component {
                                             {langNext}
                                         </span>
                                 ) : null}{" "}
-                                <span className="u-hidden@xl c-icon c-icon--size-lg material-icons">navigate_next</span>
+                                <span className="u-hidden@xl c-icon material-icons">navigate_next</span>
                             </Button>
                         </div>
                     </div>
