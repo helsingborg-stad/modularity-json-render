@@ -72,11 +72,7 @@ const toggleExpandItem = (button, expanded) => {
  */
 const triggerEventListener = params => () => {
     const expanded =  params.element.getAttribute('aria-expanded') === 'true';
-
-    console.log(params);
     toggleButton(params.element, expanded);
-
-
 }
 
 export {toggleButton, toggleExpandItem, triggerEventListener};
