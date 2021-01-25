@@ -21,7 +21,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
             }
 
             {view === 'accordiontable' &&
-                <header className="c-accordion__button-wrapper">
+                <header className="c-accordion__button-wrapper accordion-table__head">
                     {fieldMap.heading.map((heading, i) => (
                         <span key={'acTable'+i}
                               className={'match-heading'}>
