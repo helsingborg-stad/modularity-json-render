@@ -2,15 +2,17 @@
     'classList' => [$classes],
     'id' => 'mod-json-render-container'
 ])
-    <div class="c-card__header">
-        @if (!$hideTitle && !empty($post_title))
-            @typography([
-                'element' => 'h4'
-            ])
-                {!! apply_filters('the_title', $post_title) !!}
-            @endtypography
-        @endif
-    </div>
+    @if (!$hideTitle && !empty($post_title))
+        <div class="c-card__header">
+            
+                @typography([
+                    'element' => 'h4'
+                ])
+                    {!! apply_filters('the_title', $post_title) !!}
+                @endtypography
+            
+        </div>
+    @endif
 
     <div class="modularity-json-render"
          data-url="{{ $url }}"
