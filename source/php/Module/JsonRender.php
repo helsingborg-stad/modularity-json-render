@@ -6,6 +6,7 @@ class JsonRender extends \Modularity\Module
 {
     public $slug = 'json-render';
     public $supports = array();
+    public $isBlockCompatible = false;
 
     public function init()
     {
@@ -18,7 +19,7 @@ class JsonRender extends \Modularity\Module
         add_action('admin_notices', array($this, 'validationNotice'));
         add_filter('post_updated_messages', array($this, 'updateNotices'));
     }
-    
+
     public function validationNotice()
     {
         if (!$errors = get_transient('mod_json_render_error')) {
@@ -34,10 +35,6 @@ class JsonRender extends \Modularity\Module
         }
     }
 
-    /**
-     * @param $messages
-     * @return array|mixed
-     */
     public function updateNotices($messages)
     {
         if (!empty(get_transient('mod_json_render_error'))) {
@@ -47,11 +44,6 @@ class JsonRender extends \Modularity\Module
         return $messages;
     }
 
-    /**
-     * @param $postId
-     * @param $post
-     * @param $update
-     */
     public function saveOptions($postId, $post, $update)
     {
         if ($post->post_type !== 'mod-' . $this->slug) {
@@ -76,7 +68,6 @@ class JsonRender extends \Modularity\Module
         }
     }
 
-
     public function addSettingsError()
     {
         add_settings_error(
@@ -89,9 +80,6 @@ class JsonRender extends \Modularity\Module
         set_transient('mod_json_render_error', get_settings_errors(), 30);
     }
 
-    /**
-     * @return array
-     */
     public function data(): array
     {
         $options = $this->getOptions($this->ID);
@@ -100,8 +88,7 @@ class JsonRender extends \Modularity\Module
         $data['url'] = $options['url'];
         $data['view'] = $options['view'];
         $data['fieldMap'] = $options['fieldMap'];
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes',
-            array('c-card--panel'), $this->post_type, $this->args));
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
 
         return $data;
     }
