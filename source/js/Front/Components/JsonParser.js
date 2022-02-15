@@ -1,7 +1,7 @@
 import Accordion from './Accordion';
 import Table from './Table';
 import List from './List';
-import uuidv1 from 'uuid/v1';
+import { v4 as uuidv4 } from 'uuid';
 import getApiData from '../../Utilities/getApiData';
 import {toggleButton} from '../../Utilities/expandSection';
 import {isDate, getDate, getDateTime} from '../../Utilities/date';
@@ -71,7 +71,7 @@ class JsonParser extends React.Component {
         // Map the data items
         items = items.map(item => (
             {
-                id: uuidv1(),
+                id: uuidv4(),
                 heading: fieldMap.heading.map(heading => {
                     let value = this.getObjectProp(item, heading.item.value.split('.'));
                     value = (!value || value === 'null') ? '' : value;

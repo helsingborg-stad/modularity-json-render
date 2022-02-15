@@ -1,5 +1,5 @@
 import DragItem from './DragItem';
-import uuidv1 from "uuid/v1";
+import { v4 as uuidv4 } from 'uuid';
 
 const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, translation}) => {
     if (fieldMap.itemContainer === null) {
@@ -29,7 +29,7 @@ const ListItem = ({field, value, sample, children, fieldMap, onClickContainer, t
             return (
                 <li>
                     <DragItem
-                        id={uuidv1()}
+                        id={uuidv4()}
                         heading={field}
                         item={item}
                         prefix=''
