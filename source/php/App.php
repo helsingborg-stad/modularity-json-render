@@ -37,21 +37,17 @@ class App
      */
     public function registerFrontendAssets()
     {
-        $frontCss = MODULARITYJSONRENDER_PATH . '/dist/'
+        $frontCss = MODULARITYJSONRENDER_URL . '/dist/'
             . Helper\CacheBust::name('css/modularity-json-render-front.css');
 
-        if (file_exists($frontCss)) {
-            wp_register_style(
-                'modularity-json-render-front',
-                $frontCss
-            );
-            wp_enqueue_style('modularity-json-render-front');
-        }
+        wp_register_style(
+            'modularity-json-render-front',
+            $frontCss
+        );
+        wp_enqueue_style('modularity-json-render-front');
 
-        $frontJs = MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.js');
-        if (file_exists($frontJs)) {
-            wp_register_script('modularity-json-render', $frontJs, array('jquery', 'react', 'react-dom'));
-        }
+        $frontJs = MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.js');
+        wp_register_script('modularity-json-render', $frontJs, array('jquery', 'react', 'react-dom'));
     }
 
     /**
@@ -60,23 +56,20 @@ class App
      */
     public function registerAdminAssets()
     {
-        $adminCss = MODULARITYJSONRENDER_PATH . '/dist/'
+        $adminCss = MODULARITYJSONRENDER_URL . '/dist/'
             . Helper\CacheBust::name('css/modularity-json-render-admin.css');
 
-        if (file_exists($adminCss)) {
-            wp_register_style('modularity-json-render-admin', $adminCss);
-        }
+        wp_register_style('modularity-json-render-admin', $adminCss);
 
-        $adminJs = MODULARITYJSONRENDER_PATH . '/dist/' . Helper\CacheBust::name('js/Admin/IndexAdmin.js');
-        if (file_exists($adminJs)) {
-            wp_register_script(
-                'modularity-json-render-admin-js',
-                $adminJs,
-                array('jquery', 'react', 'react-dom'),
-                false,
-                true
-            );
-        }
+        $adminJs = MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Admin/IndexAdmin.js');
+        wp_register_script(
+            'modularity-json-render-admin-js',
+            $adminJs,
+            array('jquery', 'react', 'react-dom'),
+            false,
+            true
+        );
+
     }
 
     /**
