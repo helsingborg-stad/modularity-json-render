@@ -6,7 +6,7 @@ const Accordion = ({items, showSearch, doSearch, translation, view, fieldMap, it
 
         <div
             id="jsonRenderData"
-            className="c-collection c-collection--bordered c-collection--sharp-top"
+            className="c-collection c-collection--bordered c-collection--sharp-top c-accordion"
             js-expand-container=""
             data-uid="5fce30f28f9d0">
 
