@@ -41,6 +41,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.6.0",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "dotenv": "^16.0.0",
     "es6-promise": "^4.2.8",
     "eslint": "^8.9.0",
@@ -57,7 +58,6 @@
     "jquery": "^3.6.0",
     "mini-css-extract-plugin": "^2.5.3",
     "object-path": "^0.11.8",
-    "css-minimizer-webpack-plugin": "^3.4.1",
     "postcss-loader": "^6.2.1",
     "react": "^16.8.4",
     "react-dnd": "^7.7.0",
@@ -72,11 +72,10 @@
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
     "webpack-config-utils": "^2.3.1",
-    "webpack-remove-empty-scripts": "^0.7.3",
     "webpack-manifest-plugin": "^4.1.1",
-    "webpack-notifier": "^1.15.0"
+    "webpack-notifier": "^1.15.0",
+    "webpack-remove-empty-scripts": "^0.7.3"
   },
-  "dependencies": {},
   "browser": {
     "child_process": false
   },
