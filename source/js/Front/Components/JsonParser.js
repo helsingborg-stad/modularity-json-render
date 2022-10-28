@@ -259,8 +259,17 @@ class JsonParser extends React.Component {
      * Event listener for expandable list | table
      */
     executeEventListener(e) {
-        const expanded =  e.target.parentElement.getAttribute('aria-expanded') === 'true';
-        toggleButton(e.target.parentElement, expanded);
+        const targetElement = e.target;
+        const expanded =  targetElement.parentElement.getAttribute('aria-expanded') === 'true';
+
+        const getElement = () => {
+            if(targetElement.parentElement.classList.contains('c-accordion__button')) {
+                return targetElement.parentElement;
+            } else {
+                return targetElement;
+            }
+        }
+        toggleButton(getElement(), expanded);
     }
 
 
