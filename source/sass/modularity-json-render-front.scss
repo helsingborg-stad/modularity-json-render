@@ -33,8 +33,23 @@
     }
   }
 
+  .c-field__inner {
+    background-color: transparent;
+  }
+
   .c-card__footer .o-grid div {
     margin-bottom: 0px;
+  }
+
+  .c-card__footer {
+    .o-grid {
+      justify-content: center;
+    }
+
+    .modularity-json-render__pages {
+      display: flex;
+      justify-content: center;
+    }
   }
   
 }
