@@ -51,9 +51,14 @@
       justify-content: center;
     }
   }
-  
-}
 
+  @media screen and (min-width: 56rem) {
+      .c-card__footer {
+        padding-left:calc(var(--base, 8px) * 2);
+        padding-right:calc(var(--base, 8px) * 2);
+      } 
+  }
+}
 
 
 
