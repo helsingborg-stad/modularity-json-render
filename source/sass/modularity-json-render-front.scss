@@ -33,6 +33,11 @@
     }
   }
 
+  .gutter {
+   padding-left: calc(var(--base, 8px) * 2);
+   padding-right: calc(var(--base, 8px) * 2);
+  }
+
   .c-field__inner {
     background-color: transparent;
   }
