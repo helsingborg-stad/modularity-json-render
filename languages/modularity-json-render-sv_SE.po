@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Json Render\n"
-"POT-Creation-Date: 2020-12-10 18:52+0100\n"
-"PO-Revision-Date: 2020-12-10 18:56+0100\n"
+"POT-Creation-Date: 2022-10-31 14:43+0100\n"
+"PO-Revision-Date: 2022-10-31 14:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: modularity-json-render.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -47,111 +47,119 @@ msgstr "Visa paginering"
 msgid "Per page"
 msgstr "Per sida"
 
-#: source/php/App.php:72
+#: source/php/App.php:81
 msgid "Data settings"
 msgstr "Informationsinställningar"
 
-#: source/php/Module/JsonRender.php:13
+#: source/php/Module/JsonRender.php:14
 msgid "Json Render"
 msgstr ""
 
-#: source/php/Module/JsonRender.php:14
+#: source/php/Module/JsonRender.php:15
 msgid "Json Renders"
 msgstr ""
 
-#: source/php/Module/JsonRender.php:15
+#: source/php/Module/JsonRender.php:16
 msgid "Retrives data from API and renders it as a list."
 msgstr ""
 
-#: source/php/Module/JsonRender.php:75
+#: source/php/Module/JsonRender.php:76
 msgid "Complete the data settings."
 msgstr "Fullfölj informationsinställningarna."
 
-#: source/php/Module/JsonRender.php:108
+#: source/php/Module/JsonRender.php:109
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, vänligen försök igen senare."
 
-#: source/php/Module/JsonRender.php:109
+#: source/php/Module/JsonRender.php:110
 msgid "No results found."
 msgstr "Inga resultat hittades."
 
-#: source/php/Module/JsonRender.php:110
+#: source/php/Module/JsonRender.php:111
 msgid "Filter on..."
 msgstr "Filtrera på…"
 
-#: source/php/Module/JsonRender.php:111
+#: source/php/Module/JsonRender.php:112
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/JsonRender.php:112
+#: source/php/Module/JsonRender.php:113
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/JsonRender.php:137
+#: source/php/Module/JsonRender.php:114
+msgid "Search"
+msgstr "Sök"
+
+#: source/php/Module/JsonRender.php:115
+msgid "Filter list"
+msgstr "Filtrera listan"
+
+#: source/php/Module/JsonRender.php:140
 msgid "Reset settings"
 msgstr "Återställ inställningar"
 
-#: source/php/Module/JsonRender.php:138
+#: source/php/Module/JsonRender.php:141
 msgid "Enter a valid JSON api url."
 msgstr "Ange en giltig JSON API-URL."
 
-#: source/php/Module/JsonRender.php:139
+#: source/php/Module/JsonRender.php:142
 msgid "Send request"
 msgstr "Skicka begäran"
 
-#: source/php/Module/JsonRender.php:140
+#: source/php/Module/JsonRender.php:143
 msgid "Select where to retrieve the information"
 msgstr "Välj var informationen ska hämtas från"
 
-#: source/php/Module/JsonRender.php:141
+#: source/php/Module/JsonRender.php:144
 msgid "Information fields"
 msgstr "Informationsfält"
 
-#: source/php/Module/JsonRender.php:142
+#: source/php/Module/JsonRender.php:145
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Module/JsonRender.php:143
+#: source/php/Module/JsonRender.php:146
 msgid "Heading"
 msgstr "Rubrik"
 
-#: source/php/Module/JsonRender.php:144
+#: source/php/Module/JsonRender.php:147
 msgid "Headings"
 msgstr "Rubriker"
 
-#: source/php/Module/JsonRender.php:145
+#: source/php/Module/JsonRender.php:148
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/Module/JsonRender.php:146
+#: source/php/Module/JsonRender.php:149
 msgid "Select"
 msgstr "Välj"
 
-#: source/php/Module/JsonRender.php:147
+#: source/php/Module/JsonRender.php:150
 msgid "Could not fetch data from URL."
 msgstr "Det gick inte att hämta data."
 
-#: source/php/Module/JsonRender.php:148
+#: source/php/Module/JsonRender.php:151
 msgid "List"
 msgstr "Lista"
 
-#: source/php/Module/JsonRender.php:149
+#: source/php/Module/JsonRender.php:152
 msgid "Accordion"
 msgstr "Expanderbar lista"
 
-#: source/php/Module/JsonRender.php:150
+#: source/php/Module/JsonRender.php:153
 msgid "Accordion table"
 msgstr "Expanderbar tabell"
 
-#: source/php/Module/JsonRender.php:151
+#: source/php/Module/JsonRender.php:154
 msgid "Table"
 msgstr "Tabell"
 
-#: source/php/Module/JsonRender.php:152
+#: source/php/Module/JsonRender.php:155
 msgid "Select view"
 msgstr "Välj vy"
 
-#: source/php/Module/JsonRender.php:153
+#: source/php/Module/JsonRender.php:156
 msgid ""
 "Drag and drop fields into the areas to the right. The areas accept different "
 "amount of values depending on selected view."
@@ -159,29 +167,34 @@ msgstr ""
 "Dra och släpp fält i områdena till höger. Områdena accepterar olika antal "
 "fält beroende på vald vy."
 
-#: source/php/Module/JsonRender.php:154
+#: source/php/Module/JsonRender.php:157
 msgid "Value"
 msgstr "Värde"
 
-#: source/php/Module/JsonRender.php:155
+#: source/php/Module/JsonRender.php:158
 msgid "Prefix"
 msgstr ""
 
-#: source/php/Module/JsonRender.php:156
+#: source/php/Module/JsonRender.php:159
 msgid "Suffix"
 msgstr ""
 
-#: source/php/Module/JsonRender.php:157
+#: source/php/Module/JsonRender.php:160
 msgid "Select date format"
 msgstr "Välj datumformatering"
 
-#: source/php/Module/JsonRender.php:158
+#: source/php/Module/JsonRender.php:161
 msgid "None"
 msgstr "Ingen"
 
-#: source/php/Module/JsonRender.php:159
-msgid "Search"
-msgstr "Sök"
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:364
+msgid "Export with AcfExportManager"
+msgstr ""
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:408
+#, php-format
+msgid "Exported %d fieldgroup(s)."
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Modularity Json Render"

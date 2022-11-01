@@ -45,7 +45,7 @@ class Pagination extends Component {
                         </Button>
                     </div>
 
-                    <div className="o-grid-2">
+                    <div className="o-grid-2 modularity-json-render__pages">
                         <span class="c-typography c-typography__variant--h3">{current} / {total}</span>
                     </div>
 

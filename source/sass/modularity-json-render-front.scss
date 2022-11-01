@@ -33,12 +33,37 @@
     }
   }
 
+  .gutter {
+   padding-left: calc(var(--base, 8px) * 2);
+   padding-right: calc(var(--base, 8px) * 2);
+  }
+
+  .c-field__inner {
+    background-color: transparent;
+  }
+
   .c-card__footer .o-grid div {
     margin-bottom: 0px;
   }
-  
-}
 
+  .c-card__footer {
+    .o-grid {
+      justify-content: center;
+    }
+
+    .modularity-json-render__pages {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 56rem) {
+      .c-card__footer {
+        padding-left:calc(var(--base, 8px) * 2);
+        padding-right:calc(var(--base, 8px) * 2);
+      } 
+  }
+}
 
 
 
