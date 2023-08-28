@@ -10,8 +10,12 @@ $buildCommands = [
     'npm ci --no-progress --no-audit',
     'npx --yes browserslist@latest --update-db',
     'npm run build',
-    'composer install --prefer-dist --no-progress'
 ];
+
+//Add composer build, if flag --no-composer is undefined.
+if(is_array($argv) && !in_array('--no-composer', $argv)) {
+    $buildCommands[] = 'composer install --prefer-dist --no-progress --no-dev'; 
+}
 
 // Files and directories not suitable for prod to be removed.
 $removables = [
@@ -21,10 +25,10 @@ $removables = [
     'build.php',
     'composer.json',
     'composer.lock',
-    'webpack.config.js',
     'node_modules',
-    'package-lock.json',
     'package.json',
+    'package-lock.json',
+    '.vscode',
     'webpack.config.js'
 ];
 
