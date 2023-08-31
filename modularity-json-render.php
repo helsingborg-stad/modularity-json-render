@@ -25,14 +25,11 @@ define('MODULARITYJSONRENDER_TEMPLATE_PATH', MODULARITYJSONRENDER_PATH . 'templa
 
 load_plugin_textdomain('modularity-json-render', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
-require_once MODULARITYJSONRENDER_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
+// Autoload from plugin
+if (file_exists(MODULARITYJSONRENDER_PATH . 'vendor/autoload.php')) {
+    require_once MODULARITYJSONRENDER_PATH . 'vendor/autoload.php';
+}
 require_once MODULARITYJSONRENDER_PATH . 'Public.php';
-
-// Instantiate and register the autoloader
-$loader = new ModularityJsonRender\Vendor\Psr4ClassLoader();
-$loader->addPrefix('ModularityJsonRender', MODULARITYJSONRENDER_PATH);
-$loader->addPrefix('ModularityJsonRender', MODULARITYJSONRENDER_PATH . 'source/php/');
-$loader->register();
 
 add_filter( '/Modularity/externalViewPath', function($arr) 
     {
