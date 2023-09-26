@@ -20,7 +20,8 @@
     ],
     "autoload": {
         "psr-4": {
-          "ModularityJsonRender\\": "source/php/"
+            "ModularityJsonRender\\": "source/php/"
         }
-    }
+    },
+    "version": "2.0.0"
 }
