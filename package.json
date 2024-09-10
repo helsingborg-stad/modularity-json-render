@@ -1,5 +1,5 @@
 {
-    "name": "modularity-json-render",
+    "name": "@helsingborg-stad/modularity-json-render",
     "version": "3.0.4",
     "description": "Renders JSON api:s as a list etc.",
     "main": "",
@@ -27,6 +27,7 @@
         "> 1%",
         "not dead"
     ],
+    "files": ["dist/"],
     "devDependencies": {
         "@babel/core": "^7.17.2",
         "@babel/plugin-proposal-class-properties": "^7.16.7",
