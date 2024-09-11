@@ -37,17 +37,14 @@ class App
      */
     public function registerFrontendAssets()
     {
-        $frontCss = MODULARITYJSONRENDER_URL . '/dist/'
-            . Helper\CacheBust::name('css/modularity-json-render-front.css');
-
         wp_register_style(
             'modularity-json-render-front',
-            $frontCss
+            MODULARITYJSONRENDER_URL . '/dist/'
+            . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render-front.css')
         );
         wp_enqueue_style('modularity-json-render-front');
 
-        $frontJs = MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.js');
-        wp_register_script('modularity-json-render', $frontJs, array('jquery', 'react', 'react-dom'));
+        wp_register_script('modularity-json-render', MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/Front/IndexFront.js'), array('jquery', 'react', 'react-dom'));
     }
 
     /**
@@ -57,14 +54,14 @@ class App
     public function registerAdminAssets()
     {
         $adminCss = MODULARITYJSONRENDER_URL . '/dist/'
-            . Helper\CacheBust::name('css/modularity-json-render-admin.css');
+            . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render-admin.css');
 
-        wp_register_style('modularity-json-render-admin', $adminCss);
+        wp_register_style('modularity-json-render-admin', MODULARITYJSONRENDER_URL . '/dist/'
+        . \ModularityJsonRender\Helper\CacheBust::name('css/modularity-json-render-admin.css'));
 
-        $adminJs = MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Admin/IndexAdmin.js');
         wp_register_script(
             'modularity-json-render-admin-js',
-            $adminJs,
+            MODULARITYJSONRENDER_URL . '/dist/' . \ModularityJsonRender\Helper\CacheBust::name('js/Admin/IndexAdmin.js'),
             array('jquery', 'react', 'react-dom'),
             false,
             true
