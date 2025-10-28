@@ -11,7 +11,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'registerAdminAssets'));
 
         //Init module
-        add_action('plugins_loaded', array($this, 'registerModule'));
+        add_action('init', array($this, 'registerModule'));
 
         //Register meta boxes
         add_action('add_meta_boxes', array($this, 'registerMetaBoxes'));
