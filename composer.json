@@ -8,9 +8,21 @@
             "email": "sebastian.thulin@helsingborg.se"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}": [
+                "type:wordpress-muplugin",
+                "type:wordpress-theme",
+                "type:wordpress-plugin",
+                "type:acf-plugin"
+            ]
+        }
+    },
     "require": {
-        "helsingborg-stad/acf-export-manager": ">=1.0.0"
+        "helsingborg-stad/acf-export-manager": ">=1.0.0",
+        "helsingborg-stad/municipio": "^6.0.0"
     },
     "repositories": [
         {
