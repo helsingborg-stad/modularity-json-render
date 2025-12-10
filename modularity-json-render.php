@@ -12,6 +12,8 @@
  * Text Domain:       modularity-json-render
  * Domain Path:       /languages
  */
+use WpService\Implementations\NativeWpService;
+use WpUtilService\WpUtilService;
 
  // Protect agains direct file access
 if (! defined('WPINC')) {
@@ -49,5 +51,8 @@ add_action('plugins_loaded', function () {
     $acfExportManager->import();
 });
 
+$wpService = new NativeWpService();
+$wpUtilService = new WpUtilService($wpService);
+
 // Start application
-new ModularityJsonRender\App();
+new ModularityJsonRender\App($wpUtilService->enqueue(__DIR__));

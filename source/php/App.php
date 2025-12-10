@@ -2,19 +2,22 @@
 
 namespace ModularityJsonRender;
 
+use WpUtilService\Features\Enqueue\EnqueueManager;
+
 class App
 {
-    public function __construct()
-    {
+    public function __construct(
+        private EnqueueManager $wpEnqueue,
+    ) {
         //Register scripts
-        add_action('wp_enqueue_scripts', array($this, 'registerFrontendAssets'));
-        add_action('admin_enqueue_scripts', array($this, 'registerAdminAssets'));
+        add_action('wp_enqueue_scripts', [$this, 'registerFrontendAssets']);
+        add_action('admin_enqueue_scripts', [$this, 'registerAdminAssets']);
 
         //Init module
-        add_action('init', array($this, 'registerModule'));
+        add_action('init', [$this, 'registerModule']);
 
         //Register meta boxes
-        add_action('add_meta_boxes', array($this, 'registerMetaBoxes'));
+        add_action('add_meta_boxes', [$this, 'registerMetaBoxes']);
     }
 
     /**
@@ -26,7 +29,7 @@ class App
         if (function_exists('modularity_register_module')) {
             modularity_register_module(
                 MODULARITYJSONRENDER_PATH . 'source/php/Module/',
-                'JsonRender'
+                'JsonRender',
             );
         }
     }
@@ -37,17 +40,7 @@ class App
      */
     public function registerFrontendAssets()
     {
-        $frontCss = MODULARITYJSONRENDER_URL . '/dist/'
-            . Helper\CacheBust::name('css/modularity-json-render-front.css');
-
-        wp_register_style(
-            'modularity-json-render-front',
-            $frontCss
-        );
-        wp_enqueue_style('modularity-json-render-front');
-
-        $frontJs = MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Front/IndexFront.js');
-        wp_register_script('modularity-json-render', $frontJs, array('jquery', 'react', 'react-dom'));
+        $this->wpEnqueue->add('css/modularity-json-render-front.css')->add('js/Front/IndexFront.js', ['jquery', 'react', 'react-dom']);
     }
 
     /**
@@ -56,20 +49,7 @@ class App
      */
     public function registerAdminAssets()
     {
-        $adminCss = MODULARITYJSONRENDER_URL . '/dist/'
-            . Helper\CacheBust::name('css/modularity-json-render-admin.css');
-
-        wp_register_style('modularity-json-render-admin', $adminCss);
-
-        $adminJs = MODULARITYJSONRENDER_URL . '/dist/' . Helper\CacheBust::name('js/Admin/IndexAdmin.js');
-        wp_register_script(
-            'modularity-json-render-admin-js',
-            $adminJs,
-            array('jquery', 'react', 'react-dom'),
-            false,
-            true
-        );
-
+        $this->wpEnqueue->add('css/modularity-json-render-admin.css')->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true);
     }
 
     /**
@@ -78,9 +58,15 @@ class App
      */
     public function registerMetaBoxes()
     {
-        add_meta_box('json-api-fields', __('Data settings', 'modularity-json-render'),
-            function () {
+        add_meta_box(
+            'json-api-fields',
+            __('Data settings', 'modularity-json-render'),
+            static function () {
                 echo '<div id="modularity-json-render"></div>';
-            }, 'mod-json-render', 'normal', 'high');
+            },
+            'mod-json-render',
+            'normal',
+            'high',
+        );
     }
 }

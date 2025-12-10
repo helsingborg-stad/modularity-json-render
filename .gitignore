@@ -13,6 +13,7 @@ vendor/
 
 # ignore dist folder
 dist/
+assets/
 
 # ignore jekyll build directory
 /_site
@@ -53,6 +54,9 @@ Thumbs.db
 dist/temp
 dist/.temp
 
+phpunit-log.xml
+phpunit-testdox.txt
+
 # -------------------------
 # BEGIN Whitelisted Files
 # -------------------------
@@ -61,3 +65,4 @@ dist/.temp
 !.gitignore
 !.editorconfig
 !.babelrc
+!.vscode
