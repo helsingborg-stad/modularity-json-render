@@ -103,18 +103,20 @@ class JsonRender extends \Modularity\Module
         // Enqueue React
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
-        wp_enqueue_script('modularity-' . $this->slug);
-        wp_localize_script('modularity-' . $this->slug, 'modJsonRender', [
-            'translation' => [
-                'somethingWentWrong' => __('Something went wrong, please try again later.', 'modularity-json-render'),
-                'noResults' => __('No results found.', 'modularity-json-render'),
-                'filterOn' => __('Filter on...', 'modularity-json-render'),
-                'next' => __('Next', 'modularity-json-render'),
-                'prev' => __('Previous', 'modularity-json-render'),
-                'search' => __('Search', 'modularity-json-render'),
-                'searchInputAriaLabel' => __('Filter list', 'modularity-json-render'),
-            ],
-        ]);
+        $this->wpEnqueue
+            ?->add('js/empty.js')
+            ->with()
+            ->translation('modJsonRender', [
+                'translation' => [
+                    'somethingWentWrong' => __('Something went wrong, please try again later.', 'modularity-json-render'),
+                    'noResults' => __('No results found.', 'modularity-json-render'),
+                    'filterOn' => __('Filter on...', 'modularity-json-render'),
+                    'next' => __('Next', 'modularity-json-render'),
+                    'prev' => __('Previous', 'modularity-json-render'),
+                    'search' => __('Search', 'modularity-json-render'),
+                    'searchInputAriaLabel' => __('Filter list', 'modularity-json-render'),
+                ],
+            ]);
     }
 
     public function style()
@@ -131,37 +133,39 @@ class JsonRender extends \Modularity\Module
         // Enqueue React
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
-        wp_enqueue_script('modularity-json-render-admin-js');
         $options = $this->getOptions($post->ID);
-        wp_localize_script('modularity-json-render-admin-js', 'modJsonRender', [
-            'options' => $options,
-            'translation' => [
-                'resetSettings' => __('Reset settings', 'modularity-json-render'),
-                'validJsonUrl' => __('Enter a valid JSON api url.', 'modularity-json-render'),
-                'sendRequest' => __('Send request', 'modularity-json-render'),
-                'selectItemsContainer' => __('Select where to retrieve the information', 'modularity-json-render'),
-                'infoFields' => __('Information fields', 'modularity-json-render'),
-                'title' => __('Title', 'modularity-json-render'),
-                'heading' => __('Heading', 'modularity-json-render'),
-                'headings' => __('Headings', 'modularity-json-render'),
-                'content' => __('Content', 'modularity-json-render'),
-                'select' => __('Select', 'modularity-json-render'),
-                'couldNotFetch' => __('Could not fetch data from URL.', 'modularity-json-render'),
-                'list' => __('List', 'modularity-json-render'),
-                'accordion' => __('Accordion', 'modularity-json-render'),
-                'accordiontable' => __('Accordion table', 'modularity-json-render'),
-                'table' => __('Table', 'modularity-json-render'),
-                'selectView' => __('Select view', 'modularity-json-render'),
-                'dragAndDropInfo' => __('Drag and drop fields into the areas to the right. The areas accept different amount of values depending on selected view.', 'modularity-json-render'),
-                'value' => __('Value', 'modularity-json-render'),
-                'prefix' => __('Prefix', 'modularity-json-render'),
-                'suffix' => __('Suffix', 'modularity-json-render'),
-                'selectDateFormat' => __('Select date format', 'modularity-json-render'),
-                'none' => __('None', 'modularity-json-render'),
-            ],
-        ]);
 
-        wp_enqueue_style('modularity-' . $this->slug . '-admin'); // Enqueue styles
+        $this->wpEnqueue
+            ?->add('js/empty.js')
+            ->with()
+            ->translation('modJsonRender', [
+                'options' => $options,
+                'translation' => [
+                    'resetSettings' => __('Reset settings', 'modularity-json-render'),
+                    'validJsonUrl' => __('Enter a valid JSON api url.', 'modularity-json-render'),
+                    'sendRequest' => __('Send request', 'modularity-json-render'),
+                    'selectItemsContainer' => __('Select where to retrieve the information', 'modularity-json-render'),
+                    'infoFields' => __('Information fields', 'modularity-json-render'),
+                    'title' => __('Title', 'modularity-json-render'),
+                    'heading' => __('Heading', 'modularity-json-render'),
+                    'headings' => __('Headings', 'modularity-json-render'),
+                    'content' => __('Content', 'modularity-json-render'),
+                    'select' => __('Select', 'modularity-json-render'),
+                    'couldNotFetch' => __('Could not fetch data from URL.', 'modularity-json-render'),
+                    'list' => __('List', 'modularity-json-render'),
+                    'accordion' => __('Accordion', 'modularity-json-render'),
+                    'accordiontable' => __('Accordion table', 'modularity-json-render'),
+                    'table' => __('Table', 'modularity-json-render'),
+                    'selectView' => __('Select view', 'modularity-json-render'),
+                    'dragAndDropInfo' => __('Drag and drop fields into the areas to the right. The areas accept different amount of values depending on selected view.', 'modularity-json-render'),
+                    'value' => __('Value', 'modularity-json-render'),
+                    'prefix' => __('Prefix', 'modularity-json-render'),
+                    'suffix' => __('Suffix', 'modularity-json-render'),
+                    'selectDateFormat' => __('Select date format', 'modularity-json-render'),
+                    'none' => __('None', 'modularity-json-render'),
+                ],
+            ])
+            ->add('css/modularity-json-render-admin.css');
     }
 
     public function getOptions($postId)

@@ -13,7 +13,7 @@ vendor/
 
 # ignore dist folder
 dist/
-assets/
+/assets/
 
 # ignore jekyll build directory
 /_site

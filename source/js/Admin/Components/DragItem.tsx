@@ -1,7 +1,7 @@
 import { translation } from '../Config/config';
 import { isDate, getDate, getDateTime } from '../../Utilities/date';
 import { DragSource, DropTarget } from 'react-dnd';
-
+import React from 'react'
 class DragItem extends React.Component {
 	render() {
 		const { listId, item, heading, prefix, suffix, dateFormat, fieldChange, removeItem, index } = this.props;

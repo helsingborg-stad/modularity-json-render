@@ -9,7 +9,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"skipLibCheck": true,
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"lib": ["ES2021", "DOM", "DOM.Iterable"]
 	},
 	"include": ["source/js/**/*", "global.d.ts"]

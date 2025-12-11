@@ -1,6 +1,7 @@
 // Polyfills
 import 'es6-promise';
 import 'isomorphic-fetch';
+import ReactDOM from 'react-dom'
 // Components
 import JsonParser from './Components/JsonParser';
 
