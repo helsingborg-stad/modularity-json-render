@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/modularity-json-render",
-    "version": "4.0.2",
+    "version": "4.0.4",
     "description": "Renders JSON api:s as a list etc.",
     "main": "",
     "scripts": {

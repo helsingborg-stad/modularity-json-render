@@ -4,7 +4,7 @@
  * Plugin Name:       Modularity Json Render
  * Plugin URI:        https://github.com/helsingborg-stad/modularity-json-render
  * Description:       Renders JSON api:s as a list etc.
- * Version: 4.0.2
+ * Version: 4.0.4
  * Author:            Sebastian Thulin, Jonatan Hanson
  * Author URI:        https://github.com/sebastianthulin
  * License:           MIT
