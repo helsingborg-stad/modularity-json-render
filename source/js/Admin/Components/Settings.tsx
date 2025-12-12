@@ -2,7 +2,7 @@ import FieldSelection from './FieldSelection';
 import InputFields from './InputFields';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import React from 'react'
+import React from 'react';
 class Settings extends React.Component {
 	constructor(props) {
 		super(props);

@@ -1,6 +1,6 @@
 import DataList from './DataList';
 import getApiData from '../../Utilities/getApiData';
-import React from 'react'
+import React from 'react';
 class FieldSelection extends React.Component {
 	componentDidMount() {
 		this.getData();

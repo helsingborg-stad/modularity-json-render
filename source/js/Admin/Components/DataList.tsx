@@ -4,7 +4,7 @@ import ViewOption from './ViewOption';
 import { dropAreas } from '../Config/config';
 import RecursiveIterator from 'recursive-iterator';
 import objectPath from 'object-path';
-import React from 'react'
+import React from 'react';
 
 class DataList extends React.Component {
 	updateFieldMap(field, value) {

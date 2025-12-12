@@ -1,7 +1,7 @@
 import { DropTarget } from 'react-dnd';
 import DragItem from './DragItem';
 import update from 'immutability-helper';
-import React from 'react'
+import React from 'react';
 class DropArea extends React.Component {
 	constructor(props) {
 		super(props);
