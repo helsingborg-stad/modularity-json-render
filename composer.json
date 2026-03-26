@@ -33,7 +33,7 @@
         "helsingborg-stad/wputilservice": "^0.2.44"
     },
     "suggest": {
-        "helsingborg-stad/municipio": "^6.0.0"
+        "helsingborg-stad/municipio": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.5",
