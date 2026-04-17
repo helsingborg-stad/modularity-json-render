@@ -6,14 +6,14 @@ const SearchField = ({ doSearch, translation, uid }) => {
 	const searchInputId = useMemo(() => createDataUid(uid, 'search-input'), [uid]);
 
 	return (
-		<div class="c-card__body">
-			<div class="c-field c-field__text">
-				<label class="c-field__text--label u-sr__only" htmlFor={searchInputId}>
+		<div className="c-card__body">
+			<div className="c-field c-field__text">
+				<label className="c-field__text--label u-sr__only" htmlFor={searchInputId}>
 					{translation.search}
 				</label>
-				<div class="c-field__inner c-field__inner--text">
+				<div className="c-field__inner c-field__inner--text">
 					<i
-						class="c-icon c-field__icon c-icon--size-md material-icons"
+						className="c-icon c-field__icon c-icon--size-md material-icons"
 						translate="no"
 						role="img"
 						aria-label="Icon: Undefined"
