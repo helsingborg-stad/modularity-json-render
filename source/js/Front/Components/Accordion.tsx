@@ -25,7 +25,10 @@ const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, i
 				{view === 'accordiontable' && (
 					<header className="c-accordion__button-wrapper accordion-table__head">
 						{fieldMap.heading.map((heading) => (
-							<span key={`${heading.item?.value ?? heading.heading}-${heading.heading}`} className="match-heading">
+							<span
+								key={heading.item?.value ? `${heading.item.value}-${heading.heading}` : `heading-${heading.heading}`}
+								className="match-heading"
+							>
 								{heading.heading}
 							</span>
 						))}

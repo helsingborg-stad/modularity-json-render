@@ -23,7 +23,6 @@ const SearchField = ({ doSearch, translation, uid }) => {
 					</i>
 					<input
 						id={searchInputId}
-						aria-label={translation.searchInputAriaLabel}
 						type="text"
 						name="json-render-search"
 						onChange={doSearch}
