@@ -16,6 +16,7 @@
 
     <div class="modularity-json-render"
          data-url="{{ $url }}"
+         data-uid="{{ $uid }}"
          data-view="{{ $view }}"
          data-field-map="{{ $fieldMap }}"
          data-show-search="{{ $show_search ? true : false }}"

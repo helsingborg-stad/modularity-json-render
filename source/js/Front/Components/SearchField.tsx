@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import createDataUid from '../../Utilities/dataUid';
 
-const SearchField = ({ doSearch, translation }) => {
-	const searchIconDataUid = useMemo(() => createDataUid(), []);
-	const searchInputId = useMemo(() => `json-render-search-${createDataUid()}`, []);
+const SearchField = ({ doSearch, translation, uid }) => {
+	const searchIconDataUid = useMemo(() => createDataUid(uid, 'search-icon'), [uid]);
+	const searchInputId = useMemo(() => createDataUid(uid, 'search-input'), [uid]);
 
 	return (
 		<div class="c-card__body">

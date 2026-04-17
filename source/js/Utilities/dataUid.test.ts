@@ -13,7 +13,19 @@ describe('normalizeDataUid', () => {
 });
 
 describe('createDataUid', () => {
-	it('creates a normalized data uid from the generated uuid value', () => {
+	it('uses the existing component uid when it is available', () => {
+		const dataUid = createDataUid('module-uid');
+
+		expect(dataUid).toBe('module-uid');
+	});
+
+	it('appends a suffix when a nested element needs its own identifier', () => {
+		const dataUid = createDataUid('module-uid', 'search-input');
+
+		expect(dataUid).toBe('module-uid-search-input');
+	});
+
+	it('falls back to a normalized generated uuid when no component uid is available', () => {
 		const dataUid = createDataUid();
 
 		expect(dataUid).toBe('123e4567e89b12d3a456426614174000');

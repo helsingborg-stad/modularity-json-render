@@ -3,8 +3,8 @@ import AccordionItem from './AccordionItem';
 import SearchField from './SearchField';
 import createDataUid from '../../Utilities/dataUid';
 
-const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, itemClicked }) => {
-	const accordionDataUid = useMemo(() => createDataUid(), []);
+const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, itemClicked, uid }) => {
+	const accordionDataUid = useMemo(() => createDataUid(uid), [uid]);
 
 	return (
 		<div>
@@ -14,7 +14,7 @@ const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, i
 				js-expand-container=""
 				data-uid={accordionDataUid}
 			>
-				{showSearch && <SearchField doSearch={doSearch} translation={translation} />}
+				{showSearch && <SearchField doSearch={doSearch} translation={translation} uid={uid} />}
 
 				{Object.keys(items).length === 0 && (
 					<div className="gutter">
@@ -25,7 +25,7 @@ const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, i
 				{view === 'accordiontable' && (
 					<header className="c-accordion__button-wrapper accordion-table__head">
 						{fieldMap.heading.map((heading) => (
-							<span key={`${heading.item.value}-${heading.heading}`} className="match-heading">
+							<span key={JSON.stringify(heading)} className="match-heading">
 								{heading.heading}
 							</span>
 						))}

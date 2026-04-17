@@ -1,8 +1,8 @@
 import SearchField from './SearchField';
 
-const List = ({ items, showSearch, doSearch, translation }) => (
+const List = ({ items, showSearch, doSearch, translation, uid }) => (
 	<div>
-		{showSearch && <SearchField doSearch={doSearch} translation={translation} />}
+		{showSearch && <SearchField doSearch={doSearch} translation={translation} uid={uid} />}
 
 		{Object.keys(items).length === 0 && (
 			<div className="gutter">

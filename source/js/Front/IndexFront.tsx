@@ -13,11 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		ReactDOM.render(
 			<JsonParser
 				url={element.dataset.url}
+				uid={element.dataset.uid}
 				view={element.dataset.view}
 				fieldMap={JSON.parse(element.dataset.fieldMap)}
 				showSearch={element.dataset.showSearch}
 				showPagination={element.dataset.showPagination}
-				perPage={parseInt(element.dataset.perPage)}
+				perPage={parseInt(element.dataset.perPage, 10)}
 				translation={translation}
 			/>,
 			element,

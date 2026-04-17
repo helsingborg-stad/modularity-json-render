@@ -228,6 +228,7 @@ class JsonParser extends React.Component {
 
 	switchView(view) {
 		const props = {
+			uid: this.props.uid,
 			showSearch: this.props.showSearch,
 			doSearch: this.handleSearch.bind(this),
 			items: this.state.paginatedItems,

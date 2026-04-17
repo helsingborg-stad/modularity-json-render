@@ -1,8 +1,8 @@
 import SearchField from './SearchField';
 
-const Table = ({ items, showSearch, doSearch, translation, view, fieldMap }) => (
+const Table = ({ items, showSearch, doSearch, translation, fieldMap, uid }) => (
 	<div class="c-table table-striped table-bordered">
-		{showSearch && <SearchField doSearch={doSearch} translation={translation} />}
+		{showSearch && <SearchField doSearch={doSearch} translation={translation} uid={uid} />}
 
 		{Object.keys(items).length === 0 && (
 			<div className="gutter">
