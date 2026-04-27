@@ -7,7 +7,12 @@ import JsonParser from './Components/JsonParser';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const domElements = document.getElementsByClassName('modularity-json-render');
-	const { translation } = modJsonRender;
+	const { translation } = modJsonRender || { translation: null };
+
+	if (translation === null) {
+		return;
+	}
+
 	for (let i = 0; i < domElements.length; i++) {
 		const element = domElements[i];
 		ReactDOM.render(
