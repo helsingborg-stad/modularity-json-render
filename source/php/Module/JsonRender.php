@@ -100,11 +100,13 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
+        $dependencies = ['jquery', 'react', 'react-dom'];
+
         // Enqueue React
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         $this->wpEnqueue
-            ?->add('js/Front/IndexFront.js', ['jquery', 'react', 'react-dom'])
+            ?->add('js/Front/IndexFront.js', $dependencies)
             ->with()
             ->translation('modJsonRender', [
                 'translation' => [
@@ -131,13 +133,17 @@ class JsonRender extends \Modularity\Module
             return;
         }
 
+        $dependencies = ['jquery', 'react', 'react-dom'];
+        $version = false;
+        $loadInFooter = true;
+
         // Enqueue React
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         $options = $this->getOptions($post->ID);
 
         $this->wpEnqueue
-            ?->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true)
+            ?->add('js/Admin/IndexAdmin.js', $dependencies, $version, $loadInFooter)
             ->with()
             ->translation('modJsonRender', [
                 'options' => $options,
