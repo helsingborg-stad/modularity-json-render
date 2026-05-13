@@ -7,7 +7,7 @@ import JsonParser from './Components/JsonParser';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const domElements = document.getElementsByClassName('modularity-json-render');
-	const { translation } = modJsonRender || { translation: null };
+	const translation = typeof modJsonRender !== 'undefined' ? modJsonRender.translation ?? null : null;
 
 	if (translation === null) {
 		return;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				fieldMap={JSON.parse(element.dataset.fieldMap)}
 				showSearch={element.dataset.showSearch}
 				showPagination={element.dataset.showPagination}
-				perPage={parseInt(element.dataset.perPage)}
+				perPage={parseInt(element.dataset.perPage, 10)}
 				translation={translation}
 			/>,
 			element,
