@@ -104,7 +104,7 @@ class JsonRender extends \Modularity\Module
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         $this->wpEnqueue
-            ?->add('js/empty.js')
+            ?->add('js/Front/IndexFront.js', ['jquery', 'react', 'react-dom'])
             ->with()
             ->translation('modJsonRender', [
                 'translation' => [
@@ -121,6 +121,7 @@ class JsonRender extends \Modularity\Module
 
     public function style()
     {
+        $this->wpEnqueue?->add('css/modularity-json-render-front.css');
     }
 
     public function adminEnqueue()
@@ -136,7 +137,7 @@ class JsonRender extends \Modularity\Module
         $options = $this->getOptions($post->ID);
 
         $this->wpEnqueue
-            ?->add('js/empty.js')
+            ?->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true)
             ->with()
             ->translation('modJsonRender', [
                 'options' => $options,
