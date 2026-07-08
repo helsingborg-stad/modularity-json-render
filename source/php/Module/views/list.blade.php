@@ -1,5 +1,5 @@
 @card([
-    'classList' => [$classes],
+    'classList' => explode(' ', $classes),
     'id' => 'mod-json-render-container'
 ])
     @if (!$hideTitle && !empty($post_title))
