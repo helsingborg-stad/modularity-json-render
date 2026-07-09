@@ -3,6 +3,7 @@
 namespace ModularityJsonRender;
 
 use WpUtilService\Features\Enqueue\EnqueueManager;
+use Municipio\Api\RestApiEndpointsRegistry;
 
 class App
 {
@@ -18,6 +19,8 @@ class App
 
         //Register meta boxes
         add_action('add_meta_boxes', [$this, 'registerMetaBoxes']);
+
+        RestApiEndpointsRegistry::add(new \ModularityJsonRender\Api\Endpoint());
     }
 
     /**
