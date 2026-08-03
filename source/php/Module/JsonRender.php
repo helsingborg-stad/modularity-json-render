@@ -100,9 +100,6 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
-        // Enqueue React
-        class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
-
         $this->wpEnqueue
             ?->add('js/empty.js')
             ->with()
@@ -129,9 +126,6 @@ class JsonRender extends \Modularity\Module
         if (!isset($post->post_type) || $post->post_type !== 'mod-' . $this->slug) {
             return;
         }
-
-        // Enqueue React
-        class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         $options = $this->getOptions($post->ID);
 

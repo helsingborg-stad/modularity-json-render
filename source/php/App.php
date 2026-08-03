@@ -40,7 +40,7 @@ class App
      */
     public function registerFrontendAssets()
     {
-        $this->wpEnqueue->add('css/modularity-json-render-front.css')->add('js/Front/IndexFront.js', ['jquery', 'react', 'react-dom']);
+        $this->wpEnqueue->add('css/modularity-json-render-front.css')->add('js/Front/IndexFront.js', ['jquery']);
     }
 
     /**
@@ -49,7 +49,7 @@ class App
      */
     public function registerAdminAssets()
     {
-        $this->wpEnqueue->add('css/modularity-json-render-admin.css')->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true);
+        $this->wpEnqueue->add('css/modularity-json-render-admin.css')->add('js/Admin/IndexAdmin.js', ['jquery'], false, true);
     }
 
     /**

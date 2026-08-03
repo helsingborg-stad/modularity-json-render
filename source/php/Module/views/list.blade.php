@@ -24,3 +24,5 @@
     </div>
 
 @endcard
+
+@dump($url)
