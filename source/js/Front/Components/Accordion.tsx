@@ -5,7 +5,8 @@ const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, i
 	<div>
 		<div
 			id="jsonRenderData"
-			className="c-collection c-collection--bordered c-collection--sharp-top c-accordion"
+			className="c-accordion"
+			style={{ '--c-accordion--heading-count': fieldMap.heading.length ?? 1 }}
 			js-expand-container=""
 			data-uid="5fce30f28f9d0"
 		>
@@ -18,29 +19,25 @@ const Accordion = ({ items, showSearch, doSearch, translation, view, fieldMap, i
 			)}
 
 			{view === 'accordiontable' && (
-				<header className="c-accordion__button-wrapper accordion-table__head">
+				<div className='c-accordion__heading'>
 					{fieldMap.heading.map((heading, i) => (
-						<span key={'acTable' + i} className={'match-heading'}>
+						<span key={'acTable' + i} className="c-element c-accordion__heading-item">
 							{heading.heading}
 						</span>
 					))}
-					<span className="colum-alignment">&nbsp;</span>
-				</header>
+				</div>
 			)}
 
-			{items.map((item, index) => (
-				<AccordionItem
-					className="c-collection__item c-collection__item--action"
-					key={item.id}
-					heading={item.heading}
-					content={item.content}
-					view={view}
-					//index={index + '-' + Math.round(Math.random() * 100000000)}
-					index={item.id}
-					itemClicked={itemClicked.bind(this)}
-					fieldMap={fieldMap}
-				/>
-			))}
+				{items.map((item, index) => (
+					<AccordionItem
+						heading={item.heading}
+						content={item.content}
+						view={view}
+						index={item.id}
+						itemClicked={itemClicked.bind(this)}
+						key={item.id}
+					/>
+				))}
 		</div>
 	</div>
 );
