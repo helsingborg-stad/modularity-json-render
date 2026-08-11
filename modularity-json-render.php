@@ -25,6 +25,8 @@ define('MODULARITYJSONRENDER_URL', plugins_url('', __FILE__));
 define('MODULARITYJSONRENDER_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . 'source/php/Module/views');
 define('MODULARITYJSONRENDER_TEMPLATE_PATH', MODULARITYJSONRENDER_PATH . 'templates/');
 
+define('MODULARITYJSONRENDER_ENDPOINT', 'mod-json-render/v1/');
+
 load_plugin_textdomain('modularity-json-render', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
 // Autoload from plugin
@@ -55,4 +57,4 @@ $wpService = new NativeWpService();
 $wpUtilService = new WpUtilService($wpService);
 
 // Start application
-new ModularityJsonRender\App($wpUtilService->enqueue(__DIR__));
+new ModularityJsonRender\App($wpService, $wpUtilService->enqueue(__DIR__));
