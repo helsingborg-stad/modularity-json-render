@@ -29,9 +29,13 @@ class Endpoint extends RestApiEndpoint
                         return is_numeric($param);
                     },
                 ],
+                'html' => [
+                    'required' => false,
+                ],
             ],
         ]);
     }
+
     public function handleRequest(WP_REST_Request $request): WP_REST_Response
     {
         $moduleId = $request->get_param('id');
@@ -42,17 +46,21 @@ class Endpoint extends RestApiEndpoint
             ], 400);
         }
 
-        $config        = new Config($this->wpService, $moduleId);
-        $data          = (new FetchData($config, $this->wpService))->fetch();
-        $extractedData = (new ExtractData($config, $this->wpService, $data))->extract();
-        die;
-        if (empty($data)) {
+        $config = new Config($this->wpService, $moduleId);
+        $rawData = (new FetchData($config, $this->wpService))->fetch();
+
+        if (empty($rawData)) {
             return new WP_REST_Response([
                 'error' => 'No data found',
             ], 404);
         }
 
+        $data = (new ExtractData($config, $rawData))->extract();
 
-        return new WP_REST_Response("", 200);
+        if ($request->get_param('html') !== null) {
+            $data = (new HtmlTransformer())->transform($data, $config);
+        }
+        
+        return new WP_REST_Response($data, 200);
     }
 }

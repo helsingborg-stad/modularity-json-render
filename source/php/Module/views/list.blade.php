@@ -24,3 +24,11 @@
     </div>
 
 @endcard
+
+@element([
+    'attributeList' => [
+        'mod-json-render-container' => $id ?? ''
+    ]
+])
+    <!-- Container for fetched data -->
+@endelement

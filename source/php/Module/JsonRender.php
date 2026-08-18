@@ -88,6 +88,7 @@ class JsonRender extends \Modularity\Module
         $data['url'] = $options['url'];
         $data['view'] = $options['view'];
         $data['fieldMap'] = $options['fieldMap'];
+        $data['id'] = $this->ID;
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', ['box', 'box-panel'], $this->post_type, $this->args));
 
         return $data;
@@ -100,6 +101,9 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
+
+        $this->wpEnqueue?->add('js/Front/jsonParser.js');
+
         // Enqueue React
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 

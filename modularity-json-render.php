@@ -23,6 +23,7 @@ if (! defined('WPINC')) {
 define('MODULARITYJSONRENDER_PATH', plugin_dir_path(__FILE__));
 define('MODULARITYJSONRENDER_URL', plugins_url('', __FILE__));
 define('MODULARITYJSONRENDER_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . 'source/php/Module/views');
+define('MODULARITYJSONRENDER_VIEW_PATH', plugin_dir_path(__FILE__) . 'views/');
 define('MODULARITYJSONRENDER_TEMPLATE_PATH', MODULARITYJSONRENDER_PATH . 'templates/');
 
 define('MODULARITYJSONRENDER_ENDPOINT', 'mod-json-render/v1/');

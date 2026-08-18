@@ -8,7 +8,6 @@ class ExtractData implements ExtractDataInterface
 {
     public function __construct(
         private ConfigInterface $config,
-        private WpService $wpService,
         private array $data = []
     ) {}
 
