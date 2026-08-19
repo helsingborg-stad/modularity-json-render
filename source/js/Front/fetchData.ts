@@ -9,7 +9,7 @@ class FetchData {
             throw new Error(`Failed to fetch data. Status: ${response.status}`);
         }
 
-        const body = await response.text();
+        const body = await response.json();
 
         return body;
     }

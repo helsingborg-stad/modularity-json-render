@@ -83,8 +83,9 @@ class JsonRender extends \Modularity\Module
     public function data(): array
     {
         $options = $this->getOptions($this->ID);
-
-        $data = get_fields($this->ID);
+        $fields = get_fields($this->ID);
+        $data = is_array($fields) ? $fields : [];
+        $data['headings'] = $this->getHeadingsFromFieldMap($options['fieldMap'] ?? '');
         $data['url'] = $options['url'];
         $data['view'] = $options['view'];
         $data['fieldMap'] = $options['fieldMap'];
@@ -92,6 +93,17 @@ class JsonRender extends \Modularity\Module
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', ['box', 'box-panel'], $this->post_type, $this->args));
 
         return $data;
+    }
+
+    private function getHeadingsFromFieldMap(string $fieldMap): array {
+        $decodedFieldMap = json_decode($fieldMap, true);
+        $headings = [];
+        if (!isset($decodedFieldMap['heading']) || !is_array($decodedFieldMap['heading'])) {
+            return $headings;
+        }
+        $headings = array_column($decodedFieldMap['heading'], 'heading');
+
+        return $headings;
     }
 
     public function template(): string

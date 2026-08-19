@@ -7,17 +7,21 @@ class JsonParser {
     ) {
     }
 
-    public init() {
-        const data = new FetchData().fetch(this.id);
+    public async init() {
+        const data = await new FetchData().fetch(this.id);
+        const template = document.createElement('template');
+        template.innerHTML = data;
+
+        this.container.appendChild(template.content);
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[mod-json-render-container]').forEach((container) => {
-        const id = container.getAttribute('mod-json-render-container');
+    document.querySelectorAll('[data-js-mod-json-render-container]').forEach((container) => {
+        const id = container.getAttribute('data-js-mod-json-render-container');
 
         if (!id) {
-            console.error('No id found for mod-json-render-container');
+            console.error('No id found for data-js-mod-json-render-container');
             return;
         }
 

@@ -1,6 +1,6 @@
-@card([
+{{-- @card([
     'classList' => explode(' ', $classes),
-    'id' => 'mod-json-render-container'
+    'id' => 'data-js-mod-json-render-container'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
@@ -23,12 +23,27 @@
          data-per-page="{{ $per_page ?? 10 }}">
     </div>
 
-@endcard
-
+@endcard --}}
 @element([
     'attributeList' => [
-        'mod-json-render-container' => $id ?? ''
+        'data-js-pagination-target' => true,
     ]
 ])
-    <!-- Container for fetched data -->
+    @accordion([
+        'heading' => $headings ?? [],
+        'attributeList' => [
+            'data-js-pagination-container' => true,
+            'data-js-data-js-mod-json-render-container' => $id
+        ]
+    ])
+        <!-- Container for fetched data -->
+    @endaccordion
+    @pagination([
+        'current' => 1,
+        'useJS' => true,
+        'perPage' => 10,
+        'keepDOM' => true,
+        'async' => true
+    ])
+    @endpagination
 @endelement
