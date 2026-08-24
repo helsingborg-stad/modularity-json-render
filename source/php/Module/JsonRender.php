@@ -113,26 +113,7 @@ class JsonRender extends \Modularity\Module
 
     public function script()
     {
-
         $this->wpEnqueue?->add('js/Front/jsonParser.js');
-
-        // Enqueue React
-        class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
-
-        $this->wpEnqueue
-            ?->add('js/empty.js')
-            ->with()
-            ->translation('modJsonRender', [
-                'translation' => [
-                    'somethingWentWrong' => __('Something went wrong, please try again later.', 'modularity-json-render'),
-                    'noResults' => __('No results found.', 'modularity-json-render'),
-                    'filterOn' => __('Filter on...', 'modularity-json-render'),
-                    'next' => __('Next', 'modularity-json-render'),
-                    'prev' => __('Previous', 'modularity-json-render'),
-                    'search' => __('Search', 'modularity-json-render'),
-                    'searchInputAriaLabel' => __('Filter list', 'modularity-json-render'),
-                ],
-            ]);
     }
 
     public function style()
