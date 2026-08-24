@@ -3,14 +3,18 @@
         'data-js-pagination-target' => true,
     ]
 ])
+
     @accordion([
         'heading' => $headings ?? [],
-        'attributeList' => [
-            'data-js-pagination-container' => true,
-            'data-js-data-js-mod-json-render-container' => $id
-        ]
     ])
-        <!-- Container for fetched data -->
+        @element([
+            'attributeList' => [
+                'data-js-pagination-container' => true,
+                'data-js-mod-json-render-container' => $id
+            ]
+        ])
+            <!-- Container for fetched data -->
+        @endelement
     @endaccordion
     @pagination([
         'current' => 1,
