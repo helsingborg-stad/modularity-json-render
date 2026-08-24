@@ -6,7 +6,7 @@ class HtmlTransformer {
     public function transform(array $data): string {
         $data = $this->mapHeadings($data);
 
-        return modularity_json_renderer_render_blade_view('test', [
+        return modularity_json_renderer_render_blade_view('items', [
             'items' => $data ?? [],
         ]);
     }
