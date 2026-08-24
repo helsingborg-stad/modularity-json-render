@@ -17,6 +17,11 @@
         @endelement
     @endaccordion
     @pagination([
+        'classList' => [
+            'u-margin__y--3',
+            'u-display--none',
+            'u-justify-content--center'
+        ],
         'current' => 1,
         'useJS' => true,
         'perPage' => 10,
