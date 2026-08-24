@@ -23,6 +23,7 @@
          data-per-page="{{ $per_page ?? 10 }}">
     </div>
 
+
 @endcard --}}
 @element([
     'attributeList' => [
@@ -46,4 +47,5 @@
         'async' => true
     ])
     @endpagination
+@endcard
 @endelement
