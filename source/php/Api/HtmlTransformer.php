@@ -2,11 +2,13 @@
 
 namespace ModularityJsonRender\Api;
 
+use ModularityJsonRender\Api\ConfigInterface;
+
 class HtmlTransformer {
-    public function transform(array $data): string {
+    public function transform(array $data, ConfigInterface $config): string {
         $data = $this->mapHeadings($data);
 
-        return modularity_json_renderer_render_blade_view('items', [
+        return modularity_json_renderer_render_blade_view(($config->getView() ?? 'accordiontable') . '-items', [
             'items' => $data ?? [],
         ]);
     }

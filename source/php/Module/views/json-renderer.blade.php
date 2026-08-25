@@ -3,7 +3,11 @@
         'data-js-pagination-target' => true,
     ]
 ])
-    @includeFirst(['content.' . $view, 'content.accordiontable'])
+    @card([
+    ])
+        @includeWhen((!$hideTitle && !empty($postTitle)), 'partials.post-title')
+        @includeFirst(['content.' . $view, 'content.accordiontable'])
+    @endcard
     @pagination([
         'classList' => [
             'u-margin__y--3',

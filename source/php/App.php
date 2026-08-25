@@ -12,9 +12,6 @@ class App
         private WpService $wpService,
         private EnqueueManager $wpEnqueue,
     ) {
-        //Register scripts
-        add_action('admin_enqueue_scripts', [$this, 'registerAdminAssets']);
-
         //Init module
         add_action('init', [$this, 'registerModule']);
 
