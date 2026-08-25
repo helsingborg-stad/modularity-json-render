@@ -108,7 +108,7 @@ class JsonRender extends \Modularity\Module
 
     public function template(): string
     {
-        return 'list.blade.php';
+        return 'json-renderer.blade.php';
     }
 
     public function script()
