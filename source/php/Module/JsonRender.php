@@ -133,7 +133,7 @@ class JsonRender extends \Modularity\Module
         $options = $this->getOptions($post->ID);
 
         $this->wpEnqueue
-            ?->add('js/empty.js')
+            ?->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true)
             ->with()
             ->translation('modJsonRender', [
                 'options' => $options,
