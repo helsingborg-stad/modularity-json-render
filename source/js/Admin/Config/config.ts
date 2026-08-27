@@ -1,4 +1,4 @@
-const { translation } = modJsonRender;
+const { translation } = modJsonRender ?? {};
 
 function dropAreas(view) {
 	const dropAreas = [];
