@@ -104,7 +104,7 @@ class JsonRender extends \Modularity\Module
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         $this->wpEnqueue
-            ?->add('js/empty.js')
+            ?->add('js/Front/IndexFront.js', $this->getAssetDependencies())
             ->with()
             ->translation('modJsonRender', [
                 'translation' => [
@@ -121,6 +121,7 @@ class JsonRender extends \Modularity\Module
 
     public function style()
     {
+        $this->wpEnqueue?->add('css/modularity-json-render-front.css');
     }
 
     public function adminEnqueue()
@@ -130,13 +131,16 @@ class JsonRender extends \Modularity\Module
             return;
         }
 
+        $version = false;
+        $loadInFooter = true;
+
         // Enqueue React
         class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
 
         $options = $this->getOptions($post->ID);
 
         $this->wpEnqueue
-            ?->add('js/empty.js')
+            ?->add('js/Admin/IndexAdmin.js', $this->getAssetDependencies(), $version, $loadInFooter)
             ->with()
             ->translation('modJsonRender', [
                 'options' => $options,
@@ -180,6 +184,11 @@ class JsonRender extends \Modularity\Module
         ];
 
         return $options;
+    }
+
+    private function getAssetDependencies(): array
+    {
+        return ['jquery', 'react', 'react-dom'];
     }
 
     /**
