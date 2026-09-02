@@ -8,8 +8,9 @@ class HtmlTransformer {
     public function transform(array $data, ConfigInterface $config): string {
         $data = $this->mapHeadings($data);
 
-        return modularity_json_renderer_render_blade_view(($config->getView() ?? 'accordiontable') . '-items', [
+        return modularity_json_renderer_render_blade_view('json-renderer-item-view', [
             'items' => $data ?? [],
+            'view' => $config->getView(),
         ]);
     }
 
