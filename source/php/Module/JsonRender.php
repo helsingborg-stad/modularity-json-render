@@ -83,40 +83,37 @@ class JsonRender extends \Modularity\Module
     public function data(): array
     {
         $options = $this->getOptions($this->ID);
-
-        $data = get_fields($this->ID);
+        $fields = get_fields($this->ID);
+        $data = is_array($fields) ? $fields : [];
+        $data['headings'] = $this->getHeadingsFromFieldMap($options['fieldMap'] ?? '');
         $data['url'] = $options['url'];
         $data['view'] = $options['view'];
         $data['fieldMap'] = $options['fieldMap'];
+        $data['id'] = $this->ID;
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', ['box', 'box-panel'], $this->post_type, $this->args));
 
         return $data;
     }
 
+    private function getHeadingsFromFieldMap(string $fieldMap): array {
+        $decodedFieldMap = json_decode($fieldMap, true);
+        $headings = [];
+        if (!isset($decodedFieldMap['heading']) || !is_array($decodedFieldMap['heading'])) {
+            return $headings;
+        }
+        $headings = array_column($decodedFieldMap['heading'], 'heading');
+
+        return $headings;
+    }
+
     public function template(): string
     {
-        return 'list.blade.php';
+        return 'json-renderer.blade.php';
     }
 
     public function script()
     {
-        // Enqueue React
-        class_exists('\Modularity\Helper\React') ? \Modularity\Helper\React::enqueue() : \ModularityJsonRender\Helper\React::enqueue();
-
-        $this->wpEnqueue
-            ?->add('js/empty.js')
-            ->with()
-            ->translation('modJsonRender', [
-                'translation' => [
-                    'somethingWentWrong' => __('Something went wrong, please try again later.', 'modularity-json-render'),
-                    'noResults' => __('No results found.', 'modularity-json-render'),
-                    'filterOn' => __('Filter on...', 'modularity-json-render'),
-                    'next' => __('Next', 'modularity-json-render'),
-                    'prev' => __('Previous', 'modularity-json-render'),
-                    'search' => __('Search', 'modularity-json-render'),
-                    'searchInputAriaLabel' => __('Filter list', 'modularity-json-render'),
-                ],
-            ]);
+        $this->wpEnqueue?->add('js/Front/jsonParser.js');
     }
 
     public function style()
@@ -136,7 +133,7 @@ class JsonRender extends \Modularity\Module
         $options = $this->getOptions($post->ID);
 
         $this->wpEnqueue
-            ?->add('js/empty.js')
+            ?->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true)
             ->with()
             ->translation('modJsonRender', [
                 'options' => $options,

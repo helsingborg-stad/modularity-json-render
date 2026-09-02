@@ -1,0 +1,3 @@
+type WpApiSettings = {
+    root: string;
+}

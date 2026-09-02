@@ -3,21 +3,22 @@
 namespace ModularityJsonRender;
 
 use WpUtilService\Features\Enqueue\EnqueueManager;
+use Municipio\Api\RestApiEndpointsRegistry;
+use WpService\WpService;
 
 class App
 {
     public function __construct(
+        private WpService $wpService,
         private EnqueueManager $wpEnqueue,
     ) {
-        //Register scripts
-        add_action('wp_enqueue_scripts', [$this, 'registerFrontendAssets']);
-        add_action('admin_enqueue_scripts', [$this, 'registerAdminAssets']);
-
         //Init module
         add_action('init', [$this, 'registerModule']);
 
         //Register meta boxes
         add_action('add_meta_boxes', [$this, 'registerMetaBoxes']);
+
+        RestApiEndpointsRegistry::add(new \ModularityJsonRender\Api\Endpoint($this->wpService));
     }
 
     /**
@@ -32,24 +33,6 @@ class App
                 'JsonRender',
             );
         }
-    }
-
-    /**
-     * Register required frontend scripts
-     * @return void
-     */
-    public function registerFrontendAssets()
-    {
-        $this->wpEnqueue->add('css/modularity-json-render-front.css')->add('js/Front/IndexFront.js', ['jquery', 'react', 'react-dom']);
-    }
-
-    /**
-     * Register required admin scripts & styles
-     * @return void
-     */
-    public function registerAdminAssets()
-    {
-        $this->wpEnqueue->add('css/modularity-json-render-admin.css')->add('js/Admin/IndexAdmin.js', ['jquery', 'react', 'react-dom'], false, true);
     }
 
     /**
