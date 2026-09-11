@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16068650c90e1caa3dc5f7ffaa7e38b4",
+    "content-hash": "62952134d2e5f38be87ccde53e0a12a4",
     "packages": [
         {
             "name": "helsingborg-stad/acf-export-manager",
@@ -93,16 +93,16 @@
         },
         {
             "name": "helsingborg-stad/wputilservice",
-            "version": "0.2.48",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/wputilservice.git",
-                "reference": "60afacdecc1aa72f14f135916bdffe80abd52dc0"
+                "reference": "7f64cca13cc1511250f728f6cd92c52ec2ead767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/wputilservice/zipball/60afacdecc1aa72f14f135916bdffe80abd52dc0",
-                "reference": "60afacdecc1aa72f14f135916bdffe80abd52dc0",
+                "url": "https://api.github.com/repos/helsingborg-stad/wputilservice/zipball/7f64cca13cc1511250f728f6cd92c52ec2ead767",
+                "reference": "7f64cca13cc1511250f728f6cd92c52ec2ead767",
                 "shasum": ""
             },
             "require": {
@@ -135,9 +135,9 @@
             "description": "Simplifies WordPress development by providing a centralized WpUtilService that exposes a WordPress api wrapped in a streamlined manner. Simplify your development workflow and enhance WordPress integration with ease.",
             "support": {
                 "issues": "https://github.com/helsingborg-stad/wputilservice/issues",
-                "source": "https://github.com/helsingborg-stad/wputilservice/tree/0.2.48"
+                "source": "https://github.com/helsingborg-stad/wputilservice/tree/0.3.0"
             },
-            "time": "2025-11-27T13:59:02+00:00"
+            "time": "2026-09-03T13:54:31+00:00"
         }
     ],
     "packages-dev": [
@@ -1971,10 +1971,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
