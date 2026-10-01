@@ -3,10 +3,13 @@
 namespace ModularityJsonRender;
 
 use WpUtilService\Features\Enqueue\EnqueueManager;
+use Municipio\Api\RestApiEndpointsRegistry;
+use WpService\WpService;
 
 class App
 {
     public function __construct(
+        private WpService $wpService,
         private EnqueueManager $wpEnqueue,
     ) {
         //Init module
@@ -14,6 +17,8 @@ class App
 
         //Register meta boxes
         add_action('add_meta_boxes', [$this, 'registerMetaBoxes']);
+
+        RestApiEndpointsRegistry::add(new \ModularityJsonRender\Api\Endpoint($this->wpService));
     }
 
     /**

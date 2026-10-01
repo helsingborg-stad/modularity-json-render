@@ -1,0 +1,1 @@
+@includeFirst([$view . '-items', 'accordiontable-items'])

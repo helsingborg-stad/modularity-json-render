@@ -1,0 +1,22 @@
+@foreach($items as $item)
+    @accordion__item([
+        'heading' => !empty($item['heading']) ? reset($item['heading']) : [],
+        'attributeList' => [
+            'data-js-pagination-item' => true
+        ]
+    ])
+        @foreach($item['content'] ?? [] as $content)
+            @if (!empty($content['value']))
+                @if (!empty($content['label']))
+                    @typography([
+                        'element' => 'h3',
+                        'variant' => 'h4',
+                    ])
+                        {{ $content['label'] }}
+                    @endtypography
+                @endif
+                {{ $content['value'] }}
+            @endif
+        @endforeach
+    @endaccordion__item
+@endforeach
