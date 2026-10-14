@@ -141,9 +141,9 @@ class ExtractDataTest extends TestCase
     }
 
     /**
-     * Ensures invalid or empty locations are skipped in output sections.
+     * Ensures headings without a location retain their table column.
      */
-    public function testExtractSkipsFieldsWithoutLocation(): void
+    public function testExtractRetainsHeadingsWithoutLocation(): void
     {
         // Arrange
         $fieldMap = [
@@ -177,6 +177,9 @@ class ExtractDataTest extends TestCase
         static::assertSame([
             [
                 'content' => [],
+                'heading' => [
+                    ['label' => 'Invalid', 'value' => null],
+                ],
             ],
         ], $result);
     }
