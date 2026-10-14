@@ -23,8 +23,26 @@ class Config implements ConfigInterface
     public function getFieldMap(): array
     {
         $fieldmap = $this->wpService->getPostMeta($this->id, 'fieldmap', true);
-        $fieldmap = json_decode(html_entity_decode(stripslashes($fieldmap)), true);
 
-        return $fieldmap;
+        if (!is_string($fieldmap)) {
+            return [];
+        }
+
+        $fieldMapVariants = [
+            $fieldmap,
+            html_entity_decode($fieldmap),
+            stripslashes($fieldmap),
+            html_entity_decode(stripslashes($fieldmap)),
+        ];
+
+        foreach (array_unique($fieldMapVariants) as $fieldMapVariant) {
+            $decodedFieldMap = json_decode($fieldMapVariant, true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decodedFieldMap)) {
+                return $decodedFieldMap;
+            }
+        }
+
+        return [];
     }
 }

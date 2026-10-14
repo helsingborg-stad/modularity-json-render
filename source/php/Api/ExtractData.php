@@ -34,15 +34,15 @@ class ExtractData implements ExtractDataInterface
             $mappedItem = [];
 
             foreach ($mappedHeadingLocation as $heading) {
-                if (empty($heading['location'])) {
-                    continue;
-                }
                 $mappedItem['heading'][] = [
                     'label' => $heading['label'],
-                    'value' => $this->getValueByLocation(
-                        $item,
-                        $heading['location']
-                    )]; 
+                    'value' => empty($heading['location'])
+                        ? null
+                        : $this->getValueByLocation(
+                            $item,
+                            $heading['location']
+                        ),
+                ];
             }
 
             $mappedItem['content'] = [];
