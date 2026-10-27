@@ -36,6 +36,8 @@ class ExtractData implements ExtractDataInterface
             foreach ($mappedHeadingLocation as $heading) {
                 $mappedItem['heading'][] = [
                     'label' => $heading['label'],
+                    'prefix' => $heading['prefix'] ?? null,
+                    'suffix' => $heading['suffix'] ?? null,
                     'value' => empty($heading['location'])
                         ? null
                         : $this->getValueByLocation(
@@ -54,6 +56,8 @@ class ExtractData implements ExtractDataInterface
 
                 $mappedItem['content'][] = [
                     'label' => $content['label'],
+                    'prefix' => $content['prefix'] ?? null,
+                    'suffix' => $content['suffix'] ?? null,
                     'value' => $this->getValueByLocation(
                         $item,
                         $content['location']
@@ -88,9 +92,13 @@ class ExtractData implements ExtractDataInterface
         foreach ($field as  $item) {
             $label = $item['heading'] ?? '';
             $location = !empty($item['item']['value']) ? explode('.', $item['item']['value']) : [];
+            $prefix = array_key_exists('prefix', $item) ? $item['prefix'] : null;
+            $suffix = array_key_exists('suffix', $item) ? $item['suffix'] : null;
 
             $mappedItems[] = [
                 'label' => $label,
+                'prefix' => $prefix,
+                'suffix' => $suffix,
                 'location' => $location,
             ];
         }

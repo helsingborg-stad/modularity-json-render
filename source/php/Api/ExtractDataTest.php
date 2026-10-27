@@ -22,12 +22,16 @@ class ExtractDataTest extends TestCase
             'heading' => [
                 [
                     'heading' => 'Name',
+                    'prefix' => 'Mr/Ms ',
+                    'suffix' => '!',
                     'item' => ['value' => 'profile.name'],
                 ],
             ],
             'content' => [
                 [
                     'heading' => 'Age',
+                    'prefix' => 'Age: ',
+                    'suffix' => ' years',
                     'item' => ['value' => 'profile.age'],
                 ],
                 [
@@ -52,21 +56,21 @@ class ExtractDataTest extends TestCase
         // Assert
         static::assertSame([
             [
-                'content' => [
-                    ['label' => 'Age', 'value' => 31],
-                    ['label' => 'City', 'value' => null],
-                ],
                 'heading' => [
-                    ['label' => 'Name', 'value' => 'Alice'],
+                    ['label' => 'Name', 'prefix' => 'Mr/Ms ', 'suffix' => '!', 'value' => 'Alice'],
+                ],
+                'content' => [
+                    ['label' => 'Age', 'prefix' => 'Age: ', 'suffix' => ' years', 'value' => 31],
+                    ['label' => 'City', 'prefix' => null, 'suffix' => null, 'value' => null],
                 ],
             ],
             [
-                'content' => [
-                    ['label' => 'Age', 'value' => 42],
-                    ['label' => 'City', 'value' => null],
-                ],
                 'heading' => [
-                    ['label' => 'Name', 'value' => 'Bob'],
+                    ['label' => 'Name', 'prefix' => 'Mr/Ms ', 'suffix' => '!', 'value' => 'Bob'],
+                ],
+                'content' => [
+                    ['label' => 'Age', 'prefix' => 'Age: ', 'suffix' => ' years', 'value' => 42],
+                    ['label' => 'City', 'prefix' => null, 'suffix' => null, 'value' => null],
                 ],
             ],
         ], $result);
@@ -102,12 +106,12 @@ class ExtractDataTest extends TestCase
         static::assertSame([
             [
                 'content' => [
-                    ['label' => 'Name', 'value' => 'Ada'],
+                    ['label' => 'Name', 'prefix' => null, 'suffix' => null, 'value' => 'Ada'],
                 ],
             ],
             [
                 'content' => [
-                    ['label' => 'Name', 'value' => 'Grace'],
+                    ['label' => 'Name', 'prefix' => null, 'suffix' => null, 'value' => 'Grace'],
                 ],
             ],
         ], $result);
@@ -176,10 +180,10 @@ class ExtractDataTest extends TestCase
         // Assert
         static::assertSame([
             [
-                'content' => [],
                 'heading' => [
-                    ['label' => 'Invalid', 'value' => null],
+                    ['label' => 'Invalid', 'prefix' => null, 'suffix' => null, 'value' => null],
                 ],
+                'content' => [],
             ],
         ], $result);
     }

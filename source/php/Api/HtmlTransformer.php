@@ -24,7 +24,21 @@ class HtmlTransformer {
                 continue;
             }
 
-            $item['heading'] = array_column($item['heading'], 'value');
+            $item['heading'] = array_map(function (mixed $heading): mixed {
+                if (!is_array($heading)) {
+                    return $heading;
+                }
+
+                $value = $heading['value'] ?? null;
+                if ($value === null || $value === '') {
+                    return $value;
+                }
+
+                $prefix = $heading['prefix'] ?? '';
+                $suffix = $heading['suffix'] ?? '';
+
+                return $prefix . $value . $suffix;
+            }, $item['heading']);
         }
 
         return $data;
