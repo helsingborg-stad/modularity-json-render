@@ -6,7 +6,7 @@
     ])
         @foreach($item['heading'] as $heading)
             @table__cell([])
-                {{ $heading !== null && $heading !== '' ? $heading : '—' }}
+                {!! $heading !== null && $heading !== '' ? $heading : '—' !!}
             @endtable__cell
         @endforeach
     @endtable__row

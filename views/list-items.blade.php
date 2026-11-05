@@ -5,7 +5,7 @@
                 'element' => 'h3',
                 'variant' => 'h6'
             ])
-                {{ $item['heading'][0] }}
+                {!! $item['heading'][0] !!}
             @endtypography
         @endcollection__item
     @endif

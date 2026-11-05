@@ -15,7 +15,7 @@
                         {{ $content['label'] }}
                     @endtypography
                 @endif
-                {{ $content['value'] }}
+                {!! $content['prefix'] !!} {{ $content['value'] }} {!! $content['suffix'] !!}
             @endif
         @endforeach
     @endaccordion__item
