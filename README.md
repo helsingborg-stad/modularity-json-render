@@ -46,7 +46,7 @@ Modularity extenstion for displaying json api results in different formats.
 * Modularity Wordpress Plugin
 * nodeJS > 16
 * composer 2
-* PHP > 7.4
+* PHP 8.2–8.5 (required by wpservice 3.0)
 
 
 ### Installation
