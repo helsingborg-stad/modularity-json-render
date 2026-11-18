@@ -28,7 +28,9 @@ define('MODULARITYJSONRENDER_TEMPLATE_PATH', MODULARITYJSONRENDER_PATH . 'templa
 
 define('MODULARITYJSONRENDER_ENDPOINT', 'mod-json-render/v1/');
 
-load_plugin_textdomain('modularity-json-render', false, plugin_basename(dirname(__FILE__)) . '/languages');
+add_action('init', function () {
+    load_plugin_textdomain('modularity-json-render', false, plugin_basename(dirname(__FILE__)) . '/languages');
+});
 
 // Autoload from plugin
 if (file_exists(MODULARITYJSONRENDER_PATH . 'vendor/autoload.php')) {
@@ -44,7 +46,7 @@ add_filter( '/Modularity/externalViewPath', function($arr)
 );
 
 // Acf auto import and export
-add_action('plugins_loaded', function () {
+add_action('acf/init', function () {
     $acfExportManager = new \AcfExportManager\AcfExportManager();
     $acfExportManager->setTextdomain('modularity-json-render');
     $acfExportManager->setExportFolder(MODULARITYJSONRENDER_PATH . 'acf-fields/');
